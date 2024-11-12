@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import Header from './components/Header.vue';
+import TopPresentation from './components/TopPresentation.vue';
 </script>
 
 <template>
   <Header/>
+  <TopPresentation/>
 </template>
 
 <style scoped>
