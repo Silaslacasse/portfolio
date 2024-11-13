@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import Header from './components/Header.vue';
 import TopPresentation from './components/TopPresentation.vue';
-// import TranslatingBanner from './components/TranslatingBanner.vue';
+import SliderBanner from './components/SliderBanner.vue';
 </script>
 
 <template>
   <Header/>
   <TopPresentation/>
-  <!-- <TranslatingBanner/> -->
+  <SliderBanner/>
 </template>
 
 <style scoped>

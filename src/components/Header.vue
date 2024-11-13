@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Button from './Button.vue';
-
 </script>
 
 <template>
@@ -33,6 +32,7 @@ header {
     top: 5%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
 nav {

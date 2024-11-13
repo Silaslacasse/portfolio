@@ -15,7 +15,6 @@ import Button from './Button.vue';
 <style scoped>
 
 .topPresentationWraper{
-    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -33,7 +32,6 @@ import Button from './Button.vue';
     background-repeat: no-repeat;
     top: 150px;
     right: 667px;
-    z-index: -1;
 }
 
 .topPresentationWraper::after{

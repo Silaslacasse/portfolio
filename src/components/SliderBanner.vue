@@ -38,9 +38,9 @@ const technos = [
 </script>
 
 <template>
-    <div class="sliderWrapper">
-       <div v-for="techno in technos" :key="techno.icon" class="flex">
-        <img :src="iconMap[techno.icon]" alt="Icone techno" />
+    <div class="sliderWrapper flex">
+       <div v-for="techno in technos" :key="techno.icon" class="flex sliderElement">
+        <img :src="iconMap[techno.icon]" alt="Icone techno" width="50px" />
             <p>{{ techno.technoName }}</p>
        </div> 
     </div>
@@ -48,9 +48,19 @@ const technos = [
 
 <style scoped>
 .sliderWrapper{
-    display: flex;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(0.30turn, #5700EF, #FF6315);
+    height: 104px;
+    gap: 40px;
+}
+.sliderElement{
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 32px;
 }
 
 </style>
