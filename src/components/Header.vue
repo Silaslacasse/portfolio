@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import Button from './Button.vue';
 
-function getIconPath(name: string) {
-    return `../assets/icons/${name}.wepb`;
-}
-
-
 </script>
 
 <template>
