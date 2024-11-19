@@ -28,7 +28,67 @@ const technos = [
     },
     {
         "icon" : "abstract_flower",
-        "technoName" : "Node/express"
+        "technoName" : "Node/Express"
+    },
+    {
+        "icon" : "array_flower",
+        "technoName" : "Sql/MongoDB"
+    },
+    {
+        "icon" : "star_flower",
+        "technoName" : "HTML/CSS"
+    },
+    {
+        "icon" : "dotts_flower",
+        "technoName" : "Php/Synfony"
+    },
+    {
+        "icon" : "round_flower",
+        "technoName" : "Javascript/VueJS/React"
+    },
+    {
+        "icon" : "abstract_flower",
+        "technoName" : "Node/Express"
+    },
+    {
+        "icon" : "array_flower",
+        "technoName" : "Sql/MongoDB"
+    },
+    {
+        "icon" : "star_flower",
+        "technoName" : "HTML/CSS"
+    },
+    {
+        "icon" : "dotts_flower",
+        "technoName" : "Php/Synfony"
+    },
+    {
+        "icon" : "round_flower",
+        "technoName" : "Javascript/VueJS/React"
+    },
+    {
+        "icon" : "abstract_flower",
+        "technoName" : "Node/Express"
+    },
+    {
+        "icon" : "array_flower",
+        "technoName" : "Sql/MongoDB"
+    },
+    {
+        "icon" : "star_flower",
+        "technoName" : "HTML/CSS"
+    },
+    {
+        "icon" : "dotts_flower",
+        "technoName" : "Php/Synfony"
+    },
+    {
+        "icon" : "round_flower",
+        "technoName" : "Javascript/VueJS/React"
+    },
+    {
+        "icon" : "abstract_flower",
+        "technoName" : "Node/Express"
     },
     {
         "icon" : "array_flower",
@@ -38,29 +98,46 @@ const technos = [
 </script>
 
 <template>
-    <div class="sliderWrapper flex">
-       <div v-for="techno in technos" :key="techno.icon" class="flex sliderElement">
-        <img :src="iconMap[techno.icon]" alt="Icone techno" width="50px" />
-            <p>{{ techno.technoName }}</p>
-       </div> 
+    <div class="otherWrapper">
+        <div class="sliderWrapper flex">
+            <div v-for="techno in technos" :key="techno.icon" class="sliderItem">
+                <img :src="iconMap[techno.icon]" alt="Icone techno" width="50px" />
+                <p>{{ techno.technoName }}</p>
+            </div> 
+        </div>
     </div>
 </template>
 
 <style scoped>
-.sliderWrapper{
-    justify-content: center;
-    align-items: center;
+.otherWrapper{
     background: linear-gradient(0.30turn, #5700EF, #FF6315);
-    height: 104px;
-    gap: 40px;
+    overflow: hidden;
 }
-.sliderElement{
+.sliderWrapper{
+    align-items: center;
+    height: 104px;
+    gap: 50px;
+    flex-wrap: nowrap;
+    animation: slide 20s linear infinite;
+}
+.sliderItem{
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 50px;
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
     font-size: 32px;
+    flex: 0 0 auto;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 </style>
