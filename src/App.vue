@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import Header from './components/Header.vue';
 import TopPresentation from './components/TopPresentation.vue';
-import SliderBanner2 from './components/SliderBanner2.vue';
+import Marquee from './components/Marquee.vue';
 </script>
 
 <template>
   <Header/>
   <TopPresentation/>
-  <SliderBanner2/>
+  <Marquee/>
 </template>
 
 <style scoped>
