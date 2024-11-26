@@ -73,6 +73,10 @@ function handleClick(event: Event) {
   background-color: transparent;
   color: white;
 }
+.btn--white {
+  background-color: white;
+  color: #1E1E1E;
+}
 .btn--danger {
   background-color: #dc3545;
   color: white;
@@ -93,6 +97,10 @@ function handleClick(event: Event) {
   width: 190px;
   height: 76px;
   border-radius: 37.5px;
+}
+
+.btn--custom {
+  border-radius: 16px;
 }
 /* Disabled styles */
 .btn--disabled {

@@ -75,10 +75,10 @@ const technos = [
   overflow: hidden;
 }
 .sliderWrapper{
-  margin-left: 50px;
+  margin-left: 70px;
   align-items: center;
   height: 104px;
-  gap: 50px;
+  gap: 70px;
   flex-wrap: nowrap;
 }
 .sliderItem{
