@@ -122,4 +122,16 @@ import Button from './Button.vue';
     color: white;
 }
 
+@media screen and (max-width: 1920px) {
+    .topPresentationWraper::before{
+        top: 120px;
+        right: 450px;
+    }
+
+    .topPresentationWraper::after{
+        bottom: 70px;
+        left: 450px;
+    }
+}
+
 </style>

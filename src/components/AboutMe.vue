@@ -31,7 +31,7 @@ import Button from './Button.vue';
                     <path d="M16.8953 9.03763L9.7433 1.88561L11.6289 0L21.9998 10.371L11.6289 20.7418L9.7433 18.8562L16.8953 11.7043H0.666504V9.03763H16.8953Z" fill="white"/>
                 </svg>
             </div>
-
+            <img class="" src="../assets/icons/orange_flower.webp" width="70px" alt="Mail Icon" />
         </div>
         <div class="right-bottom">
             <div class="flex flex-col-reverse p-[20px] ">
@@ -115,6 +115,7 @@ import Button from './Button.vue';
     font-size: 32px;
     display: flex;
     flex-direction: column-reverse;
+    justify-content: space-between;
 }
 
 .right-top {

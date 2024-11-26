@@ -3,6 +3,7 @@ import Header from './components/Header.vue';
 import TopPresentation from './components/TopPresentation.vue';
 import Marquee from './components/Marquee.vue';
 import AboutMe from './components/AboutMe.vue';
+// import Curriculum from './components/Curriculum.vue';
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import AboutMe from './components/AboutMe.vue';
   <TopPresentation/>
   <Marquee/>
   <AboutMe/>
+  <!-- <Curriculum/> -->
 </template>
 
 <style scoped>
