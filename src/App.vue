@@ -4,6 +4,7 @@ import TopPresentation from './components/TopPresentation.vue';
 import Marquee from './components/Marquee.vue';
 import AboutMe from './components/AboutMe.vue';
 import Curriculum from './components/Curriculum.vue';
+import Footer from './components/Footer.vue';
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import Curriculum from './components/Curriculum.vue';
   <Marquee/>
   <AboutMe/>
   <Curriculum/>
+  <Footer />
 </template>
 
 <style scoped>

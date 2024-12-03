@@ -51,29 +51,47 @@ const selectedVersion = ref("Compétences");
                 </div>
                 <div class="xpTab" v-if="selectedVersion === 'Expériences'">
                     <div class="infoWrapper" >
-                        <SkillsTag label="Developpeur Full Stack chez JetPulp - Alt "></SkillsTag>
-                        <p>De septembre 2022 à septembre 2024</p>
-                        <SkillsTag label="Developpeur Front End chez SiteW - Alt "></SkillsTag>
-                        <p>De septembre 2021 à septembre 2022</p>
-                        <SkillsTag label="Confection de site web chez Arclim - Stage & contrat étudiant "></SkillsTag>
-                        <p>De mai à août 2021 - Confection de site web pour superviser des installations de stockage alimentaire</p>
-                        <SkillsTag label="Réparation de matériel informatique - Indépendant "></SkillsTag>
-                        <p>2015-2021 - Réparation de smartphones & ordinateurs</p>
-                        <SkillsTag label="Saisonnier fruitier"></SkillsTag>
-                        <p>2016-2020 - Cueillette & tri des cerises - Vendanges</p>
+                        <div class="skillWrapper">
+                            <SkillsTag label="Developpeur Full Stack chez JetPulp - Alt " display="inline"></SkillsTag>
+                            <p>De septembre 2022 à septembre 2024</p>
+                        </div>
+                        <div class="skillWrapper">
+                            <SkillsTag label="Developpeur Front End chez SiteW - Alt "  display="inline"></SkillsTag>
+                            <p>De septembre 2021 à septembre 2022</p>
+                        </div>
+                        <div class="skillWrapper">
+                            <SkillsTag label="Confection de site web chez Arclim - Stage & contrat étudiant "  display="inline"></SkillsTag>
+                            <p>De mai à août 2021 - Confection de site web pour superviser des installations de stockage alimentaire</p>
+                        </div>
+                        <div class="skillWrapper">
+                            <SkillsTag label="Réparation de matériel informatique - Indépendant "  display="inline"></SkillsTag>
+                            <p>2015-2021 - Réparation de smartphones & ordinateurs</p>
+                        </div>
+                        <div class="skillWrapper">
+                            <SkillsTag label="Saisonnier fruitier"  display="inline"></SkillsTag>
+                            <p>2016-2020 - Cueillette & tri des cerises - Vendanges</p>
+                        </div>
                     </div>
                 </div>
 
                 <div class="formationTab" v-if="selectedVersion === 'Formation'">
                     <div class="infoWrapper">
-                        <SkillsTag label="Master Expert Développement Web Ynov Lyon"></SkillsTag>
-                        <p>Septembre 2022-2024 - Alternance chez JetPulp</p>
-                        <SkillsTag label="Licence Pro Application Web Clermont"></SkillsTag>
-                        <p>Septembre 2021-2022 - Alternance ches sitew.com</p>
-                        <SkillsTag label="IUT Lyon 1 informatique"></SkillsTag>
-                        <p>Septembre 2019-2021 - Stage de fin d’année chez ARCLIM</p>
-                        <SkillsTag label="Lycée René CASSIN"></SkillsTag>
-                        <p>Septembre 2017 - Juin 2019 - Baccalauréat STI2D mention très bien</p>
+                        <div class="skillWrapper">
+                            <SkillsTag label="Master Expert Développement Web Ynov Lyon" display="inline"></SkillsTag>
+                            <p>Septembre 2022-2024 - Alternance chez JetPulp</p>
+                        </div>
+                        <div class="skillWrapper">
+                            <SkillsTag label="Licence Pro Application Web Clermont" display="inline"></SkillsTag>
+                            <p>Septembre 2021-2022 - Alternance ches sitew.com</p>
+                        </div>
+                        <div class="skillWrapper">
+                            <SkillsTag label="IUT Lyon 1 informatique" display="inline"></SkillsTag>
+                            <p>Septembre 2019-2021 - Stage de fin d’année chez ARCLIM</p>
+                        </div>
+                        <div class="skillWrapper">
+                            <SkillsTag label="Lycée René CASSIN" display="inline"></SkillsTag>
+                            <p>Septembre 2017 - Juin 2019 - Baccalauréat STI2D mention très bien</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -194,5 +212,15 @@ const selectedVersion = ref("Compétences");
     color: #fff;
     background: #333;
 }
+
+.skillWrapper{
+    margin-bottom: 15px;
+}
+
+.skillWrapper p{
+    margin-top: 15px;
+    margin-left: 2px;
+}
+
 
 </style>

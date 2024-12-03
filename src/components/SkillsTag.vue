@@ -4,13 +4,17 @@ import { defineProps, computed } from 'vue';
 
 const props = defineProps({
     label: {
-    type: String,
-    default: 'Button',
+        type: String,
+        default: 'Button',
     },
     star: {
         type: Number,
         required: false,
         validator: (value: number) => value >= 1 && value <= 5,
+    },
+    display: {
+        type: String,
+        default: 'flex',
     },
 });
 
@@ -21,11 +25,15 @@ const stars = computed(() => {
   return [...filledStars, ...emptyStars];
 });
 
+const computedStyle = computed(() => ({
+  display: props.display === 'inline' ? 'inline' : 'flex',
+}));
+
 
 </script>
 
 <template>
-    <div class="tagWrapper">
+    <div class="tagWrapper" :style="computedStyle" >
         <slot>{{ label }}</slot>
         <div class="stars" v-if="stars.length > 0">
             <span 
@@ -51,7 +59,6 @@ const stars = computed(() => {
     background-color: #18181B;
     border-radius: 12px;
     padding: 10px 18px;
-    display: flex;
     gap: 10px;
     align-items: center;
 }
