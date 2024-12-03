@@ -8,25 +8,20 @@ const selectedVersion = ref("Compétences");
 
 <template>
     <div class="selectInfos">
-        <!-- <radio>
-            <option selected>Compétences</option>
-            <option>Expériences</option>
-            <option>Formation</option>
-        </radio> -->
-        <!-- <div class="radio-group">
-            <label>
+        <div class="radio-group">
+            <label class="radio-tab">
                 <input type="radio" value="Compétences" v-model="selectedVersion" />
-                Compétences
+                <div>Compétences</div>
             </label>
-            <label>
+            <label class="radio-tab">
                 <input type="radio" value="Expériences" v-model="selectedVersion" />
-                Expériences
+                <div>Expériences</div>
             </label>
-            <label>
+            <label class="radio-tab">
                 <input type="radio" value="Formation" v-model="selectedVersion" />
-                Formation
-            </label> -->
-        <!-- </div> -->
+                <div>Formation</div>
+            </label>
+        </div> 
     </div>
     <div class="curriculumWrapper">
         <div class="leftWrapper">
@@ -54,10 +49,8 @@ const selectedVersion = ref("Compétences");
                         <SkillsTag label="Sql/MongoDB"></SkillsTag>
                     </div>
                 </div>
-            </div>
-
-                <!-- <div class="xpTab">
-                    <div class="skillsWrapper" v-if="selectedVersion === 'Expériences'">
+                <div class="xpTab" v-if="selectedVersion === 'Expériences'">
+                    <div class="infoWrapper" >
                         <SkillsTag label="Developpeur Full Stack chez JetPulp - Alt "></SkillsTag>
                         <p>De septembre 2022 à septembre 2024</p>
                         <SkillsTag label="Developpeur Front End chez SiteW - Alt "></SkillsTag>
@@ -72,10 +65,7 @@ const selectedVersion = ref("Compétences");
                 </div>
 
                 <div class="formationTab" v-if="selectedVersion === 'Formation'">
-                    <div class="">
-                        <img src="../assets/images/pink_pasta.webp" width="194px" alt="pink decoration" />
-                    </div>
-                    <div class="skillsWrapper">
+                    <div class="infoWrapper">
                         <SkillsTag label="Master Expert Développement Web Ynov Lyon"></SkillsTag>
                         <p>Septembre 2022-2024 - Alternance chez JetPulp</p>
                         <SkillsTag label="Licence Pro Application Web Clermont"></SkillsTag>
@@ -85,8 +75,8 @@ const selectedVersion = ref("Compétences");
                         <SkillsTag label="Lycée René CASSIN"></SkillsTag>
                         <p>Septembre 2017 - Juin 2019 - Baccalauréat STI2D mention très bien</p>
                     </div>
-                </div> -->
-            
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -135,26 +125,74 @@ const selectedVersion = ref("Compétences");
 }
 
 .selectContent{
-    display: flex;
     background-color: #27272A;
     height: 100%;
     border-radius: 16px;
-    justify-content: space-between;
-    flex-direction: column;
     padding: 40px;
 }
 
 .skillsWrapper{
     display: flex;
-    gap: 24px;
     flex-wrap: wrap;
+    gap: 24px;
 }
 
 .skillsTab{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    flex-wrap: wrap;
+    height: 100%;
+}
+
+.infoWrapper{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.selectInfos {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    gap: 16px; /* Espacement entre les boutons */
+}
+
+.radio-group{
+    padding: 0 10px;
+    display: flex;
     flex-direction: row;
+    align-items: center;
+    background-color: #27272A;
+    border-radius: 16px;
+}
+
+/* Masque les vrais boutons radio */
+.radio-tab input[type="radio"] {
+    display: none;
+}
+
+/* Style par défaut des labels (onglets) */
+.radio-tab div {
+    padding: 8px 14px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.8s ease-in-out;
+    text-align: center;
+}
+
+/* Onglet sélectionné */
+.radio-tab input[type="radio"]:checked + div {
+    color: #fff;
+    background: linear-gradient(90deg, #9b00ff, #ff4500);
+}
+
+/* Effet au survol */
+.radio-tab:hover div {
+    color: #fff;
+    background: #333;
 }
 
 </style>
