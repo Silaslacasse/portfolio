@@ -136,7 +136,7 @@ import Button from './Button.vue';
 
 @media screen and (max-width: 1700px) {
     .topPresentationWraper::before{
-        top: 140px;
+        top: 130px;
         right: 350px;
         width: 215px;
         height: 226px;
@@ -152,7 +152,7 @@ import Button from './Button.vue';
 
 @media screen and (max-width: 1500px) {
     .topPresentationWraper::before{
-        top: 140px;
+        top: 100px;
         right: 250px;
         width: 190px;
         height: 200px;

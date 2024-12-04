@@ -222,5 +222,12 @@ const selectedVersion = ref("Compétences");
     margin-left: 2px;
 }
 
+@media screen and (max-width: 1400px) {
+    .curriculumWrapper{
+        max-width: 1200px;
+    }
+}
+
+
 
 </style>

@@ -138,5 +138,18 @@ import Button from './Button.vue';
     filter: invert(1) brightness(0);
 }
 
+@media screen and (max-width: 1400px) {
+    .container{
+        max-width: 1200px;
+    }
+}
+@media screen and (max-width: 1240px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        padding: 80px;
+    }
+}
+
 
 </style>

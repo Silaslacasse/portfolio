@@ -39,4 +39,9 @@
     gap: 40px;
 }
 
+@media screen and (max-width: 1400px) {
+    .footerWrapper{
+        max-width: 1200px;
+    }
+}
 </style>
