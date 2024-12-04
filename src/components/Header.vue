@@ -40,4 +40,13 @@ nav {
     gap: 50px;
 }
 
+@media screen and (max-width: 1400px) {
+    header{
+
+    }
+    nav{
+        gap: 30px;
+    }
+}
+
 </style>

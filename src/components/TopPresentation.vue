@@ -134,4 +134,43 @@ import Button from './Button.vue';
     }
 }
 
+@media screen and (max-width: 1700px) {
+    .topPresentationWraper::before{
+        top: 140px;
+        right: 350px;
+        width: 215px;
+        height: 226px;
+    }
+
+    .topPresentationWraper::after{
+        bottom: 70px;
+        left: 350px;
+        width: 244px;
+        height: 240px;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    .topPresentationWraper::before{
+        top: 140px;
+        right: 250px;
+        width: 190px;
+        height: 200px;
+    }
+
+    .topPresentationWraper::after{
+        bottom: 70px;
+        left: 250px;
+        width: 213px;
+        height: 210px;
+    }
+
+    .mainTitleWrapper{
+        font-size: 75px;
+        text-transform: uppercase;
+        line-height: 100px;
+        font-family: 'PlusJakartaSans', sans-serif;
+    }
+}
+
 </style>
