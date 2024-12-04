@@ -21,7 +21,7 @@
     align-items: center;
     justify-content: center;
     background: linear-gradient(90deg, #9b00ff, #ff4500);
-    max-width: 1300px;
+    max-width: 1352px;
     border-radius: 24px;
     padding: 80px 40px 20px 40px;
     overflow: hidden;

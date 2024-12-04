@@ -36,11 +36,11 @@ import Button from './Button.vue';
             
             <div class="bottomButtons">
                 <div class="">
-                    <Button color="primary" size="large">Linkedin <img src="../assets/icons/linkedin.webp" width="18px" alt="Linkedin Icon" /> </Button>
+                    <Button color="primaryReverse" :newTab=true link="https://www.linkedin.com/in/jocelyn-duperret/">Linkedin <img src="../assets/icons/linkedin_orange.webp" width="18px" alt="Linkedin Icon" /> </Button>
                 </div>
 
                 <div class="">
-                    <input type="submit" value="Envoyer" />
+                    <Button color="primary" size="large">Envoyer </Button>
                 </div>
             </div>
         </form>
@@ -95,5 +95,6 @@ import Button from './Button.vue';
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
+    gap: 20px;
 }
 </style>

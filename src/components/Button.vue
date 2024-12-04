@@ -4,7 +4,9 @@
     :disabled="disabled"
     @click="handleClick"
   >
+  <div>
     <slot>{{ label }}</slot>
+  </div>
   </button>
 </template>
 
@@ -32,6 +34,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  link: {
+    type: String,
+    default: null,
+  },
+  newTab: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits(['click']);
@@ -44,7 +54,12 @@ const buttonClass = computed(() => [
 ]);
 
 function handleClick(event: Event) {
-  if (!props.disabled) {
+  if (props.disabled) return;
+
+  if (props.link) {
+    const target = props.newTab ? '_blank' : '_self';
+    window.open(props.link, target);
+  } else {
     emit('click', event);
   }
 }
@@ -52,7 +67,7 @@ function handleClick(event: Event) {
 
 <style scoped>
 /* Base button styles */
-.btn {
+.btn div{
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -64,11 +79,31 @@ function handleClick(event: Event) {
   font-weight: 300;
   font-style: light;
 }
+.btn:hover{
+  opacity: 80%;
+}
 .btn--primary {
   background: linear-gradient(0.30turn, #5700EF, #FF6315);
   color: white;
   border-radius: 24px;
 }
+.btn--primaryReverse {
+  background: linear-gradient(0.30turn, #5700EF, #FF6315);
+  color: #FF6315;
+  border-radius: 24px;
+  padding: 2px;
+}
+
+.btn--primaryReverse .btn--large {
+  padding: 0;
+}
+
+.btn--primaryReverse div {
+  background: #18181B;
+  padding: 10px 22px;
+  border-radius: 24px;
+}
+
 .btn--secondary {
   background-color: transparent;
   color: white;
@@ -108,4 +143,5 @@ function handleClick(event: Event) {
   color: #a0a0a0;
   cursor: not-allowed;
 }
+
 </style>
