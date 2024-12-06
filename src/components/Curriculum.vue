@@ -228,6 +228,19 @@ const selectedVersion = ref("Compétences");
     }
 }
 
+@media screen and (max-width: 1240px) {
+    .curriculumWrapper{
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 0px 80px;
+    }
+}
 
+@media screen and (max-width: 700px) {
+    .curriculumWrapper{
+        margin: 40px auto;
+        padding: 0px 40px;
+    }
+}
 
 </style>

@@ -56,6 +56,7 @@ import Button from './Button.vue';
     flex-direction: column;
     gap: 40px;
     margin-bottom: 60px;
+    padding: 0px 80px;
 }
 .contactWrapper h2{
     font-size: 32px;
@@ -74,6 +75,7 @@ import Button from './Button.vue';
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
+    width: 100%;
 }
 
 .inputWrapper{
@@ -83,7 +85,6 @@ import Button from './Button.vue';
 
 .inputWrapper input{
     border-radius: 12px;
-    width: 364px;
     height: 44px;
     padding: 2px 20px;
 }
@@ -97,4 +98,29 @@ import Button from './Button.vue';
     justify-content: flex-end;
     gap: 20px;
 }
+
+@media screen and (max-width: 800px) {
+    .formWrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .formWrapper{
+        padding: 20px;
+    }
+    .contactWrapper{
+        padding: 0px 40px;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    .bottomButtons{
+        flex-direction: column-reverse;
+    }
+}
+
+
 </style>

@@ -10,6 +10,14 @@ import Button from './Button.vue';
         </div>
         <Button class="contactButton orangeTwick" color="primary" size="veryLarge">On discute ? <img src="../assets/icons/mail_send.webp" width="22px" alt="Mail Icon" /> </Button>
     </div>
+
+    <!-- <div class="topPresentationWraper">
+        <div class="mainTitleWrapper">
+            <p class="">Jocelyn <br>duperret, <span class="decoTitle1 orangeTwick"></span></p>
+            <p class="">développeur <span class="decoTitle2"></span> <br>full-stack</p>
+        </div>
+        <Button class="contactButton orangeTwick" color="primary" size="veryLarge">On discute ? <img src="../assets/icons/mail_send.webp" width="22px" alt="Mail Icon" /> </Button>
+    </div> -->
 </template>
 
 <style scoped>
