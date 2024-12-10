@@ -228,14 +228,14 @@ import Button from './Button.vue';
     }
     .topPresentationWraper::before{
         top: 150px;
-        right: 50px;
+        right: 100px;
         width: 125px;
         height: 130px;
     }
 
     .topPresentationWraper::after{
         bottom: 100px;
-        left: 50px;
+        left: 100px;
         width: 121px;
         height: 120px;
     }
@@ -273,6 +273,18 @@ import Button from './Button.vue';
         background-image: url('../assets/icons/orange_deco.webp');
         background-size: cover;
         background-repeat: no-repeat;
+    }
+}
+
+@media screen and (max-width: 550px) {
+
+    .topPresentationWraper::before{
+        right: 40px;
+    }
+
+    .topPresentationWraper::after{
+        left: 40px;
+        bottom: 150px;
     }
 }
 </style>
