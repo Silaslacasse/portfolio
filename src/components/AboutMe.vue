@@ -162,5 +162,11 @@ import Button from './Button.vue';
     }
 }
 
+@media screen and (max-width: 520px) {
+    .container{
+        margin: 20px auto;
+        padding: 20px;
+    }
+}
 
 </style>

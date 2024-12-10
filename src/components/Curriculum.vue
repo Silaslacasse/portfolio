@@ -243,4 +243,11 @@ const selectedVersion = ref("Compétences");
     }
 }
 
+@media screen and (max-width: 520px) {
+    .curriculumWrapper{
+        margin: 20px auto;
+        padding: 0px 20px;
+    }
+}
+
 </style>

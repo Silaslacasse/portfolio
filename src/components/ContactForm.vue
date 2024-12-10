@@ -196,9 +196,12 @@ onMounted(() => {
     }
 }
 
-@media screen and (max-width: 510px) {
+@media screen and (max-width: 520px) {
     .bottomButtons{
         flex-direction: column-reverse;
+    }
+    .contactWrapper{
+        padding: 0px 20px;
     }
 }
 

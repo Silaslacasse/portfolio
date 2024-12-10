@@ -19,6 +19,9 @@ import Button from './Button.vue';
 </template>
 
 <style scoped>
+.mainTitleWrapperMobile{
+    display: none
+}
 
 .topPresentationWraper{
     height: 100vh;
@@ -224,14 +227,22 @@ import Button from './Button.vue';
         display: none;
     }
     .topPresentationWraper::before{
-        display: none;
+        top: 150px;
+        right: 50px;
+        width: 125px;
+        height: 130px;
     }
 
     .topPresentationWraper::after{
-        display: none;
+        bottom: 100px;
+        left: 50px;
+        width: 121px;
+        height: 120px;
     }
 
     .mainTitleWrapperMobile{
+        display: flex;
+        flex-direction: column;
         font-size: 28px;
         text-transform: uppercase;
         line-height: 55px;
