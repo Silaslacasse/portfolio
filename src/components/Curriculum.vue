@@ -7,7 +7,7 @@ const selectedVersion = ref("Compétences");
 </script>
 
 <template>
-    <div class="selectInfos">
+    <div class="selectInfos" id="skills">
         <div class="radio-group">
             <label class="radio-tab">
                 <input type="radio" value="Compétences" v-model="selectedVersion" />

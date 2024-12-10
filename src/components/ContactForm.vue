@@ -1,55 +1,104 @@
 <script setup lang="ts">
+import axios from 'axios';
 import Button from './Button.vue';
+import { onMounted, ref } from 'vue';
+import { setCookie, getCookie } from '../utils/cookie';
 
+const formData = ref({
+  name: '',
+  firstName: '',
+  firm: '',
+  email: '',
+  linkedin: '',
+  phone: '',
+  message: '',
+});
 
+const isSubmitting = ref(false);
+const successMessage = ref('');
+const errorMessage = ref('');
+const isOverlayVisible = ref(false);
+
+const handleSubmit = async () => {
+  isSubmitting.value = true;
+  successMessage.value = '';
+  errorMessage.value = '';
+
+  try {
+    await axios.post(`${import.meta.env.VITE_APIURL}/api/messages`, formData.value);
+    setCookie('messageSent', 'true', 1)
+  } catch (error) {
+    errorMessage.value = 'Failed to send the message. Please try again.';
+    console.error(error);
+  } finally {
+    isSubmitting.value = false;
+  }
+};
+
+onMounted(() => {
+    if (getCookie('messageSent')) {
+        isOverlayVisible.value = true;
+    }
+});
 </script>
 
 <template>
-    <div class="contactWrapper">
-        <h2>On discute ?</h2>
-        <form class="formWrapper">
-            <div class="inputWrapper">
-                <label for="name">Nom <span class="required">*</span></label>
-                <input type="text" name="name" id="name" required />
-            </div>
-            <div class="inputWrapper">
-                <label for="firstName">Prénom <span class="required">*</span></label>
-                <input type="text" name="firstName" id="firstName" required />
-            </div>
-            <div class="inputWrapper">
-                <label for="firm">Société <span class="required">*</span></label>
-                <input type="text" name="firm" id="firm" required />
-            </div>
-            <div class="inputWrapper">
-                <label for="email">Email <span class="required">*</span></label>
-                <input type="email" name="email" id="email" required />
-            </div>
-            <div class="inputWrapper">
-                <label for="linkedin">Linkedin</label>
-                <input type="text" name="linkedin" id="linkedin" />
-            </div>
-            <div class="inputWrapper">
-                <label for="phone">Téléphone</label>
-                <input type="text" name="phone" id="phone" />
-            </div>
-            <div></div>
-            
-            <div class="bottomButtons">
-                <div class="">
-                    <Button color="primaryReverse" :newTab=true link="https://www.linkedin.com/in/jocelyn-duperret/">Linkedin <img src="../assets/icons/linkedin_orange.webp" width="18px" alt="Linkedin Icon" /> </Button>
-                </div>
+    <div class="contactWrapper" id="letsTalk">
+      <h2>On discute ?</h2>
+      <form class="formWrapper" @submit.prevent="handleSubmit" >
+        <div class="inputWrapper">
+          <label for="name">Nom <span class="required">*</span></label>
+          <input v-model="formData.name" type="text" name="name" id="name" required />
+        </div>
+        <div class="inputWrapper">
+          <label for="firstName">Prénom <span class="required">*</span></label>
+          <input v-model="formData.firstName" type="text" name="firstName" id="firstName" required />
+        </div>
+        <div class="inputWrapper">
+          <label for="firm">Société <span class="required">*</span></label>
+          <input v-model="formData.firm" type="text" name="firm" id="firm" required />
+        </div>
+        <div class="inputWrapper">
+          <label for="email">Email <span class="required">*</span></label>
+          <input v-model="formData.email" type="email" name="email" id="email" required />
+        </div>
+        <div class="inputWrapper">
+          <label for="linkedin">Linkedin</label>
+          <input v-model="formData.linkedin" type="text" name="linkedin" id="linkedin" />
+        </div>
+        <div class="inputWrapper">
+          <label for="phone">Téléphone</label>
+          <input v-model="formData.phone" type="text" name="phone" id="phone" />
+        </div>
+        <div class="inputWrapper">
+          <label for="message">Message <span class="required">*</span></label>
+          <textarea v-model="formData.message" name="message" id="message" required></textarea>
+        </div>
+  
+        <div class="bottomButtons">
+          <div>
+            <Button color="primaryReverse" :newTab="true" link="https://www.linkedin.com/in/jocelyn-duperret/">
+              Linkedin <img src="../assets/icons/linkedin_orange.webp" width="18px" alt="Linkedin Icon" />
+            </Button>
+          </div>
+          <div>
+            <Button :disabled="isOverlayVisible" color="primary" size="large">Envoyer</Button>
+          </div>
+        </div>
+  
+        <div class="overlay" v-if="isOverlayVisible">
+            <p>Message envoyé avec succès ! Merci de votre intérêt.</p>
+        </div>
+      </form>
 
-                <div class="">
-                    <Button color="primary" size="large">Envoyer </Button>
-                </div>
-            </div>
-        </form>
     </div>
-
-</template>
+  </template>
 
 <style scoped>
+
+
 .contactWrapper{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,6 +107,7 @@ import Button from './Button.vue';
     margin-bottom: 60px;
     padding: 0px 80px;
 }
+
 .contactWrapper h2{
     font-size: 32px;
     font-weight: 400;
@@ -88,6 +138,13 @@ import Button from './Button.vue';
     height: 44px;
     padding: 2px 20px;
 }
+
+.inputWrapper textarea{
+    border-radius: 12px;
+    height: 88px;
+    padding: 10px 10px;
+}
+
 .required {
     color: #FF6315;
 }

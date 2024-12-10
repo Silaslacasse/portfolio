@@ -7,10 +7,10 @@ import Button from './Button.vue';
         <img src="../assets/icons/joss.webp" width="90px" alt="JOSS Icon" />
         <nav>
             <Button color="secondary">Accueil</Button>
-            <Button color="secondary">Ils m'ont fait confiance</Button>
-            <Button color="secondary">Mes compétences</Button>
+            <!-- <Button color="secondary">Ils m'ont fait confiance</Button> -->
+            <Button color="secondary" link="#skills">Mes compétences</Button>
             <Button color="secondary">Mes projets</Button>
-            <Button color="secondary">On discute ?</Button>
+            <Button color="secondary" link="#letsTalk">On discute ?</Button>
             <Button color="primary" size="large" :newTab=true link="https://www.linkedin.com/in/jocelyn-duperret/">Linkedin <img src="../assets/icons/linkedin.webp" width="18px" alt="Linkedin Icon" /> </Button>
         </nav>
     </header>
@@ -41,9 +41,6 @@ nav {
 }
 
 @media screen and (max-width: 1400px) {
-    header{
-
-    }
     nav{
         gap: 30px;
     }
