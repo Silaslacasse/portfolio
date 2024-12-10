@@ -26,6 +26,7 @@ const handleSubmit = async () => {
 
   try {
     await axios.post(`${import.meta.env.VITE_APIURL}/api/messages`, formData.value);
+    isOverlayVisible.value = true;
     setCookie('messageSent', 'true', 1)
   } catch (error) {
     errorMessage.value = 'Failed to send the message. Please try again.';
@@ -90,11 +91,32 @@ onMounted(() => {
             <p>Message envoyé avec succès ! Merci de votre intérêt.</p>
         </div>
       </form>
+      <div v-if="errorMessage">
+        {{ errorMessage }}
+      </div>
 
     </div>
   </template>
 
 <style scoped>
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    display: flex;
+    pointer-events: all;
+    justify-content: center;
+    border-radius: 16px;
+    align-items: center;
+    transition: opacity 0.5s ease, background-color 0.5s ease;
+    font-size: 24px;
+    backdrop-filter: blur(6px);
+}
 
 
 .contactWrapper{
@@ -114,6 +136,7 @@ onMounted(() => {
 }
 
 .formWrapper{
+    position: relative;
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 300;

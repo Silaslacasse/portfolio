@@ -8,16 +8,14 @@ import Button from './Button.vue';
             <p class="mainTitle">Jocelyn duperret, <span class="decoTitle1 orangeTwick"></span></p>
             <p class="mainTitle">développeur <span class="decoTitle2"></span> full-stack</p>
         </div>
+        <div class="mainTitleWrapperMobile">
+            <p class="">Jocelyn duperret,</p>
+            <p class="flex">développeur<span class="decoTitle1 orangeTwick2"></span></p>
+            <p class="flex"><span class="decoTitle2"></span> full-stack</p>
+        </div>
         <Button class="contactButton orangeTwick" color="primary" size="veryLarge">On discute ? <img src="../assets/icons/mail_send.webp" width="22px" alt="Mail Icon" /> </Button>
     </div>
 
-    <!-- <div class="topPresentationWraper">
-        <div class="mainTitleWrapper">
-            <p class="">Jocelyn <br>duperret, <span class="decoTitle1 orangeTwick"></span></p>
-            <p class="">développeur <span class="decoTitle2"></span> <br>full-stack</p>
-        </div>
-        <Button class="contactButton orangeTwick" color="primary" size="veryLarge">On discute ? <img src="../assets/icons/mail_send.webp" width="22px" alt="Mail Icon" /> </Button>
-    </div> -->
 </template>
 
 <style scoped>
@@ -181,4 +179,89 @@ import Button from './Button.vue';
     }
 }
 
+@media screen and (max-width: 1250px) {
+    .mainTitleWrapper{
+        font-size: 54px;
+        text-transform: uppercase;
+        line-height: 68px;
+        font-family: 'PlusJakartaSans', sans-serif;
+    }
+    .topPresentationWraper::before{
+        top: 100px;
+        right: 150px;
+    }
+
+    .topPresentationWraper::after{
+        bottom: 70px;
+        left: 150px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .mainTitleWrapper{
+        font-size: 45px;
+        text-transform: uppercase;
+        line-height: 55px;
+        font-family: 'PlusJakartaSans', sans-serif;
+    }
+    .topPresentationWraper::before{
+        top: 100px;
+        right: 150px;
+        width: 190px;
+        height: 200px;
+    }
+
+    .topPresentationWraper::after{
+        bottom: 70px;
+        left: 150px;
+        width: 213px;
+        height: 210px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .mainTitleWrapper{
+        display: none;
+    }
+    .topPresentationWraper::before{
+        display: none;
+    }
+
+    .topPresentationWraper::after{
+        display: none;
+    }
+
+    .mainTitleWrapperMobile{
+        font-size: 28px;
+        text-transform: uppercase;
+        line-height: 55px;
+        font-family: 'PlusJakartaSans', sans-serif;
+    }
+    .decoTitle1{
+        width: 80px;
+        height: 40px;
+    }
+    .decoTitle2{
+        width: 80px;
+        height: 40px;
+    }
+
+    .decoTitle2::before{
+        width: 35px;
+        height: 35px;
+        top: 20px;
+        left: -10px;
+    }
+    .orangeTwick2::before {
+        content: ''; 
+        position: absolute; 
+        width: 20px;
+        height: 20px;
+        top: -5px;
+        left: -5px;
+        background-image: url('../assets/icons/orange_deco.webp');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
 </style>

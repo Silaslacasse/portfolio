@@ -151,11 +151,16 @@ import Button from './Button.vue';
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
+    .presentationWraper{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
     .container{
         margin: 40px auto;
         padding: 40px;
     }
 }
+
 
 </style>
