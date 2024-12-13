@@ -21,11 +21,11 @@ const technos = [
     },
     {
         "icon" : "dotts_flower",
-        "technoName" : "Php/Synfony"
+        "technoName" : "Php/Symfony"
     },
     {
         "icon" : "round_flower",
-        "technoName" : "Javascript/VueJS/React"
+        "technoName" : "JavaScript/VueJS/React"
     },
     {
         "icon" : "abstract_flower",
@@ -34,18 +34,18 @@ const technos = [
     {
         "icon" : "array_flower",
         "technoName" : "Sql/MongoDB"
-    }, 
+    },
     {
         "icon" : "star_flower",
         "technoName" : "HTML/CSS"
     },
     {
         "icon" : "dotts_flower",
-        "technoName" : "Php/Synfony"
+        "technoName" : "Php/Symfony"
     },
     {
         "icon" : "round_flower",
-        "technoName" : "Javascript/VueJS/React"
+        "technoName" : "JavaScript/VueJS/React"
     },
     {
         "icon" : "abstract_flower",
@@ -64,7 +64,7 @@ const technos = [
         <div v-for="techno in technos" :key="techno.icon" class="sliderItem">
             <img :src="iconMap[techno.icon]" alt="Icone techno" width="50px" />
             <p>{{ techno.technoName }}</p>
-        </div> 
+        </div>
     </div>
   </Vue3Marquee>
 </template>
@@ -91,5 +91,4 @@ const technos = [
   font-size: 32px;
   flex: 0 0 auto;
 }
-
 </style>
