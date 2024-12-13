@@ -46,4 +46,10 @@ footer{
     }
 }
 
+@media screen and (max-width: 520px) {
+    .footerWrapper{
+        margin: 0px 20px 20px 20px;
+    }
+}
+
 </style>

@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import Button from './Button.vue';
 
+const comingSoon = ref(false);
 
 </script>
 
@@ -24,7 +26,7 @@ import Button from './Button.vue';
                 <p>Passionné par l’informatique, je suis développeur full stack avec une expertise solide en PHP, JavaScript, et une maîtrise des frameworks comme Symfony, Vue.js, React, et Express.</p>
             </div>
         </div>
-        <div class="right-top">
+        <div class="right-top" @mouseover="comingSoon = true" @mouseleave="comingSoon = false">
             <div class="flex justify-between items-center">
                 <p>Mes projets</p>
                 <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,6 +34,9 @@ import Button from './Button.vue';
                 </svg>
             </div>
             <img class="" src="../assets/icons/orange_flower.webp" width="70px" alt="Mail Icon" />
+            <transition name="fade">
+                <div v-if="comingSoon" class="comingSoon flex justify-center items-center"> Coming Soon ...</div>
+            </transition>
         </div>
         <div class="right-bottom">
             <div class="flex flex-col-reverse p-[20px] ">
@@ -123,6 +128,26 @@ import Button from './Button.vue';
     border-radius: 24px;
     grid-row: 1;
     padding: 24px;
+    position: relative;
+}
+
+.comingSoon{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 24px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }
 
 .right-bottom {
@@ -151,10 +176,21 @@ import Button from './Button.vue';
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
+    .presentationWraper{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
     .container{
         margin: 40px auto;
         padding: 40px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .container{
+        margin: 20px auto;
+        padding: 20px;
     }
 }
 
