@@ -3,7 +3,6 @@ import axios from 'axios';
 import Button from './Button.vue';
 import { onMounted, ref } from 'vue';
 import { setCookie, getCookie } from '../utils/cookie';
-import { log } from 'console';
 
 const formData = ref({
   name: '',
