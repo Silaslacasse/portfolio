@@ -3,14 +3,15 @@ import axios from 'axios';
 import Button from './Button.vue';
 import { onMounted, ref } from 'vue';
 import { setCookie, getCookie } from '../utils/cookie';
+import { log } from 'console';
 
 const formData = ref({
   name: '',
   firstName: '',
-  firm: '',
+  society: '',
   email: '',
-  linkedin: '',
-  phone: '',
+  linkedIn: '',
+  mobile: '',
   message: '',
 });
 
@@ -29,8 +30,21 @@ const handleSubmit = async () => {
     isOverlayVisible.value = true;
     setCookie('messageSent', 'true', 1)
   } catch (error) {
-    errorMessage.value = 'Failed to send the message. Please try again.';
-    console.error(error);
+    if (axios.isAxiosError(error)) {
+      const { type, error: message } = error.response?.data || {};
+      console.log(type);
+      console.log(message);
+      if (type === 'rateLimit') {
+        errorMessage.value = message;
+        setCookie('messageSent', 'true', 1)
+      } else if (type === 'serverError') {
+        errorMessage.value = 'We are currently experiencing technical issues. Please try again later.';
+      } else {
+        errorMessage.value = 'Failed to send the message. Please try again.';
+      }
+    } else {
+      errorMessage.value = 'Failed to send the message. Please try again.';
+    }
   } finally {
     isSubmitting.value = false;
   }
@@ -56,20 +70,20 @@ onMounted(() => {
           <input v-model="formData.firstName" type="text" name="firstName" id="firstName" required />
         </div>
         <div class="inputWrapper">
-          <label for="firm">Société <span class="required">*</span></label>
-          <input v-model="formData.firm" type="text" name="firm" id="firm" required />
+          <label for="society">Société <span class="required">*</span></label>
+          <input v-model="formData.society" type="text" name="society" id="society" required />
         </div>
         <div class="inputWrapper">
           <label for="email">Email <span class="required">*</span></label>
           <input v-model="formData.email" type="email" name="email" id="email" required />
         </div>
         <div class="inputWrapper">
-          <label for="linkedin">Linkedin</label>
-          <input v-model="formData.linkedin" type="text" name="linkedin" id="linkedin" />
+          <label for="linkedIn">Linkedin</label>
+          <input v-model="formData.linkedIn" type="text" name="linkedIn" id="linkedIn" />
         </div>
         <div class="inputWrapper">
-          <label for="phone">Téléphone</label>
-          <input v-model="formData.phone" type="text" name="phone" id="phone" />
+          <label for="mobile">Téléphone</label>
+          <input v-model="formData.mobile" type="text" name="mobile" id="mobile" />
         </div>
         <div class="inputWrapper">
           <label for="message">Message <span class="required">*</span></label>
@@ -91,7 +105,7 @@ onMounted(() => {
             <p>Message envoyé avec succès ! Merci de votre intérêt.</p>
         </div>
       </form>
-      <div v-if="errorMessage">
+      <div v-if="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
 
@@ -177,6 +191,12 @@ onMounted(() => {
     align-items: center;
     justify-content: flex-end;
     gap: 20px;
+}
+
+.error-message {
+  color: red;
+  font-size: 16px;
+  margin-top: 10px;
 }
 
 @media screen and (max-width: 800px) {
