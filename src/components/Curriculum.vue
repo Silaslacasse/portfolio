@@ -11,15 +11,15 @@ const selectedVersion = ref("Compétences");
         <div class="radio-group">
             <label class="radio-tab">
                 <input type="radio" value="Compétences" v-model="selectedVersion" />
-                <div>Compétences</div>
+                <h2>Compétences</h2>
             </label>
             <label class="radio-tab">
                 <input type="radio" value="Expériences" v-model="selectedVersion" />
-                <div>Expériences</div>
+                <h2>Expériences</h2>
             </label>
             <label class="radio-tab">
                 <input type="radio" value="Formation" v-model="selectedVersion" />
-                <div>Formation</div>
+                <h2>Formation</h2>
             </label>
         </div> 
     </div>
@@ -190,7 +190,7 @@ const selectedVersion = ref("Compétences");
 }
 
 /* Style par défaut des labels (onglets) */
-.radio-tab div {
+.radio-tab h2 {
     padding: 8px 14px;
     font-size: 16px;
     font-weight: 500;
@@ -202,13 +202,13 @@ const selectedVersion = ref("Compétences");
 }
 
 /* Onglet sélectionné */
-.radio-tab input[type="radio"]:checked + div {
+.radio-tab input[type="radio"]:checked + h2 {
     color: #fff;
     background: linear-gradient(90deg, #9b00ff, #ff4500);
 }
 
 /* Effet au survol */
-.radio-tab:hover div {
+.radio-tab:hover h2 {
     color: #fff;
     background: #333;
 }

@@ -11,9 +11,9 @@ const comingSoon = ref(false);
         <div class="left">
             <div class="presentationWraper">
                 <div class="titleWrapper">
-                    <h3>
+                    <h2 class="littleTitle">
                         À propos de moi
-                    </h3>
+                    </h2>
                     <h2>
                         Hey, moi c’est <br>Jocelyn ✌️
                     </h2>
@@ -28,7 +28,7 @@ const comingSoon = ref(false);
         </div>
         <div class="right-top" @mouseover="comingSoon = true" @mouseleave="comingSoon = false">
             <div class="flex justify-between items-center">
-                <p>Mes projets</p>
+                <h2>Mes projets</h2>
                 <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M16.8953 9.03763L9.7433 1.88561L11.6289 0L21.9998 10.371L11.6289 20.7418L9.7433 18.8562L16.8953 11.7043H0.666504V9.03763H16.8953Z" fill="white"/>
                 </svg>
@@ -41,7 +41,7 @@ const comingSoon = ref(false);
         <div class="right-bottom">
             <div class="flex flex-col-reverse p-[20px] ">
                 <div class="flex justify-between items-center">
-                    <p>On discute ?</p>
+                    <h2>On discute ?</h2>
                     <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16.8953 9.03763L9.7433 1.88561L11.6289 0L21.9998 10.371L11.6289 20.7418L9.7433 18.8562L16.8953 11.7043H0.666504V9.03763H16.8953Z" fill="white"/>
                     </svg>
@@ -80,7 +80,7 @@ const comingSoon = ref(false);
     justify-content: space-between;
 }
 
-.titleWrapper h3{
+.titleWrapper .littleTitle{
     font-weight: 400;
     font-size: 32px;
 }
