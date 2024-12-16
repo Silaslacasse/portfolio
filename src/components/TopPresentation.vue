@@ -4,15 +4,15 @@ import Button from './Button.vue';
 
 <template>
     <div class="topPresentationWraper">
-        <div class="mainTitleWrapper">
-            <p class="mainTitle">Jocelyn duperret, <span class="decoTitle1 orangeTwick"></span></p>
-            <p class="mainTitle">développeur <span class="decoTitle2"></span> full-stack</p>
-        </div>
-        <div class="mainTitleWrapperMobile">
-            <p class="">Jocelyn duperret,</p>
-            <p class="flex">développeur<span class="decoTitle1 orangeTwick2"></span></p>
-            <p class="flex"><span class="decoTitle2"></span> full-stack</p>
-        </div>
+        <h1 class="mainTitleWrapper">
+            <span class="mainTitle">Jocelyn duperret, <span class="decoTitle1 orangeTwick"></span></span>
+            <span class="mainTitle">développeur <span class="decoTitle2"></span> full-stack</span>
+        </h1>
+        <h1 class="mainTitleWrapperMobile">
+            <span class="">Jocelyn duperret,</span>
+            <span class="flex">développeur<span class="decoTitle1 orangeTwick2"></span></span>
+            <span class="flex"><span class="decoTitle2"></span> full-stack</span>
+        </h1>
         <Button class="contactButton orangeTwick" color="primary" size="veryLarge">On discute ? <img src="../assets/icons/mail_send.webp" width="22px" alt="Mail Icon" /> </Button>
     </div>
 
