@@ -13,7 +13,7 @@ import Button from './Button.vue';
             <span class="flex">développeur<span class="decoTitle1 orangeTwick2"></span></span>
             <span class="flex"><span class="decoTitle2"></span> full-stack</span>
         </h1>
-        <Button class="contactButton orangeTwick" color="primary" size="veryLarge">On discute ? <img src="../assets/icons/mail_send.webp" width="22px" alt="Mail Icon" /> </Button>
+        <Button link="#letsTalk" class="contactButton orangeTwick" color="primary" size="veryLarge">On discute ? <img src="../assets/icons/mail_send.webp" width="22px" alt="Mail Icon" /> </Button>
     </div>
 
 </template>
