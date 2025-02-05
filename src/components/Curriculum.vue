@@ -52,8 +52,8 @@ const selectedVersion = ref("Compétences");
                 <div class="xpTab" v-if="selectedVersion === 'Expériences'">
                     <div class="infoWrapper" >
                         <div class="skillWrapper">
-                            <SkillsTag label="Developpeur Full Stack chez JetPulp - Alt " display="displayInline"></SkillsTag>
-                            <p>De septembre 2022 à septembre 2024</p>
+                            <SkillsTag label="Developpeur Full Stack chez JetPulp " display="displayInline"></SkillsTag>
+                            <p>De septembre 2022 à actuellement</p>
                         </div>
                         <div class="skillWrapper">
                             <SkillsTag label="Developpeur Front End chez SiteW - Alt "  display="displayInline"></SkillsTag>
