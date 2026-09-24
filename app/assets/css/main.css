@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+/**
+ * Design tokens, extracted from the v1 site's scoped styles.
+ *
+ * Every value here was previously a hex literal repeated across eleven SFCs. Retheming
+ * now means editing this block instead of hunting through components.
+ */
+@theme {
+  /* ---- Colour ----
+     The greys are Tailwind's zinc scale already, which is why they feel coherent:
+     #18181B = zinc-900, #27272A = zinc-800, #A1A1AA = zinc-400. */
+  --color-ink: #18181b; /* page background */
+  --color-surface: #27272a; /* cards, header, form panel */
+  --color-surface-raised: #2e2e42;
+  --color-accent: #ff6315; /* brand orange */
+  --color-violet: #5700ef;
+  --color-muted: #a1a1aa;
+  --color-body: rgba(255, 255, 255, 0.87);
+
+  /* Gradient stops kept as tokens so the two existing gradients stay in sync. */
+  --color-grad-from: #5700ef;
+  --color-grad-to: #ff6315;
+  --color-grad-footer-from: #9b00ff;
+  --color-grad-footer-to: #ff4500;
+
+  /* ---- Type ----
+     @nuxt/fonts self-hosts and subsets these; no .ttf files are committed. */
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Poppins", ui-sans-serif, system-ui, sans-serif;
+
+  /* Fluid scale between 375px and 1440px viewports.
+     This is the core of the responsive rebuild: one rule that holds at every width
+     replaces the 21 distinct breakpoints the v1 site used to re-pin type by hand. */
+  --text-hero: clamp(2.5rem, 1.4rem + 4.7vw, 5.625rem); /* 40 -> 90px */
+  --text-display: clamp(2rem, 1.52rem + 2.07vw, 3.375rem); /* 32 -> 54px */
+  --text-title: clamp(1.5rem, 1.32rem + 0.75vw, 2rem); /* 24 -> 32px */
+  --text-subtitle: clamp(1.25rem, 1.16rem + 0.38vw, 1.5rem); /* 20 -> 24px */
+  --text-base: 1rem;
+  --text-small: 0.875rem;
+
+  /* ---- Radii ---- */
+  --radius-field: 12px;
+  --radius-card: 16px;
+  --radius-pill: 24px;
+  --radius-bar: 50px;
+
+  /* ---- Layout ----
+     A single content width plus a fluid gutter, replacing per-component max-widths
+     (832px, 1200px, 1240px, 1352px, 1400px ...). */
+  --spacing-gutter: clamp(1.25rem, 0.5rem + 3vw, 5rem);
+  --container-content: 1352px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Honour the OS "reduce motion" setting everywhere, including the scroll behaviour
+     above and any reveal animations added in Phase 2. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-body);
+    font-family: var(--font-body);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+
+  /* Visible keyboard focus. The v1 site relied on the UA default, which the dark
+     background largely swallowed. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+@utility container-content {
+  width: 100%;
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+/* The brand gradient, used by buttons and the footer panel. */
+@utility bg-brand-gradient {
+  background-image: linear-gradient(0.3turn, var(--color-grad-from), var(--color-grad-to));
+}
+
+@utility bg-footer-gradient {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-grad-footer-from),
+    var(--color-grad-footer-to)
+  );
+}
+
+/* ---------------------------------------------------------------------------
+ * v1 compatibility layer.
+ *
+ * Global rules the ported v1 components rely on. They are not scoped, so they cannot
+ * live inside a component's <style scoped> block. These sit outside @layer base on
+ * purpose, so they outrank the token defaults above. Delete this whole section as each
+ * section is rebuilt in Phase 2.
+ * ------------------------------------------------------------------------- */
+
+/* v1's :root used the Vite starter's stack at weight 400. Headings inherited it —
+   v1 had no global heading font rule — so the token defaults above must not apply
+   while the ported markup is in place.
+
+   `Inter` is deliberately omitted from the stack. v1 named it first but never loaded
+   it, so visitors without Inter installed silently got the system font. @nuxt/fonts
+   auto-detects family names in CSS and would fetch the real Inter from Google, which
+   renders at different widths and re-wraps this copy. Phase 2 restyles these sections
+   onto the Poppins token anyway. */
+body {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3 {
+  font-family: inherit;
+}
+@media screen and (max-width: 600px) {
+  .onlyDesktop {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .onlyMobile {
+    display: none;
+  }
+}

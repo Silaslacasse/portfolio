@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "home": {
+      "title": "Full-stack developer",
+      "description": "Full-stack web developer specialising in PHP/Symfony, JavaScript, Vue.js, React and Node/Express. Based in France, available for new projects."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "A selection of full-stack web projects: context, role, technologies and outcomes."
+    },
+    "legalNotice": {
+      "title": "Legal notice"
+    },
+    "privacyPolicy": {
+      "title": "Privacy policy"
+    },
+    "cookiePolicy": {
+      "title": "Cookie policy"
+    },
+    "notFound": {
+      "title": "Page not found"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Let's talk",
+    "linkedin": "Linkedin",
+    "skipToContent": "Skip to main content"
+  },
+  "home": {
+    "heroName": "Jocelyn Duperret,",
+    "heroRole": "full-stack developer",
+    "aboutTitle": "About me",
+    "aboutGreeting": "Hey, I'm Jocelyn ✌️",
+    "comingSoon": "Coming soon…"
+  },
+  "curriculum": {
+    "skills": "Skills",
+    "experience": "Experience",
+    "education": "Education",
+    "languages": "Languages"
+  },
+  "projects": {
+    "title": "Projects",
+    "empty": "Projects are coming soon.",
+    "viewProject": "View project",
+    "viewCode": "View code",
+    "role": "Role",
+    "year": "Year",
+    "client": "Client",
+    "technologies": "Technologies",
+    "backToList": "Back to projects"
+  },
+  "contact": {
+    "title": "Let's talk",
+    "name": "Last name",
+    "firstName": "First name",
+    "society": "Company",
+    "email": "Email",
+    "linkedIn": "Linkedin",
+    "mobile": "Phone",
+    "message": "Message",
+    "submit": "Send",
+    "sending": "Sending…",
+    "success": "Message sent successfully! Thanks for your interest.",
+    "errorGeneric": "Sending failed. Please try again.",
+    "errorServer": "We're having technical issues. Please try again later.",
+    "required": "required"
+  },
+  "footer": {
+    "legalNotice": "Legal notice",
+    "privacyPolicy": "Privacy policy",
+    "cookiePolicy": "Cookie policy",
+    "rights": "© {year} JOSS — all rights reserved"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "This page doesn't exist or has been moved.",
+    "back": "Back to home"
+  }
+}

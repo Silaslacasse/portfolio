@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "home": {
+      "title": "Développeur full-stack",
+      "description": "Développeur web full-stack spécialisé en PHP/Symfony, JavaScript, Vue.js, React et Node/Express. Basé en France, disponible pour de nouveaux projets."
+    },
+    "projects": {
+      "title": "Mes projets",
+      "description": "Une sélection de projets web full-stack : contexte, rôle, technologies et résultats."
+    },
+    "legalNotice": {
+      "title": "Mentions légales"
+    },
+    "privacyPolicy": {
+      "title": "Politique de confidentialité"
+    },
+    "cookiePolicy": {
+      "title": "Gestion des cookies"
+    },
+    "notFound": {
+      "title": "Page introuvable"
+    }
+  },
+  "nav": {
+    "home": "Accueil",
+    "skills": "Mes compétences",
+    "projects": "Mes projets",
+    "contact": "On discute ?",
+    "linkedin": "Linkedin",
+    "skipToContent": "Aller au contenu principal"
+  },
+  "home": {
+    "heroName": "Jocelyn Duperret,",
+    "heroRole": "développeur full-stack",
+    "aboutTitle": "À propos de moi",
+    "aboutGreeting": "Hey, moi c’est Jocelyn ✌️",
+    "comingSoon": "Bientôt disponible…"
+  },
+  "curriculum": {
+    "skills": "Compétences",
+    "experience": "Expériences",
+    "education": "Formation",
+    "languages": "Langues"
+  },
+  "projects": {
+    "title": "Mes projets",
+    "empty": "Les projets arrivent bientôt.",
+    "viewProject": "Voir le projet",
+    "viewCode": "Voir le code",
+    "role": "Rôle",
+    "year": "Année",
+    "client": "Client",
+    "technologies": "Technologies",
+    "backToList": "Retour aux projets"
+  },
+  "contact": {
+    "title": "On discute ?",
+    "name": "Nom",
+    "firstName": "Prénom",
+    "society": "Société",
+    "email": "Email",
+    "linkedIn": "Linkedin",
+    "mobile": "Téléphone",
+    "message": "Message",
+    "submit": "Envoyer",
+    "sending": "Envoi en cours…",
+    "success": "Message envoyé avec succès ! Merci de votre intérêt.",
+    "errorGeneric": "L’envoi a échoué. Merci de réessayer.",
+    "errorServer": "Nous rencontrons un problème technique. Merci de réessayer plus tard.",
+    "required": "obligatoire"
+  },
+  "footer": {
+    "legalNotice": "Mentions légales",
+    "privacyPolicy": "Politique de confidentialité",
+    "cookiePolicy": "Gestion des cookies",
+    "rights": "© {year} JOSS — tous droits réservés"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "Cette page n’existe pas ou a été déplacée.",
+    "back": "Retour à l’accueil"
+  }
+}
