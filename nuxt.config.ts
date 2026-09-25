@@ -41,6 +41,9 @@ export default defineNuxtConfig({
     notifyWebhookUrl: "",
     jwtSecret: "",
     messageRateLimitHours: "24",
+    // Set both on preproduction only; absent in production, where the middleware is inert.
+    basicAuthUser: "",
+    basicAuthPassword: "",
     public: {
       // Base URL of the v1 Express API, until Phase 3 moves the endpoint into Nitro.
       // Empty string = same origin. Safe to define: NUXT_PUBLIC_API_BASE does not
