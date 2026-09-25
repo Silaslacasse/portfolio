@@ -126,6 +126,14 @@ export default defineNuxtConfig({
    */
   ogImage: { enabled: false },
 
+  /**
+   * Off during builds. It only inspects prerendered output, so every link to an SSR/swr
+   * route (/projets, /en, /en/projects) is reported as a 404 it cannot resolve — nine
+   * false positives that drown out anything real. Re-enable if the site ever becomes
+   * fully prerendered.
+   */
+  linkChecker: { enabled: false },
+
   nitro: {
     compressPublicAssets: true,
   },
