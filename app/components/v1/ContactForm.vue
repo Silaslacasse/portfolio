@@ -2,17 +2,16 @@
 import Button from "./Button.vue";
 import { onMounted, ref } from "vue";
 import { setCookie, getCookie } from "../../utils/cookie";
+import type { ContactErrorResponse, ContactMessageInput } from "#shared/schemas/message";
 
 /**
  * Ported from v1 unchanged in markup and styling.
  *
- * The script swaps axios for Nuxt's $fetch and reads the API base from runtime config,
- * so this still posts to the existing Express backend until Phase 3 moves the endpoint
- * into Nitro — at which point apiBase becomes "" and the call is same-origin.
+ * Posts same-origin now that the API lives in this app, so there is no base URL to
+ * configure and no CORS involved. The payload type comes from the same schema the server
+ * validates against, so the two cannot drift.
  */
-const { public: publicConfig } = useRuntimeConfig();
-
-const formData = ref({
+const formData = ref<ContactMessageInput>({
   name: "",
   firstName: "",
   society: "",
@@ -27,32 +26,31 @@ const errorMessage = ref("");
 const isOverlayVisible = ref(false);
 
 const handleSubmit = async () => {
-  if (isSubmitting.value) return;
+  if (isSubmitting.value || isOverlayVisible.value) return;
 
   isSubmitting.value = true;
   errorMessage.value = "";
 
   try {
-    await $fetch(`${publicConfig.apiBase}/api/messages`, {
-      method: "POST",
-      body: formData.value,
-    });
+    await $fetch("/api/messages", { method: "POST", body: formData.value });
     isOverlayVisible.value = true;
     setCookie("messageSent", "true", 1);
   } catch (error) {
-    // The backend tags every error response with a `type` discriminator.
-    const data = (error as { data?: { type?: string; error?: string } })?.data;
+    const data = (error as { data?: ContactErrorResponse })?.data;
 
-    if (data?.type === "rateLimit") {
-      errorMessage.value = data.error ?? "";
-      setCookie("messageSent", "true", 1);
-    } else if (data?.type === "validation") {
-      errorMessage.value = data.error ?? "Certains champs sont invalides.";
-    } else if (data?.type === "serverError") {
-      errorMessage.value =
-        "Nous rencontrons un problème technique. Merci de réessayer plus tard.";
-    } else {
-      errorMessage.value = "L\u2019envoi a échoué. Merci de réessayer.";
+    switch (data?.type) {
+      case "rateLimit":
+        errorMessage.value = data.error;
+        // Mirror the server limit client-side so the form stays closed on reload.
+        setCookie("messageSent", "true", 1);
+        break;
+      case "validation":
+      case "payloadTooLarge":
+      case "serverError":
+        errorMessage.value = data.error;
+        break;
+      default:
+        errorMessage.value = "L\u2019envoi a échoué. Merci de réessayer.";
     }
   } finally {
     isSubmitting.value = false;

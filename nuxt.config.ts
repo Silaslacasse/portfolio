@@ -44,12 +44,6 @@ export default defineNuxtConfig({
     // Set both on preproduction only; absent in production, where the middleware is inert.
     basicAuthUser: "",
     basicAuthPassword: "",
-    public: {
-      // Base URL of the v1 Express API, until Phase 3 moves the endpoint into Nitro.
-      // Empty string = same origin. Safe to define: NUXT_PUBLIC_API_BASE does not
-      // collide with the NUXT_PUBLIC_SITE_* prefix nuxt-site-config consumes.
-      apiBase: "",
-    },
     // No `public.siteUrl` key here on purpose: it would capture NUXT_PUBLIC_SITE_URL and
     // starve nuxt-site-config, which needs that same variable to resolve site.url for
     // the sitemap, robots.txt and canonical tags.

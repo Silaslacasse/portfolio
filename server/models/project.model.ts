@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { type InferSchemaType, type Model } from "mongoose";
 
 /** French is required; English is optional so a project can ship before translation. */
 const localizedSchema = (maxlength: number) =>
@@ -40,4 +40,11 @@ const projectSchema = new mongoose.Schema(
 // Backs the public list query: published projects in display order.
 projectSchema.index({ status: 1, order: 1, createdAt: -1 });
 
-export default mongoose.models.Project ?? mongoose.model("Project", projectSchema);
+export type ProjectDocument = InferSchemaType<typeof projectSchema>;
+
+/**
+ * Reuses an already-registered model on hot reload. Cast explicitly: the bare `??`
+ * fallback widens the type and every query on it loses its signature.
+ */
+export default (mongoose.models.Project as Model<ProjectDocument>) ??
+  mongoose.model<ProjectDocument>("Project", projectSchema);
