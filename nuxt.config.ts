@@ -15,6 +15,18 @@ export default defineNuxtConfig({
 
   css: ["~/assets/css/main.css"],
 
+  app: {
+    head: {
+      link: [
+        // Generated from the brand mark. v1 declared `href="\orange_flower.webp"` — a
+        // backslash, and typed as image/svg+xml for a webp — so the icon never loaded.
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico", sizes: "any" },
+        { rel: "icon", type: "image/webp", href: "/orange_flower.webp" },
+        { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      ],
+    },
+  },
+
   // Tailwind v4 ships as a Vite plugin. @nuxtjs/tailwindcss still pins v3, so using that
   // module here would silently downgrade us.
   vite: { plugins: [tailwindcss()] },
