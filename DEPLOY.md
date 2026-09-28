@@ -68,8 +68,12 @@ command is `node .output/server/index.mjs`.
   **Build Variable** on `NUXT_MONGO_URI` so the secret is not passed to the build at all.
 - **`swr`, not `isr`.** ISR is a Vercel/Netlify primitive; Coolify runs the node-server
   preset, where SWR gives the equivalent cache-and-revalidate behaviour.
-- **Persistent volume required before any upload feature ships** (Phase 3). Without one,
-  every redeploy wipes user-uploaded images.
+- **Uploaded images need a persistent volume.** The admin stores them in `public/uploads`
+  under the app root, which is `/app` in the Nixpacks image — so in Coolify add a
+  _Storage_ with mount path **`/app/public/uploads`** _before_ the first upload. Without it
+  every redeploy wipes them. `public/uploads` is what `@nuxt/image` (IPX) reads at
+  runtime, which is why `<NuxtImg src="/uploads/…">` needs no extra configuration. Coolify
+  backs up databases, not volumes: schedule a `tar` of that path or sync it to R2.
 
 ## Cutover checklist (when Phase 4 completes)
 

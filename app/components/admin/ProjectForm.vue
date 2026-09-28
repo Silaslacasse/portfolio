@@ -63,7 +63,36 @@ const submit = () => {
 
 const errorFor = (key: string) => localErrors.value[key] ?? props.serverError?.fields[key];
 
+const uploading = ref(false);
+const uploadError = ref("");
+
+/** Uploads picked files one by one and drops their URLs into the matching text field. */
+const onFiles = async (event: Event, target: "coverImage" | "gallery") => {
+  const input = event.target as HTMLInputElement;
+  const files = Array.from(input.files ?? []);
+  if (!files.length) return;
+
+  uploading.value = true;
+  uploadError.value = "";
+  try {
+    for (const file of files) {
+      const body = new FormData();
+      body.append("file", file);
+      const { url } = await $fetch("/api/admin/uploads", { method: "POST", body });
+      if (target === "coverImage") form.coverImage = url;
+      else form.gallery = [form.gallery.trim(), url].filter(Boolean).join("\n");
+    }
+  } catch (caught) {
+    uploadError.value = apiError(caught).message;
+  } finally {
+    uploading.value = false;
+    input.value = ""; // so picking the same file again re-triggers `change`
+  }
+};
+
 const input = "field";
+const fileInput =
+  "text-sm text-muted file:mr-3 file:rounded-pill file:border-0 file:bg-surface-raised file:px-4 file:py-1 file:text-body";
 const label = "block text-sm";
 const hint = "text-muted";
 </script>
@@ -131,15 +160,48 @@ const hint = "text-muted";
       </label>
     </div>
 
-    <!-- Image URLs for now; uploads land with the Coolify volume (see ROADMAP). -->
-    <label :class="label">
-      <span :class="hint">Image de couverture (URL)</span>
-      <input v-model="form.coverImage" type="text" :class="input" />
-    </label>
-    <label :class="label">
-      <span :class="hint">Galerie (une URL par ligne)</span>
-      <textarea v-model="form.gallery" rows="3" :class="input" />
-    </label>
+    <!-- Uploading fills the URL fields; pasting an external URL still works. -->
+    <div>
+      <label :class="label">
+        <span :class="hint">Image de couverture (URL)</span>
+        <input v-model="form.coverImage" type="text" :class="input" />
+      </label>
+      <div class="mt-2 flex flex-wrap items-center gap-4">
+        <input
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          aria-label="Téléverser une image de couverture"
+          :disabled="uploading"
+          :class="fileInput"
+          @change="onFiles($event, 'coverImage')"
+        />
+        <NuxtImg
+          v-if="form.coverImage"
+          :src="form.coverImage"
+          alt=""
+          width="160"
+          height="100"
+          class="h-16 w-auto rounded-field"
+        />
+      </div>
+    </div>
+    <div>
+      <label :class="label">
+        <span :class="hint">Galerie (une URL par ligne)</span>
+        <textarea v-model="form.gallery" rows="3" :class="input" />
+      </label>
+      <input
+        type="file"
+        accept="image/jpeg,image/png,image/webp"
+        multiple
+        aria-label="Téléverser des images pour la galerie"
+        :disabled="uploading"
+        :class="[fileInput, 'mt-2']"
+        @change="onFiles($event, 'gallery')"
+      />
+    </div>
+    <p v-if="uploading" class="text-sm text-muted">Envoi de l'image…</p>
+    <p v-else-if="uploadError" class="text-sm text-accent" role="alert">{{ uploadError }}</p>
 
     <div class="grid gap-4 sm:grid-cols-3">
       <label :class="label">

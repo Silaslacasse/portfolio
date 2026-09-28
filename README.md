@@ -19,7 +19,8 @@ printf '%s' 'your password' | npm run hash-password
 ```
 
 `.env` is ignored by git. The mailer is left unset locally, so contact-form submissions
-are stored with `deliveryStatus: "skipped"` instead of sending email.
+are stored with `deliveryStatus: "skipped"` instead of sending email. Images uploaded from
+the admin land in `public/uploads/` (ignored by git; a persistent volume on Coolify).
 
 ## Checks
 

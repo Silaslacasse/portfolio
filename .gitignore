@@ -22,3 +22,6 @@ logs
 .env
 .env.*
 !.env.example
+
+# Admin image uploads — a persistent volume on Coolify, local files here.
+public/uploads/

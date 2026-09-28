@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
@@ -98,6 +99,14 @@ export default defineNuxtConfig({
     format: ["avif", "webp"],
     quality: 80,
     screens: { xs: 320, sm: 640, md: 768, lg: 1024, xl: 1280, xxl: 1536 },
+    /**
+     * IPX must read the *live* public/ directory. Left alone, the production server reads
+     * the copy Nitro makes in .output/public at build time, so an image uploaded from the
+     * admin afterwards (public/uploads, a persistent volume on Coolify) is a 404 while the
+     * same upload works in dev. Absolute on purpose: build and server run from the same
+     * path — /app in the Nixpacks image, web/ locally.
+     */
+    ipx: { fs: { dir: fileURLToPath(new URL("./public", import.meta.url)) } },
   },
 
   fonts: {
