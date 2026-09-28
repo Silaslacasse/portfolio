@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Marquee from "../components/v1/Marquee.vue";
 import AboutMe from "../components/v1/AboutMe.vue";
 import Curriculum from "../components/v1/Curriculum.vue";
 import ContactForm from "../components/v1/ContactForm.vue";
@@ -19,7 +18,7 @@ useSeoMeta({
 <template>
   <div>
     <HomeHero />
-    <Marquee />
+    <HomeMarquee />
     <AboutMe />
     <Curriculum />
     <ContactForm />
