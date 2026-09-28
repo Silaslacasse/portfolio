@@ -42,3 +42,6 @@ export interface ResolvedProject extends Omit<Project, "title" | "summary" | "de
   summary: string;
   description: string;
 }
+
+/** The list endpoint's item: everything a card needs, without the long description. */
+export type ProjectCard = Omit<ResolvedProject, "description">;
