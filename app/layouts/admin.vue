@@ -12,6 +12,7 @@ const logout = async () => {
       <NuxtLink to="/admin/projects" class="font-display text-xl font-bold">Admin</NuxtLink>
       <nav class="flex items-center gap-6 text-sm">
         <NuxtLink to="/admin/projects" class="hover:text-accent">Projets</NuxtLink>
+        <NuxtLink to="/admin/messages" class="hover:text-accent">Messages</NuxtLink>
         <NuxtLink to="/" class="hover:text-accent">Voir le site</NuxtLink>
         <button type="button" class="hover:text-accent" @click="logout">Se déconnecter</button>
       </nav>

@@ -37,6 +37,7 @@ const messageSchema = new mongoose.Schema(
 
     /** For the admin inbox. */
     readAt: { type: Date, default: null },
+    archivedAt: { type: Date, default: null },
   },
   { timestamps: true }
 );
@@ -44,6 +45,15 @@ const messageSchema = new mongoose.Schema(
 // Backs the rate-limit lookup: most recent submission for an email or an IP.
 messageSchema.index({ email: 1, createdAt: -1 });
 messageSchema.index({ ipAddress: 1, createdAt: -1 });
+
+/**
+ * Retention: MongoDB deletes a message 24 months after it arrived, so personal data is not
+ * kept forever without anyone remembering. The privacy policy (Phase 4) must state the
+ * same period. Changing it later means `collMod` on the existing index, not just editing
+ * this number — Mongoose will not alter an index whose options changed.
+ */
+const RETENTION_SECONDS = 60 * 60 * 24 * 730;
+messageSchema.index({ createdAt: 1 }, { expireAfterSeconds: RETENTION_SECONDS });
 
 export type MessageDocument = InferSchemaType<typeof messageSchema>;
 

@@ -4,7 +4,7 @@ import { fieldErrors } from "#shared/utils/validation";
 
 export default defineEventHandler(async (event) => {
   await requireAdmin(event);
-  const id = projectIdParam(event);
+  const id = objectIdParam(event, "Project not found");
 
   const parsed = projectSchema.safeParse(await readBody(event));
   if (!parsed.success) {

@@ -1,4 +1,5 @@
 import type { H3Event } from "h3";
+import { isValidObjectId } from "mongoose";
 
 interface AdminSession {
   admin?: true;
@@ -33,6 +34,13 @@ export const useAdminSession = (event: H3Event) => {
       path: "/",
     },
   });
+};
+
+/** The `:id` route param, or 404 — a malformed ObjectId is not a document either. */
+export const objectIdParam = (event: H3Event, notFound: string): string => {
+  const id = getRouterParam(event, "id") ?? "";
+  if (!isValidObjectId(id)) throw createError({ statusCode: 404, statusMessage: notFound });
+  return id;
 };
 
 export const requireAdmin = async (event: H3Event) => {

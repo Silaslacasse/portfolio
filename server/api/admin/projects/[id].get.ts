@@ -2,7 +2,7 @@ import Project from "../../../models/project.model";
 
 export default defineEventHandler(async (event) => {
   await requireAdmin(event);
-  const id = projectIdParam(event);
+  const id = objectIdParam(event, "Project not found");
 
   await useDatabase();
 
