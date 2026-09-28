@@ -36,7 +36,9 @@
     "heroRole": "développeur full-stack",
     "aboutTitle": "À propos de moi",
     "aboutGreeting": "Hey, moi c’est Jocelyn ✌️",
-    "comingSoon": "Bientôt disponible…"
+    "comingSoon": "Bientôt disponible…",
+    "heroRoleStart": "développeur",
+    "heroRoleEnd": "full-stack"
   },
   "curriculum": {
     "skills": "Compétences",

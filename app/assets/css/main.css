@@ -32,7 +32,11 @@
   /* Fluid scale between 375px and 1440px viewports.
      This is the core of the responsive rebuild: one rule that holds at every width
      replaces the 21 distinct breakpoints the v1 site used to re-pin type by hand. */
-  --text-hero: clamp(2.5rem, 1.4rem + 4.7vw, 5.625rem); /* 40 -> 90px */
+  --text-hero: clamp(
+    1.75rem,
+    0.81rem + 4.01vw,
+    5.625rem
+  ); /* 28px at 375, 71px at 1440, 90px from 1920 */
   --text-display: clamp(2rem, 1.52rem + 2.07vw, 3.375rem); /* 32 -> 54px */
   --text-title: clamp(1.5rem, 1.32rem + 0.75vw, 2rem); /* 24 -> 32px */
   --text-subtitle: clamp(1.25rem, 1.16rem + 0.38vw, 1.5rem); /* 20 -> 24px */
