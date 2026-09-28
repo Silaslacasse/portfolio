@@ -110,8 +110,9 @@ export default defineNuxtConfig({
    * preset. SWR gives the same practical result there — the first request renders, later
    * ones are served from cache and revalidated in the background.
    *
-   * Nothing that reads MongoDB is prerendered: the Coolify build container has no database
-   * access, so a build-time fetch would fail or bake in empty content.
+   * Nothing that reads MongoDB is prerendered. The build must not depend on the database:
+   * a build-time fetch would bake in stale or empty content, and a connection left open
+   * during prerender keeps `nuxt build` from exiting (see server/plugins/database.ts).
    */
   routeRules: {
     "/": { swr: 3600 },

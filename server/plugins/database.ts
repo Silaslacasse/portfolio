@@ -43,6 +43,15 @@ const explain = (error: unknown): string | null => {
  * the whole site down for a database blip would be a self-inflicted outage.
  */
 export default defineNitroPlugin(() => {
+  /**
+   * The prerenderer boots this same app inside `nuxt build`. Nothing prerendered reads
+   * MongoDB, and an open Mongoose connection (socket + heartbeat timers) keeps the Node
+   * process alive after "Build complete!", so the build never exits and Coolify kills the
+   * deploy on its one-hour timeout. Coolify builds with `--network host` and `--add-host`
+   * entries for every container, so the database IS reachable from the build.
+   */
+  if (import.meta.prerender) return;
+
   const { mongoUri } = useRuntimeConfig();
 
   if (!mongoUri) {

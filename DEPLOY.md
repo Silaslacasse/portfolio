@@ -53,8 +53,14 @@ command is `node .output/server/index.mjs`.
 - **`sharp` is architecture-specific.** `@nuxt/image` bundles a native binary for the
   platform that ran the build. Building inside Coolify (linux/amd64 or arm64) is correct;
   committing a locally built `.output/` from macOS is not.
-- **Nothing that touches MongoDB is prerendered.** The build container has no database
-  access, so project pages use `swr` and render on first request instead.
+- **Nothing that touches MongoDB is prerendered.** Project pages use `swr` and render on
+  first request. The build must not depend on the database — and note that it *can* reach
+  it: Coolify builds with `--network host` and `--add-host` entries for every container on
+  the `coolify` network. That is how a build once connected to MongoDB during prerender and
+  hung after "Build complete!" until Coolify's one-hour job timeout (an open Mongoose
+  connection keeps Node alive). `server/plugins/database.ts` skips the connection under
+  `import.meta.prerender` for that reason. Belt and braces: in Coolify, untick
+  **Build Variable** on `NUXT_MONGO_URI` so the secret is not passed to the build at all.
 - **`swr`, not `isr`.** ISR is a Vercel/Netlify primitive; Coolify runs the node-server
   preset, where SWR gives the equivalent cache-and-revalidate behaviour.
 - **Persistent volume required before any upload feature ships** (Phase 3). Without one,
