@@ -39,8 +39,12 @@ export default defineNuxtConfig({
     mailFrom: "",
     mailTo: "",
     notifyWebhookUrl: "",
-    jwtSecret: "",
     messageRateLimitHours: "24",
+    // Admin: one account, credentials in the environment (see DEPLOY.md). The session is a
+    // sealed cookie, so the secret must be at least 32 characters.
+    sessionSecret: "",
+    adminEmail: "",
+    adminPasswordHash: "",
     // Set both on preproduction only; absent in production, where the middleware is inert.
     basicAuthUser: "",
     basicAuthPassword: "",

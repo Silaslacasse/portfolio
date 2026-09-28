@@ -1,5 +1,6 @@
 import Message from "../models/message.model";
 import { contactMessageSchema, type ContactMessageInput } from "#shared/schemas/message";
+import { fieldErrors } from "#shared/utils/validation";
 
 /** Largest body worth reading. The schema caps the useful content well below this. */
 const MAX_BODY_BYTES = 32 * 1024;
@@ -64,9 +65,7 @@ const buildEmailBody = (input: ContactMessageInput) => {
  */
 const deliver = async (messageId: unknown, input: ContactMessageInput): Promise<void> => {
   const { html, text } = buildEmailBody(input);
-  const subject = sanitizeHeader(
-    `Portfolio — ${input.firstName} ${input.name} (${input.society})`
-  );
+  const subject = sanitizeHeader(`Portfolio — ${input.firstName} ${input.name} (${input.society})`);
 
   try {
     const result = await sendEmail({ subject, html, text, replyTo: input.email });
@@ -120,14 +119,12 @@ export default defineEventHandler(async (event) => {
   const parsed = contactMessageSchema.safeParse(await readBody(event));
 
   if (!parsed.success) {
-    const fields: Record<string, string> = {};
-    for (const issue of parsed.error.issues) {
-      const key = issue.path.join(".");
-      if (key && !fields[key]) fields[key] = issue.message;
-    }
-
     setResponseStatus(event, 400);
-    return { type: "validation", error: "Certains champs sont invalides.", fields };
+    return {
+      type: "validation",
+      error: "Certains champs sont invalides.",
+      fields: fieldErrors(parsed.error.issues),
+    };
   }
 
   const input = parsed.data;

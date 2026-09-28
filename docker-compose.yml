@@ -1,0 +1,24 @@
+# Local development only — production runs on Coolify (Nixpacks), not this file.
+#
+#   docker compose up -d     # MongoDB, persisted in the `mongo-data` volume
+#   npm run dev              # the app itself, on the host, reads ./.env
+#
+# The app stays outside Docker on purpose: sharp (@nuxt/image) is compiled per platform,
+# so a container would need its own node_modules, and HMR through a bind mount is slow.
+services:
+  mongo:
+    image: mongo:7
+    container_name: portfolio-mongo
+    ports:
+      # Bound to loopback: never reachable from the LAN, no auth needed locally.
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ ping: 1 }).ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mongo-data:

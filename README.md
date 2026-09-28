@@ -1,75 +1,30 @@
-# Nuxt Minimal Starter
+# Portfolio — `web/`
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Nuxt 4 app: public site, contact endpoint and admin in one deployment. The plan and the
+settled decisions live in `../ROADMAP.md`; production specifics in `DEPLOY.md`.
 
-## Setup
-
-Make sure to install dependencies:
+## Local development
 
 ```bash
-# npm
+cp .env.example .env     # then fill it in — see the comments in the file
+docker compose up -d     # MongoDB on 127.0.0.1:27017, data kept in a volume
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+npm run dev              # http://localhost:3000 — admin at /admin
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+Admin credentials come from `.env` (`NUXT_ADMIN_EMAIL`, `NUXT_ADMIN_PASSWORD_HASH`):
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+printf '%s' 'your password' | npm run hash-password
 ```
 
-## Production
+`.env` is ignored by git. The mailer is left unset locally, so contact-form submissions
+are stored with `deliveryStatus: "skipped"` instead of sending email.
 
-Build the application for production:
+## Checks
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+npm run lint
+npm run typecheck        # needs NUXT_PUBLIC_SITE_URL, which .env provides
+npm run build            # -> .output/ ; run with: node .output/server/index.mjs
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

@@ -12,7 +12,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "hash-password": "node scripts/hash-password.ts"
   },
   "dependencies": {
     "@nuxt/fonts": "^0.14.0",

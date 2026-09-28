@@ -1,5 +1,4 @@
 import { Buffer } from "node:buffer";
-import { createHash, timingSafeEqual } from "node:crypto";
 
 /**
  * Paths that must stay reachable without credentials.
@@ -8,17 +7,6 @@ import { createHash, timingSafeEqual } from "node:crypto";
  * is marked unhealthy and the proxy stops routing to it — a self-inflicted outage.
  */
 const PUBLIC_PATHS = new Set(["/api/health"]);
-
-/**
- * Compares via fixed-length digests so neither the result nor the *length* of the secret
- * leaks through timing. `timingSafeEqual` throws on mismatched lengths, which would
- * otherwise reveal how long the real credential is.
- */
-const matches = (candidate: string, expected: string): boolean =>
-  timingSafeEqual(
-    createHash("sha256").update(candidate).digest(),
-    createHash("sha256").update(expected).digest()
-  );
 
 const isAuthorised = (header: string, user: string, password: string): boolean => {
   const [scheme, encoded] = header.split(" ");
@@ -29,8 +17,8 @@ const isAuthorised = (header: string, user: string, password: string): boolean =
   if (separator === -1) return false;
 
   return (
-    matches(decoded.slice(0, separator), user) &&
-    matches(decoded.slice(separator + 1), password)
+    safeEqual(decoded.slice(0, separator), user) &&
+    safeEqual(decoded.slice(separator + 1), password)
   );
 };
 

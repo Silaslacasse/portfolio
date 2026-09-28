@@ -1,5 +1,5 @@
 import type { H3Event } from "h3";
-import type { Types } from "mongoose";
+import { isValidObjectId, type Types } from "mongoose";
 import {
   LOCALES,
   type Locale,
@@ -48,3 +48,16 @@ export const resolveProject = (doc: LeanProject, locale: Locale): ResolvedProjec
 
 export const toCard = ({ description: _description, ...card }: ResolvedProject): ProjectCard =>
   card;
+
+/** The `:id` route param, or 404 — a malformed ObjectId is not a project either. */
+export const projectIdParam = (event: H3Event): string => {
+  const id = getRouterParam(event, "id") ?? "";
+  if (!isValidObjectId(id)) {
+    throw createError({ statusCode: 404, statusMessage: "Project not found" });
+  }
+  return id;
+};
+
+/** MongoDB's unique-index violation — for projects, always the slug. */
+export const isDuplicateKey = (error: unknown): boolean =>
+  typeof error === "object" && error !== null && (error as { code?: number }).code === 11000;

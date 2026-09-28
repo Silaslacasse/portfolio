@@ -10,7 +10,7 @@ site-config stack, where it outranks the runtime environment. The symptom is sub
 the page renders fine, `og:url` even looks right, but **`robots.txt`, `sitemap_index.xml` and
 every `<loc>` advertise localhost to search engines**.
 
-Set it as a Coolify *build* variable (Coolify passes app env vars to the build by default —
+Set it as a Coolify _build_ variable (Coolify passes app env vars to the build by default —
 confirm the variable is not marked runtime-only). A build logs this warning when it is missing:
 
 ```
@@ -21,16 +21,21 @@ Treat that warning as a failed deploy.
 
 ## Environment variables
 
-| Variable | Required | Notes |
-|---|---|---|
-| `NUXT_PUBLIC_SITE_URL` | yes | Build **and** runtime. `https://your-domain.com`, no trailing slash. |
-| `NUXT_MONGO_URI` | yes | Internal Docker network address, never a public one. |
-| `NUXT_RESEND_API_KEY` | Phase 3 | |
-| `NUXT_MAIL_FROM` | Phase 3 | Address on the Resend-verified domain. |
-| `NUXT_MAIL_TO` | Phase 3 | |
-| `NUXT_NOTIFY_WEBHOOK_URL` | no | Discord/Telegram backup notification. |
-| `NUXT_JWT_SECRET` | Phase 3 | `openssl rand -base64 48`. |
-| `NUXT_MESSAGE_RATE_LIMIT_HOURS` | no | Defaults to 24. |
+| Variable                        | Required | Notes                                                                                        |
+| ------------------------------- | -------- | -------------------------------------------------------------------------------------------- |
+| `NUXT_PUBLIC_SITE_URL`          | yes      | Build **and** runtime. `https://your-domain.com`, no trailing slash.                         |
+| `NUXT_MONGO_URI`                | yes      | Internal Docker network address, never a public one.                                         |
+| `NUXT_RESEND_API_KEY`           | Phase 3  |                                                                                              |
+| `NUXT_MAIL_FROM`                | Phase 3  | Address on the Resend-verified domain.                                                       |
+| `NUXT_MAIL_TO`                  | Phase 3  |                                                                                              |
+| `NUXT_NOTIFY_WEBHOOK_URL`       | no       | Discord/Telegram backup notification.                                                        |
+| `NUXT_MESSAGE_RATE_LIMIT_HOURS` | no       | Defaults to 24.                                                                              |
+| `NUXT_SESSION_SECRET`           | admin    | Seals the admin cookie. At least 32 characters: `openssl rand -base64 48`.                   |
+| `NUXT_ADMIN_EMAIL`              | admin    | The single admin account.                                                                    |
+| `NUXT_ADMIN_PASSWORD_HASH`      | admin    | `printf '%s' 'password' \| npm run hash-password` — stdin, so it stays out of shell history. |
+
+The three `admin` variables are runtime-only; without them the public site works and
+`/api/admin/login` answers 503. Changing the password is changing the hash and redeploying.
 | `PORT` / `HOST` | no | Coolify sets these; Nitro honours them. |
 
 Nuxt maps `NUXT_FOO_BAR` onto `runtimeConfig.fooBar`, which is why the server-side names are
@@ -54,7 +59,7 @@ command is `node .output/server/index.mjs`.
   platform that ran the build. Building inside Coolify (linux/amd64 or arm64) is correct;
   committing a locally built `.output/` from macOS is not.
 - **Nothing that touches MongoDB is prerendered.** Project pages use `swr` and render on
-  first request. The build must not depend on the database — and note that it *can* reach
+  first request. The build must not depend on the database — and note that it _can_ reach
   it: Coolify builds with `--network host` and `--add-host` entries for every container on
   the `coolify` network. That is how a build once connected to MongoDB during prerender and
   hung after "Build complete!" until Coolify's one-hour job timeout (an open Mongoose
