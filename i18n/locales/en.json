@@ -73,7 +73,8 @@
     "success": "Message sent successfully! Thanks for your interest.",
     "errorGeneric": "Sending failed. Please try again.",
     "errorServer": "We're having technical issues. Please try again later.",
-    "required": "required"
+    "required": "required",
+    "errorRateLimit": "You already sent a message today. Please try again tomorrow."
   },
   "footer": {
     "legalNotice": "Legal notice",

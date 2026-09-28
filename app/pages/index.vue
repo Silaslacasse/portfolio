@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import ContactForm from "../components/v1/ContactForm.vue";
-
 const { t } = useI18n();
 
 useSeoMeta({
@@ -9,8 +7,6 @@ useSeoMeta({
   ogTitle: () => t("meta.home.title"),
   ogDescription: () => t("meta.home.description"),
 });
-
-// Sections still on the v1 markup are replaced one at a time (ROADMAP, Phase 2).
 </script>
 
 <template>
@@ -19,6 +15,6 @@ useSeoMeta({
     <HomeMarquee />
     <HomeAbout />
     <HomeCurriculum />
-    <ContactForm />
+    <HomeContact />
   </div>
 </template>

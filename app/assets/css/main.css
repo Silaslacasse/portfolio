@@ -126,32 +126,3 @@
 @utility field {
   @apply mt-1 w-full rounded-field border border-white/15 bg-ink px-3 py-2 text-body placeholder:text-muted/60;
 }
-
-/* ---------------------------------------------------------------------------
- * v1 compatibility layer.
- *
- * Global rules the ported v1 components rely on. They are not scoped, so they cannot
- * live inside a component's <style scoped> block. These sit outside @layer base on
- * purpose, so they outrank the token defaults above. Delete this whole section as each
- * section is rebuilt in Phase 2.
- * ------------------------------------------------------------------------- */
-
-/* v1's :root used the Vite starter's stack at weight 400. Headings inherited it —
-   v1 had no global heading font rule — so the token defaults above must not apply
-   while the ported markup is in place.
-
-   `Inter` is deliberately omitted from the stack. v1 named it first but never loaded
-   it, so visitors without Inter installed silently got the system font. @nuxt/fonts
-   auto-detects family names in CSS and would fetch the real Inter from Google, which
-   renders at different widths and re-wraps this copy. Phase 2 restyles these sections
-   onto the Poppins token anyway. */
-body {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-}
-
-h1,
-h2,
-h3 {
-  font-family: inherit;
-}
