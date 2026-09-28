@@ -38,7 +38,9 @@
     "aboutGreeting": "Hey, moi c’est Jocelyn ✌️",
     "comingSoon": "Bientôt disponible…",
     "heroRoleStart": "développeur",
-    "heroRoleEnd": "full-stack"
+    "heroRoleEnd": "full-stack",
+    "aboutText": "Passionné par l’informatique, je suis développeur full stack avec une expertise solide en PHP, JavaScript, et une maîtrise des frameworks comme Symfony, Vue.js, React, et Express.",
+    "avatarAlt": "Avatar de Jocelyn"
   },
   "curriculum": {
     "skills": "Compétences",
@@ -83,5 +85,68 @@
     "title": "Page introuvable",
     "description": "Cette page n’existe pas ou a été déplacée.",
     "back": "Retour à l’accueil"
+  },
+  "cv": {
+    "tabs": {
+      "skills": "Compétences",
+      "experience": "Expériences",
+      "education": "Formation"
+    },
+    "languages": [
+      {
+        "label": "Français",
+        "stars": 5
+      },
+      {
+        "label": "Anglais",
+        "stars": 4
+      },
+      {
+        "label": "Allemand",
+        "stars": 2
+      }
+    ],
+    "softSkills": "Développeur web full stack junior passionné, je suis spécialisé en front-end & back-end. Avec une approche axée sur l’innovation & la performance, je suis prêt à relever de nouveaux défis & à apporter ma créativité dans le développement web.",
+    "skills": ["HTML/CSS", "Php/Symfony", "JavaScript/VueJS/React", "Node/express", "Sql/MongoDB"],
+    "experience": [
+      {
+        "title": "Développeur Full Stack chez JetPulp",
+        "period": "De septembre 2022 à aujourd’hui"
+      },
+      {
+        "title": "Développeur Front End chez SiteW — alternance",
+        "period": "De septembre 2021 à septembre 2022"
+      },
+      {
+        "title": "Confection de sites web chez Arclim — stage & contrat étudiant",
+        "period": "De mai à août 2021 — site web de supervision d’installations de stockage alimentaire"
+      },
+      {
+        "title": "Réparation de matériel informatique — indépendant",
+        "period": "2015–2021 — smartphones & ordinateurs"
+      },
+      {
+        "title": "Saisonnier fruitier",
+        "period": "2016–2020 — cueillette & tri des cerises, vendanges"
+      }
+    ],
+    "education": [
+      {
+        "title": "Master Expert Développement Web — Ynov Lyon",
+        "period": "2022–2024 — alternance chez JetPulp"
+      },
+      {
+        "title": "Licence pro Application Web — Clermont",
+        "period": "2021–2022 — alternance chez sitew.com"
+      },
+      {
+        "title": "IUT Lyon 1 — informatique",
+        "period": "2019–2021 — stage de fin d’année chez Arclim"
+      },
+      {
+        "title": "Lycée René Cassin",
+        "period": "2017–2019 — baccalauréat STI2D, mention très bien"
+      }
+    ]
   }
 }

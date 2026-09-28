@@ -38,7 +38,9 @@
     "aboutGreeting": "Hey, I'm Jocelyn ✌️",
     "comingSoon": "Coming soon…",
     "heroRoleStart": "full-stack",
-    "heroRoleEnd": "developer"
+    "heroRoleEnd": "developer",
+    "aboutText": "Passionate about IT, I am a full-stack developer with solid expertise in PHP and JavaScript, and a command of frameworks such as Symfony, Vue.js, React and Express.",
+    "avatarAlt": "Jocelyn’s avatar"
   },
   "curriculum": {
     "skills": "Skills",
@@ -83,5 +85,68 @@
     "title": "Page not found",
     "description": "This page doesn't exist or has been moved.",
     "back": "Back to home"
+  },
+  "cv": {
+    "tabs": {
+      "skills": "Skills",
+      "experience": "Experience",
+      "education": "Education"
+    },
+    "languages": [
+      {
+        "label": "French",
+        "stars": 5
+      },
+      {
+        "label": "English",
+        "stars": 4
+      },
+      {
+        "label": "German",
+        "stars": 2
+      }
+    ],
+    "softSkills": "A passionate junior full-stack web developer, I specialise in front-end and back-end. With a focus on innovation and performance, I am ready to take on new challenges and bring my creativity to web development.",
+    "skills": ["HTML/CSS", "Php/Symfony", "JavaScript/VueJS/React", "Node/express", "Sql/MongoDB"],
+    "experience": [
+      {
+        "title": "Full-stack developer at JetPulp",
+        "period": "September 2022 to date"
+      },
+      {
+        "title": "Front-end developer at SiteW — work-study",
+        "period": "September 2021 to September 2022"
+      },
+      {
+        "title": "Website development at Arclim — internship & student contract",
+        "period": "May to August 2021 — a website supervising food-storage installations"
+      },
+      {
+        "title": "Computer hardware repair — freelance",
+        "period": "2015–2021 — smartphones & computers"
+      },
+      {
+        "title": "Seasonal fruit picker",
+        "period": "2016–2020 — cherry picking & sorting, grape harvests"
+      }
+    ],
+    "education": [
+      {
+        "title": "Master’s in Web Development — Ynov Lyon",
+        "period": "2022–2024 — work-study at JetPulp"
+      },
+      {
+        "title": "Professional bachelor’s, Web Applications — Clermont",
+        "period": "2021–2022 — work-study at sitew.com"
+      },
+      {
+        "title": "IUT Lyon 1 — computer science",
+        "period": "2019–2021 — end-of-year internship at Arclim"
+      },
+      {
+        "title": "Lycée René Cassin",
+        "period": "2017–2019 — STI2D baccalaureate, highest honours"
+      }
+    ]
   }
 }

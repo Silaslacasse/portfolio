@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import AboutMe from "../components/v1/AboutMe.vue";
-import Curriculum from "../components/v1/Curriculum.vue";
 import ContactForm from "../components/v1/ContactForm.vue";
 
 const { t } = useI18n();
@@ -19,8 +17,8 @@ useSeoMeta({
   <div>
     <HomeHero />
     <HomeMarquee />
-    <AboutMe />
-    <Curriculum />
+    <HomeAbout />
+    <HomeCurriculum />
     <ContactForm />
   </div>
 </template>
