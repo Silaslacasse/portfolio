@@ -1,6 +1,13 @@
 import { fileURLToPath } from "node:url";
 import tailwindcss from "@tailwindcss/vite";
 
+/**
+ * SWR only in production. Nitro honours it in `nuxt dev` too, persisting rendered HTML
+ * under .nuxt/cache for an hour — so an edit to a cached page silently does not show,
+ * and a component removed in the meantime produces 404s and a hydration mismatch.
+ */
+const swr = process.env.NODE_ENV === "production" ? { swr: 3600 } : {};
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
@@ -128,10 +135,10 @@ export default defineNuxtConfig({
    * during prerender keeps `nuxt build` from exiting (see server/plugins/database.ts).
    */
   routeRules: {
-    "/": { swr: 3600 },
-    "/en": { swr: 3600 },
-    "/projets/**": { swr: 3600 },
-    "/en/projects/**": { swr: 3600 },
+    "/": swr,
+    "/en": swr,
+    "/projets/**": swr,
+    "/en/projects/**": swr,
     "/mentions-legales": { prerender: true },
     "/politique-de-confidentialite": { prerender: true },
     "/gestion-des-cookies": { prerender: true },

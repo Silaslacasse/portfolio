@@ -27,7 +27,9 @@
     "projects": "Projects",
     "contact": "Let's talk",
     "linkedin": "Linkedin",
-    "skipToContent": "Skip to main content"
+    "skipToContent": "Skip to main content",
+    "main": "Main navigation",
+    "menu": "Menu"
   },
   "home": {
     "heroName": "Jocelyn Duperret,",
