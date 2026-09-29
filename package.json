@@ -13,6 +13,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "nuxt typecheck",
+    "test": "vitest run test",
     "hash-password": "node scripts/hash-password.ts",
     "seed:demo": "node --env-file=.env scripts/seed-demo.ts"
   },
@@ -40,6 +41,7 @@
     "prettier": "^3.9.8",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
+    "vitest": "^5.0.2",
     "vue-tsc": "^3.3.11"
   },
   "engines": {

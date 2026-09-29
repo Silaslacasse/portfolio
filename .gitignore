@@ -29,3 +29,4 @@ public/uploads/
 # Local scratch: design references and browser-test screenshots
 tmp/
 .playwright-mcp/
+.vitest/
