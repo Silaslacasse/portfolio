@@ -9,13 +9,16 @@
       "description": "A selection of full-stack web projects: context, role, technologies and outcomes."
     },
     "legalNotice": {
-      "title": "Legal notice"
+      "title": "Legal notice",
+      "description": "Publisher, hosting and intellectual property of Jocelyn Duperret’s website."
     },
     "privacyPolicy": {
-      "title": "Privacy policy"
+      "title": "Privacy policy",
+      "description": "What the contact form collects, how long it is kept, and your rights."
     },
     "cookiePolicy": {
-      "title": "Cookie policy"
+      "title": "Cookie policy",
+      "description": "The site’s only cookies, all required for it to work, and how to manage them."
     },
     "notFound": {
       "title": "Page not found"
@@ -130,6 +133,9 @@
       "mobile": "+33 6 00 00 00 00",
       "message": "A few words about the project…"
     }
+  },
+  "legal": {
+    "updated": "Last updated: {date}"
   },
   "footer": {
     "legalNotice": "Legal notice",

@@ -9,13 +9,16 @@
       "description": "Une sélection de projets web full-stack : contexte, rôle, technologies et résultats."
     },
     "legalNotice": {
-      "title": "Mentions légales"
+      "title": "Mentions légales",
+      "description": "Éditeur, hébergement et propriété intellectuelle du site de Jocelyn Duperret."
     },
     "privacyPolicy": {
-      "title": "Politique de confidentialité"
+      "title": "Politique de confidentialité",
+      "description": "Données collectées par le formulaire de contact, durée de conservation et vos droits."
     },
     "cookiePolicy": {
-      "title": "Gestion des cookies"
+      "title": "Gestion des cookies",
+      "description": "Les seuls cookies du site, tous nécessaires à son fonctionnement, et comment les gérer."
     },
     "notFound": {
       "title": "Page introuvable"
@@ -130,6 +133,9 @@
       "mobile": "06 00 00 00 00",
       "message": "Quelques mots sur le projet…"
     }
+  },
+  "legal": {
+    "updated": "Dernière mise à jour : {date}"
   },
   "footer": {
     "legalNotice": "Mentions légales",
