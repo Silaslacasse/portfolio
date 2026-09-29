@@ -16,6 +16,13 @@ const links = computed(() => [
 const contact = computed(() => `${home.value}#contact`);
 
 const open = ref(false);
+const menuButton = ref<HTMLButtonElement>();
+// Escape closes the menu and hands focus back to the button that opened it.
+const closeMenu = () => {
+  if (!open.value) return;
+  open.value = false;
+  menuButton.value?.focus();
+};
 // Any navigation, including an in-page anchor, closes the mobile menu.
 watch(
   () => route.fullPath,
@@ -42,6 +49,7 @@ onBeforeUnmount(() => window.removeEventListener("scroll", onScroll));
   <header
     class="sticky top-0 z-40 transition-colors duration-300"
     :class="open ? 'bg-ink' : scrolled ? 'bg-ink/80 backdrop-blur-md' : ''"
+    @keydown.esc="closeMenu"
   >
     <div class="container-content flex h-24 items-center justify-between gap-6">
       <NuxtLink :to="home" :aria-label="t('nav.home')" class="shrink-0">
@@ -70,6 +78,7 @@ onBeforeUnmount(() => window.removeEventListener("scroll", onScroll));
           {{ t("nav.contact") }} <span aria-hidden="true">↗</span>
         </NuxtLink>
         <button
+          ref="menuButton"
           type="button"
           class="-mr-2 rounded-full p-2 lg:hidden"
           :aria-expanded="open"

@@ -27,6 +27,19 @@ const education = computed(() => entries("cv.education"));
 
 const tabs = ["skills", "experience", "education"] as const;
 const active = ref<(typeof tabs)[number]>("skills");
+
+// ARIA tabs pattern: one tab in the tab order, arrows (and Home/End) move between them and
+// select as they go.
+const onTabKey = (event: KeyboardEvent, index: number) => {
+  const target = { ArrowRight: index + 1, ArrowLeft: index - 1, Home: 0, End: tabs.length - 1 }[
+    event.key
+  ];
+  if (target === undefined) return;
+  event.preventDefault();
+  const tab = tabs[(target + tabs.length) % tabs.length]!;
+  active.value = tab;
+  document.getElementById(`tab-${tab}`)?.focus();
+};
 </script>
 
 <template>
@@ -46,6 +59,7 @@ const active = ref<(typeof tabs)[number]>("skills");
         role="tab"
         :aria-selected="active === tab"
         :aria-controls="`panel-${tab}`"
+        :tabindex="active === tab ? 0 : -1"
         class="rounded-field px-4 py-2 text-small font-medium transition-colors"
         :class="
           active === tab
@@ -53,6 +67,7 @@ const active = ref<(typeof tabs)[number]>("skills");
             : 'text-muted hover:bg-ink hover:text-white'
         "
         @click="active = tab"
+        @keydown="onTabKey($event, tabs.indexOf(tab))"
       >
         {{ $t(`cv.tabs.${tab}`) }}
       </button>
@@ -65,6 +80,7 @@ const active = ref<(typeof tabs)[number]>("skills");
           :id="`panel-${active}`"
           role="tabpanel"
           :aria-labelledby="`tab-${active}`"
+          tabindex="0"
           class="flex h-full flex-col justify-between gap-8 rounded-[calc(var(--radius-card)-4px)] bg-surface p-6 sm:p-10"
         >
           <template v-if="active === 'skills'">

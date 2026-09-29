@@ -163,7 +163,7 @@
    :focus-visible outline. Tailwind v4's preflight makes inputs transparent, hence the
    explicit background. */
 @utility field {
-  @apply mt-2 w-full rounded-field border border-white/15 bg-ink px-4 py-3 text-body placeholder:text-muted/60;
+  @apply mt-2 w-full rounded-field border border-white/15 bg-ink px-4 py-3 text-body placeholder:text-muted/80;
 }
 
 /* Long-form copy (the legal pages): headings, paragraphs, lists and links on the tokens,

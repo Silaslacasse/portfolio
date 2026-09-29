@@ -79,6 +79,15 @@ onMounted(async () => {
   });
 });
 
+// Keyboard and screen-reader users land on the first field to fix, in form order; its
+// error is read out through aria-describedby.
+const showErrors = async (found: Record<string, string>) => {
+  errors.value = found;
+  await nextTick();
+  const first = [...fields.map((field) => field.key), "message"].find((key) => found[key]);
+  if (first) document.getElementById(`contact-${first}`)?.focus();
+};
+
 const resetCaptcha = () => {
   turnstileToken.value = "";
   turnstile?.reset(widgetId);
@@ -90,7 +99,7 @@ const submit = async () => {
   // Same schema as the endpoint, so a payload that passes here passes there.
   const parsed = contactMessageSchema.safeParse(form);
   if (!parsed.success) {
-    errors.value = fieldErrors(parsed.error.issues);
+    await showErrors(fieldErrors(parsed.error.issues));
     return;
   }
   if (turnstileSiteKey && !turnstileToken.value) {
@@ -117,7 +126,7 @@ const submit = async () => {
       error.value = t("contact.errorRateLimit");
       setCookie("messageSent", "true", 1);
     } else if (failure.status === 400 && Object.keys(failure.fields).length) {
-      errors.value = failure.fields;
+      await showErrors(failure.fields);
     } else if (failure.status >= 500) {
       error.value = t("contact.errorServer");
     } else {

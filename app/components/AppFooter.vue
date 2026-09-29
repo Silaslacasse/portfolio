@@ -17,7 +17,11 @@ const year = new Date().getFullYear();
         class="mx-auto w-full max-w-5xl"
       />
 
-      <ul class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-small">
+      <!-- A dark backing keeps the small links readable (AA) at both ends of the gradient,
+           where white text alone falls under 3:1 on the orange. -->
+      <ul
+        class="mx-auto mt-10 flex w-fit flex-wrap items-center justify-center gap-x-8 gap-y-3 rounded-card bg-ink/40 px-6 py-3 text-center text-small text-white"
+      >
         <li>
           <NuxtLink :to="localePath('cookie-policy')" class="hover:underline">
             {{ $t("footer.cookiePolicy") }}
