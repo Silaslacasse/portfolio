@@ -70,7 +70,6 @@
     "projects": {
       "title": "My",
       "accent": "projects.",
-      "lead": "Three recent projects. The full selection is on the projects page.",
       "all": "All projects",
       "view": "View project"
     }

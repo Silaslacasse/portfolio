@@ -21,14 +21,11 @@ const number = (index: number) => String(index + 1).padStart(2, "0");
     id="projects"
     class="container-content scroll-mt-28 py-10 lg:py-20"
   >
-    <div class="flex flex-wrap items-end justify-between gap-6">
-      <AppSectionTitle
-        v-reveal
-        :title="$t('home.projects.title')"
-        :accent="$t('home.projects.accent')"
-      />
-      <p class="max-w-sm text-small text-muted lg:text-right">{{ $t("home.projects.lead") }}</p>
-    </div>
+    <AppSectionTitle
+      v-reveal
+      :title="$t('home.projects.title')"
+      :accent="$t('home.projects.accent')"
+    />
 
     <!--
       Stacked cards, in CSS only: every card is sticky under the header, with `top` growing
