@@ -145,6 +145,10 @@
     "cookiePolicy": "Gestion des cookies",
     "rights": "© {year} JOSS — tous droits réservés"
   },
+  "serverError": {
+    "title": "Une erreur est survenue",
+    "description": "Le site rencontre un problème passager. Réessayez dans un instant."
+  },
   "notFound": {
     "title": "Page introuvable",
     "description": "Cette page n’existe pas ou a été déplacée.",

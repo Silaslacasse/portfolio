@@ -145,6 +145,10 @@
     "cookiePolicy": "Cookie policy",
     "rights": "© {year} JOSS — all rights reserved"
   },
+  "serverError": {
+    "title": "Something went wrong",
+    "description": "The site hit a temporary problem. Please try again in a moment."
+  },
   "notFound": {
     "title": "Page not found",
     "description": "This page doesn't exist or has been moved.",
