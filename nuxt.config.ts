@@ -146,12 +146,14 @@ export default defineNuxtConfig({
       "privacy-policy": { fr: "/politique-de-confidentialite", en: "/privacy-policy" },
       "cookie-policy": { fr: "/gestion-des-cookies", en: "/cookie-policy" },
     },
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: "i18n_locale",
-      redirectOn: "root",
-      alwaysRedirect: false,
-    },
+    /**
+     * No redirect from the browser language. In production `/` is served from the swr
+     * cache and never redirected server-side, so an English browser got the French HTML
+     * and was switched to /en during hydration: a mismatch and a flash of French. Google
+     * also advises against language-guessing redirects; the FR/EN switch and hreflang
+     * cover it. Side effect: no `i18n_locale` cookie any more.
+     */
+    detectBrowserLanguage: false,
   },
 
   image: {

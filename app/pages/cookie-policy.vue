@@ -19,10 +19,6 @@ const localePath = useLocalePath();
       <h2>Cookies utilisés</h2>
       <ul>
         <li>
-          <code>i18n_locale</code> — retient la langue choisie (français ou anglais). Durée : 12
-          mois.
-        </li>
-        <li>
           <code>messageSent</code> — déposé après l’envoi d’un message, pour afficher la
           confirmation et éviter un second envoi. Durée : 24 heures.
         </li>
@@ -44,8 +40,8 @@ const localePath = useLocalePath();
       <h2>Gérer les cookies</h2>
       <p>
         Vous pouvez supprimer ou bloquer les cookies depuis les réglages de votre navigateur. Les
-        bloquer peut empêcher la mémorisation de la langue ou l’affichage de la confirmation
-        d’envoi, sans gêner la consultation du site.
+        bloquer peut empêcher l’affichage de la confirmation d’envoi, sans gêner la consultation du
+        site.
       </p>
       <p>
         Les données envoyées par le formulaire de contact sont traitées comme décrit dans la
@@ -63,10 +59,6 @@ const localePath = useLocalePath();
 
       <h2>Cookies used</h2>
       <ul>
-        <li>
-          <code>i18n_locale</code> — remembers the language you chose (French or English). Lifetime:
-          12 months.
-        </li>
         <li>
           <code>messageSent</code> — set once you have sent a message, to show the confirmation and
           prevent a second submission. Lifetime: 24 hours.
@@ -89,8 +81,7 @@ const localePath = useLocalePath();
       <h2>Managing cookies</h2>
       <p>
         You can delete or block cookies from your browser settings. Blocking them may stop the site
-        from remembering your language or showing the sending confirmation, without getting in the
-        way of browsing.
+        from showing the sending confirmation, without getting in the way of browsing.
       </p>
       <p>
         Data sent through the contact form is handled as described in the
