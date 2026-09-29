@@ -6,26 +6,29 @@ const { t } = useI18n();
 
 <template>
   <!--
-    Direction A hero: eyebrow, the name as a giant two-line title, a glow and one floating
-    3D shape in the top-right corner. The glow and the shape are sized in vw and placed in
-    percentages of the section, so no breakpoint re-pins them. No scroll reveal here: the
-    hero is the LCP and must be in the first paint.
+    Direction A hero: the name as a giant two-line title, a glow and one floating 3D shape
+    in the top-right corner. The shape is sized in vw and placed in percentages of the
+    section, so no breakpoint re-pins it. The section does not clip:
+    the glow spills past the content edges, under the header and to the screen edges (the
+    layout clips horizontal overflow). No scroll reveal here: the hero is the LCP and must
+    be in the first paint.
   -->
   <section
-    class="container-content relative flex min-h-[calc(100svh-6rem)] flex-col justify-center overflow-hidden py-16"
+    class="container-content relative flex min-h-[calc(100svh-6rem)] flex-col justify-center py-16"
   >
-    <div
-      aria-hidden="true"
-      class="pointer-events-none absolute -top-[15%] -right-[10%] size-[clamp(20rem,50vw,45rem)] rounded-full bg-hero-glow"
-    />
-    <img
-      :src="shape"
-      width="194"
-      height="193"
-      alt=""
-      aria-hidden="true"
-      class="pointer-events-none absolute top-[10%] right-[12%] w-[clamp(6rem,14vw,12.5rem)] animate-float"
-    />
+    <!-- The glow is centred on the shape, so the two stay together at every width. -->
+    <div aria-hidden="true" class="pointer-events-none absolute top-[10%] right-[12%]">
+      <div
+        class="absolute top-1/2 left-1/2 size-[clamp(32rem,70vw,80rem)] -translate-1/2 bg-hero-glow"
+      />
+      <img
+        :src="shape"
+        width="194"
+        height="193"
+        alt=""
+        class="relative w-[clamp(6rem,14vw,12.5rem)] animate-float"
+      />
+    </div>
 
     <div class="relative animate-rise">
       <AppSectionTitle

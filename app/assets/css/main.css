@@ -186,14 +186,27 @@
   color: transparent;
 }
 
-/* The hero's soft orange-to-violet glow, built from the tokens so a retheme follows. */
+/* The hero's soft orange-to-violet glow, built from the tokens so a retheme follows.
+   `closest-side` makes it fully transparent before the element's edge, so the box never
+   shows as a hard line whatever its size. Two layers, an orange core over a wider violet
+   halo, each with eased stops: a single gradient changing hue mid-way read as a ring. */
 @utility bg-hero-glow {
-  background-image: radial-gradient(
-    circle at 40% 40%,
-    color-mix(in srgb, var(--color-accent) 55%, transparent) 0%,
-    color-mix(in srgb, var(--color-violet) 45%, transparent) 45%,
-    transparent 70%
-  );
+  background-image:
+    radial-gradient(
+      closest-side,
+      color-mix(in oklab, var(--color-accent) 50%, transparent) 0%,
+      color-mix(in oklab, var(--color-accent) 25%, transparent) 20%,
+      color-mix(in oklab, var(--color-accent) 8%, transparent) 38%,
+      transparent 52%
+    ),
+    radial-gradient(
+      closest-side,
+      color-mix(in oklab, var(--color-violet) 45%, transparent) 0%,
+      color-mix(in oklab, var(--color-violet) 30%, transparent) 30%,
+      color-mix(in oklab, var(--color-violet) 16%, transparent) 55%,
+      color-mix(in oklab, var(--color-violet) 6%, transparent) 78%,
+      transparent 100%
+    );
 }
 
 /**

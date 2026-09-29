@@ -19,9 +19,10 @@ const technos = [
   <!--
     Decorative: the same skills are listed, readable, in the curriculum section, so screen
     readers are spared an endlessly repeating list. The global reduced-motion rule freezes
-    the animation for users who asked for that.
+    the animation for users who asked for that. `relative` so it paints over the hero glow
+    that spills down past the hero.
   -->
-  <div class="overflow-hidden bg-brand-gradient py-5" aria-hidden="true">
+  <div class="relative overflow-hidden bg-brand-gradient py-5" aria-hidden="true">
     <Vue3Marquee :duration="50" :pause-on-hover="true">
       <ul class="flex items-center gap-[clamp(2rem,5vw,4.5rem)] pr-[clamp(2rem,5vw,4.5rem)]">
         <li
