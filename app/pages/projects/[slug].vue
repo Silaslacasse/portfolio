@@ -18,9 +18,21 @@ if (!project.value) {
   throw createError({ statusCode: error.value?.statusCode ?? 404, fatal: import.meta.client });
 }
 
+// Social previews want an absolute 1200×630 JPEG: IPX crops and converts the cover,
+// uploaded WebP included. Without a cover, the site-wide image from app.vue stays.
+const img = useImage();
+const cover = withSiteUrl(
+  computed(() =>
+    project.value?.coverImage
+      ? img(project.value.coverImage, { width: 1200, height: 630, fit: "cover", format: "jpeg" })
+      : ""
+  )
+);
 useSeoMeta({
   title: () => project.value?.title,
   description: () => project.value?.summary,
+  ogImage: () => (project.value?.coverImage ? cover.value : undefined),
+  ogImageAlt: () => project.value?.title,
 });
 
 const meta = computed(
