@@ -126,6 +126,8 @@
     "lead": "Un projet, un poste, une question ?",
     "text": "Je lis chaque message et je réponds en général sous 48 heures.",
     "requiredFields": "Champs obligatoires",
+    "privacy": "Vos informations servent uniquement à répondre à votre message et sont supprimées au bout de 24 mois. Pour en savoir plus et exercer vos droits : {link}.",
+    "privacyLink": "politique de confidentialité",
     "placeholders": {
       "name": "ex. Marie Dupont",
       "society": "ex. ACME",

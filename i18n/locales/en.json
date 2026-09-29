@@ -126,6 +126,8 @@
     "lead": "A project, a position, a question?",
     "text": "I read every message and usually answer within 48 hours.",
     "requiredFields": "Required fields",
+    "privacy": "Your details are only used to answer your message and are deleted after 24 months. To learn more and exercise your rights: {link}.",
+    "privacyLink": "privacy policy",
     "placeholders": {
       "name": "e.g. Jane Smith",
       "society": "e.g. ACME",

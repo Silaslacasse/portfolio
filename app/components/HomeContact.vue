@@ -4,6 +4,7 @@ import { contactMessageSchema, type ContactMessageInput } from "#shared/schemas/
 import { fieldErrors } from "#shared/utils/validation";
 
 const { t } = useI18n();
+const localePath = useLocalePath();
 
 const form = reactive<ContactMessageInput>({
   name: "",
@@ -138,6 +139,20 @@ const input = "field aria-invalid:border-accent";
                 {{ errors.message }}
               </p>
             </div>
+
+            <!-- GDPR art. 13: what the data is for and for how long, where it is collected. -->
+            <i18n-t
+              keypath="contact.privacy"
+              tag="p"
+              scope="global"
+              class="text-small text-muted sm:col-span-2"
+            >
+              <template #link>
+                <NuxtLink :to="localePath('privacy-policy')" class="text-accent hover:underline">{{
+                  $t("contact.privacyLink")
+                }}</NuxtLink>
+              </template>
+            </i18n-t>
 
             <p v-if="error" class="text-accent sm:col-span-2" role="alert">{{ error }}</p>
 
