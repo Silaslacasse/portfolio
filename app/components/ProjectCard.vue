@@ -20,7 +20,7 @@ const localePath = useLocalePath();
         :src="project.coverImage"
         :alt="$t('projects.coverAlt', { title: project.title })"
         :seed="project.slug"
-        :sizes="wide ? '100vw sm:50vw lg:900px' : '100vw sm:50vw lg:440px'"
+        :sizes="wide ? '100vw sm:50vw lg:66vw' : '100vw sm:50vw lg:33vw'"
       />
     </div>
     <div class="flex flex-col gap-3 px-3 pb-3">

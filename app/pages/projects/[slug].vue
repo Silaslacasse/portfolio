@@ -77,9 +77,9 @@ const label = "text-small tracking-[0.14em] text-muted uppercase";
         :src="project.coverImage"
         :alt="$t('projects.coverAlt', { title: project.title })"
         :seed="project.slug"
-        :width="1352"
-        :height="676"
-        sizes="100vw lg:1352px"
+        :width="1920"
+        :height="960"
+        sizes="100vw"
         loading="eager"
       />
     </div>
