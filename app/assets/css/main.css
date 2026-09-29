@@ -43,17 +43,53 @@
   --text-base: 1rem;
   --text-small: 0.875rem;
 
+  /* Redesign (Direction A, 2026-09): the giant uppercase titles. 50px at 375 -> 128px at
+     1440 for the hero, 44 -> 112px for section titles, so a two-line title never wraps
+     to three on a phone. */
+  --text-giant: clamp(3.125rem, 1.41rem + 7.32vw, 8rem);
+  --text-section: clamp(2.75rem, 1.25rem + 6.38vw, 7rem);
+  --text-lead: clamp(1.125rem, 1.03rem + 0.4vw, 1.375rem); /* 18 -> 22px */
+
   /* ---- Radii ---- */
   --radius-field: 12px;
   --radius-card: 16px;
   --radius-pill: 24px;
   --radius-bar: 50px;
+  --radius-panel: 24px; /* the large cards: project cards, contact frame, section tiles */
 
   /* ---- Layout ----
      A single content width plus a fluid gutter, replacing per-component max-widths
      (832px, 1200px, 1240px, 1352px, 1400px ...). */
   --spacing-gutter: clamp(1.25rem, 0.5rem + 3vw, 5rem);
   --container-content: 1352px;
+
+  /* ---- Motion ----
+     Two small animations, both frozen by the reduced-motion rule below. */
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-rise: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes float {
+    0%,
+    100% {
+      translate: 0 0;
+      rotate: 0deg;
+    }
+    50% {
+      translate: 0 -14px;
+      rotate: 4deg;
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      translate: 0 0.4em;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
 }
 
 @layer base {
@@ -121,8 +157,67 @@
   );
 }
 
-/* Admin form controls. The border is what makes them read on both the ink page and a
-   surface card; keyboard focus keeps the global :focus-visible outline. */
+/* Form controls, shared by the contact form and the admin. The border is what makes them
+   read on both the ink page and a surface card; keyboard focus keeps the global
+   :focus-visible outline. Tailwind v4's preflight makes inputs transparent, hence the
+   explicit background. */
 @utility field {
-  @apply mt-1 w-full rounded-field border border-white/15 bg-ink px-3 py-2 text-body placeholder:text-muted/60;
+  @apply mt-2 w-full rounded-field border border-white/15 bg-ink px-4 py-3 text-body placeholder:text-muted/60;
+}
+
+/* The small uppercase label with an orange rule that opens every section of the redesign. */
+@utility eyebrow {
+  @apply flex items-center gap-3 text-small tracking-[0.16em] text-muted uppercase;
+
+  &::before {
+    content: "";
+    width: 2rem;
+    height: 1px;
+    background-color: var(--color-accent);
+  }
+}
+
+/* Gradient text for the accent line of a giant title. */
+@utility text-gradient {
+  background-image: linear-gradient(0.3turn, var(--color-grad-from), var(--color-grad-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* The hero's soft orange-to-violet glow, built from the tokens so a retheme follows. */
+@utility bg-hero-glow {
+  background-image: radial-gradient(
+    circle at 40% 40%,
+    color-mix(in srgb, var(--color-accent) 55%, transparent) 0%,
+    color-mix(in srgb, var(--color-violet) 45%, transparent) 45%,
+    transparent 70%
+  );
+}
+
+/**
+ * Scroll reveal, driven by the `v-reveal` directive (app/plugins/reveal.ts): the element
+ * starts translucent and rises once it enters the viewport. Kept off the hero so the LCP
+ * is never hidden. `scripting: none` shows everything when JavaScript is unavailable.
+ */
+@layer components {
+  [data-reveal] {
+    opacity: 0;
+    translate: 0 1.5rem;
+    transition:
+      opacity 0.7s ease,
+      translate 0.7s ease;
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  @media (scripting: none), (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
 }
