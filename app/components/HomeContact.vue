@@ -220,9 +220,11 @@ const input = "field aria-invalid:border-accent";
               class="text-small text-muted sm:col-span-2"
             >
               <template #link>
-                <NuxtLink :to="localePath('privacy-policy')" class="text-accent hover:underline">{{
-                  $t("contact.privacyLink")
-                }}</NuxtLink>
+                <NuxtLink
+                  :to="localePath('privacy-policy')"
+                  class="text-accent underline decoration-accent/50 underline-offset-4 hover:decoration-accent"
+                  >{{ $t("contact.privacyLink") }}</NuxtLink
+                >
               </template>
             </i18n-t>
 

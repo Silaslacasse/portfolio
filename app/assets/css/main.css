@@ -188,8 +188,10 @@
     @apply mt-2;
   }
 
+  /* Always underlined: inside grey body text the orange alone is not a distinct enough cue
+     (1.2:1 against the text around it, WCAG wants 3:1 or another marker). */
   & a {
-    @apply text-accent underline-offset-4 hover:underline;
+    @apply text-accent underline decoration-accent/50 underline-offset-4 hover:decoration-accent;
   }
 
   & code {
