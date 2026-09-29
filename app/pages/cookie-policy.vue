@@ -35,8 +35,9 @@ const localePath = useLocalePath();
           d’ouverture pendant la visite. Effacé à la fermeture de l’onglet.
         </li>
         <li>
-          Cloudflare, qui protège le site, peut déposer des cookies techniques de sécurité (par
-          exemple <code>__cf_bm</code>, 30 minutes) pour distinguer les visiteurs des robots.
+          Cloudflare, qui protège le site et son formulaire (Turnstile), peut déposer des cookies
+          techniques de sécurité (par exemple <code>__cf_bm</code>, 30 minutes) pour distinguer les
+          visiteurs des robots.
         </li>
       </ul>
 
@@ -79,7 +80,8 @@ const localePath = useLocalePath();
           replaying during your visit. Cleared when the tab closes.
         </li>
         <li>
-          Cloudflare, which protects the site, may set technical security cookies (for instance
+          Cloudflare, which protects the site and its form (Turnstile), may set technical security
+          cookies (for instance
           <code>__cf_bm</code>, 30 minutes) to tell visitors from bots.
         </li>
       </ul>

@@ -3,7 +3,7 @@ import linkedinIcon from "~/assets/icons/linkedin_orange.webp";
 import { contactMessageSchema, type ContactMessageInput } from "#shared/schemas/message";
 import { fieldErrors } from "#shared/utils/validation";
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const localePath = useLocalePath();
 
 const form = reactive<ContactMessageInput>({
@@ -33,6 +33,57 @@ onMounted(() => {
   if (getCookie("messageSent")) sent.value = true;
 });
 
+/**
+ * Cloudflare Turnstile, only when its site key is configured (the server enforces it only
+ * when its secret is). The script loads with the form, not site-wide, and not at all once
+ * a message was sent. Tokens are single-use, so the widget is reset after every failed
+ * submission.
+ */
+interface Turnstile {
+  render(element: HTMLElement, options: Record<string, unknown>): string;
+  reset(widgetId?: string): void;
+}
+const { turnstileSiteKey } = useRuntimeConfig().public;
+const captcha = ref<HTMLElement>();
+const turnstileToken = ref("");
+let turnstile: Turnstile | undefined;
+let widgetId: string | undefined;
+
+// Loaded by hand: Nuxt's useScript is a stub without @nuxt/scripts. `onload` in the URL
+// is Cloudflare's documented hook for explicit rendering with an async script.
+const loadTurnstile = () =>
+  new Promise<Turnstile>((resolve, reject) => {
+    const scope = window as unknown as { turnstile?: Turnstile; onTurnstileLoad?: () => void };
+    if (scope.turnstile) return resolve(scope.turnstile);
+    scope.onTurnstileLoad = () => resolve(scope.turnstile!);
+    const script = document.createElement("script");
+    script.src =
+      "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad";
+    script.async = true;
+    script.onerror = reject;
+    document.head.append(script);
+  });
+
+onMounted(async () => {
+  // `sent` is already restored from the cookie by the hook above, registered first.
+  if (!turnstileSiteKey || sent.value || !captcha.value) return;
+  // Blocked or offline: no widget, and submit then explains the check is missing.
+  turnstile = await loadTurnstile().catch(() => undefined);
+  if (!turnstile) return;
+  widgetId = turnstile.render(captcha.value, {
+    sitekey: turnstileSiteKey,
+    theme: "dark",
+    language: locale.value,
+    callback: (token: string) => (turnstileToken.value = token),
+    "expired-callback": () => (turnstileToken.value = ""),
+  });
+});
+
+const resetCaptcha = () => {
+  turnstileToken.value = "";
+  turnstile?.reset(widgetId);
+};
+
 const submit = async () => {
   if (pending.value || sent.value) return;
 
@@ -42,17 +93,27 @@ const submit = async () => {
     errors.value = fieldErrors(parsed.error.issues);
     return;
   }
+  if (turnstileSiteKey && !turnstileToken.value) {
+    error.value = t("contact.errorCaptcha");
+    return;
+  }
 
   pending.value = true;
   errors.value = {};
   error.value = "";
   try {
-    await $fetch("/api/messages", { method: "POST", body: parsed.data });
+    await $fetch("/api/messages", {
+      method: "POST",
+      body: { ...parsed.data, turnstileToken: turnstileToken.value },
+    });
     sent.value = true;
     setCookie("messageSent", "true", 1);
   } catch (caught) {
     const failure = apiError(caught);
-    if (failure.status === 429) {
+    resetCaptcha();
+    if (failure.type === "captcha") {
+      error.value = t("contact.errorCaptcha");
+    } else if (failure.status === 429) {
       error.value = t("contact.errorRateLimit");
       setCookie("messageSent", "true", 1);
     } else if (failure.status === 400 && Object.keys(failure.fields).length) {
@@ -139,6 +200,8 @@ const input = "field aria-invalid:border-accent";
                 {{ errors.message }}
               </p>
             </div>
+
+            <div v-if="turnstileSiteKey" ref="captcha" class="min-h-[65px] sm:col-span-2" />
 
             <!-- GDPR art. 13: what the data is for and for how long, where it is collected. -->
             <i18n-t

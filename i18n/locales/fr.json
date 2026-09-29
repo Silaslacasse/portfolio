@@ -121,6 +121,7 @@
     "errorServer": "Nous rencontrons un problème technique. Merci de réessayer plus tard.",
     "required": "obligatoire",
     "errorRateLimit": "Vous avez déjà envoyé un message aujourd’hui. Merci de réessayer demain.",
+    "errorCaptcha": "La vérification anti-spam n’a pas abouti. Merci de la valider, puis de renvoyer le message.",
     "heading": "On",
     "accent": "discute ?",
     "lead": "Un projet, un poste, une question ?",

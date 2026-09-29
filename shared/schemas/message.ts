@@ -35,7 +35,8 @@ export const contactMessageSchema = z.object({
 export type ContactMessageInput = z.infer<typeof contactMessageSchema>;
 
 /** Discriminator every error response carries, so the form can branch on the cause. */
-export type ContactErrorType = "validation" | "rateLimit" | "payloadTooLarge" | "serverError";
+export type ContactErrorType =
+  "validation" | "captcha" | "rateLimit" | "payloadTooLarge" | "serverError";
 
 export interface ContactErrorResponse {
   type: ContactErrorType;

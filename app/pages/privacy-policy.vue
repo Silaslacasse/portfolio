@@ -62,7 +62,10 @@ const contact = computed(() => `${localePath("index")}#contact`);
         </li>
         <li>
           <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare, Inc.</a>
-          (États-Unis), par lequel transite le trafic du site, adresse IP comprise.
+          (États-Unis), par lequel transite le trafic du site, adresse IP comprise. Son service
+          Turnstile protège aussi le formulaire contre les robots : à l’affichage du formulaire, il
+          analyse des signaux techniques du navigateur, sans cookie publicitaire ni profilage
+          (intérêt légitime : la sécurité du service).
         </li>
       </ul>
       <p>
@@ -145,7 +148,10 @@ const contact = computed(() => `${localePath("index")}#contact`);
         </li>
         <li>
           <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare, Inc.</a>
-          (United States), through which the site’s traffic passes, IP address included.
+          (United States), through which the site’s traffic passes, IP address included. Its
+          Turnstile service also shields the form from bots: when the form is shown, it checks
+          technical signals from the browser, without advertising cookies or profiling (legitimate
+          interest: keeping the service secure).
         </li>
       </ul>
       <p>

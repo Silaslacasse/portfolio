@@ -102,6 +102,12 @@ export default defineNuxtConfig({
     // Set both on preproduction only; absent in production, where the middleware is inert.
     basicAuthUser: "",
     basicAuthPassword: "",
+    // Cloudflare Turnstile on the contact form: active once both keys are set, skipped
+    // (form works as before) while either is missing.
+    turnstileSecretKey: "",
+    public: {
+      turnstileSiteKey: "",
+    },
     // No `public.siteUrl` key here on purpose: it would capture NUXT_PUBLIC_SITE_URL and
     // starve nuxt-site-config, which needs that same variable to resolve site.url for
     // the sitemap, robots.txt and canonical tags.

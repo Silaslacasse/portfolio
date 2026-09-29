@@ -21,18 +21,20 @@ Treat that warning as a failed deploy.
 
 ## Environment variables
 
-| Variable                        | Required | Notes                                                                                        |
-| ------------------------------- | -------- | -------------------------------------------------------------------------------------------- |
-| `NUXT_PUBLIC_SITE_URL`          | yes      | Build **and** runtime. `https://your-domain.com`, no trailing slash.                         |
-| `NUXT_MONGO_URI`                | yes      | Internal Docker network address, never a public one.                                         |
-| `NUXT_RESEND_API_KEY`           | Phase 3  |                                                                                              |
-| `NUXT_MAIL_FROM`                | Phase 3  | Address on the Resend-verified domain.                                                       |
-| `NUXT_MAIL_TO`                  | Phase 3  |                                                                                              |
-| `NUXT_NOTIFY_WEBHOOK_URL`       | no       | Discord/Telegram backup notification.                                                        |
-| `NUXT_MESSAGE_RATE_LIMIT_HOURS` | no       | Defaults to 24.                                                                              |
-| `NUXT_SESSION_SECRET`           | admin    | Seals the admin cookie. At least 32 characters: `openssl rand -base64 48`.                   |
-| `NUXT_ADMIN_EMAIL`              | admin    | The single admin account.                                                                    |
-| `NUXT_ADMIN_PASSWORD_HASH`      | admin    | `printf '%s' 'password' \| npm run hash-password` — stdin, so it stays out of shell history. |
+| Variable                         | Required | Notes                                                                                        |
+| -------------------------------- | -------- | -------------------------------------------------------------------------------------------- |
+| `NUXT_PUBLIC_SITE_URL`           | yes      | Build **and** runtime. `https://your-domain.com`, no trailing slash.                         |
+| `NUXT_MONGO_URI`                 | yes      | Internal Docker network address, never a public one.                                         |
+| `NUXT_RESEND_API_KEY`            | Phase 3  |                                                                                              |
+| `NUXT_MAIL_FROM`                 | Phase 3  | Address on the Resend-verified domain.                                                       |
+| `NUXT_MAIL_TO`                   | Phase 3  |                                                                                              |
+| `NUXT_NOTIFY_WEBHOOK_URL`        | no       | Discord/Telegram backup notification.                                                        |
+| `NUXT_MESSAGE_RATE_LIMIT_HOURS`  | no       | Defaults to 24.                                                                              |
+| `NUXT_PUBLIC_TURNSTILE_SITE_KEY` | no       | Cloudflare Turnstile on the contact form. Set both keys or neither; unset, it is skipped.    |
+| `NUXT_TURNSTILE_SECRET_KEY`      | no       | Server side of the above. Both are read at runtime; no rebuild needed to add them.           |
+| `NUXT_SESSION_SECRET`            | admin    | Seals the admin cookie. At least 32 characters: `openssl rand -base64 48`.                   |
+| `NUXT_ADMIN_EMAIL`               | admin    | The single admin account.                                                                    |
+| `NUXT_ADMIN_PASSWORD_HASH`       | admin    | `printf '%s' 'password' \| npm run hash-password` — stdin, so it stays out of shell history. |
 
 The three `admin` variables are runtime-only; without them the public site works and
 `/api/admin/login` answers 503. Changing the password is changing the hash and redeploying.

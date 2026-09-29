@@ -104,7 +104,8 @@ export default defineEventHandler(async (event) => {
     return { type: "payloadTooLarge", error: "Le message est trop volumineux." };
   }
 
-  const parsed = contactMessageSchema.safeParse(await readBody(event));
+  const body = await readBody(event);
+  const parsed = contactMessageSchema.safeParse(body);
 
   if (!parsed.success) {
     setResponseStatus(event, 400);
@@ -117,6 +118,17 @@ export default defineEventHandler(async (event) => {
 
   const input = parsed.data;
   const ipAddress = getClientIp(event);
+
+  // After validation (cheap, local), before the rate limit, so a bot cannot use up the
+  // one-message window of the address it puts in the form. The token is not stored: the
+  // schema strips it from `input`.
+  if (!(await verifyTurnstile(body?.turnstileToken, ipAddress))) {
+    setResponseStatus(event, 400);
+    return {
+      type: "captcha",
+      error: "La vérification anti-spam a échoué. Merci de réessayer.",
+    };
+  }
 
   try {
     await useDatabase();

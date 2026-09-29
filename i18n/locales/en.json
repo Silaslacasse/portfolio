@@ -121,6 +121,7 @@
     "errorServer": "We're having technical issues. Please try again later.",
     "required": "required",
     "errorRateLimit": "You already sent a message today. Please try again tomorrow.",
+    "errorCaptcha": "The anti-spam check did not go through. Please complete it and send the message again.",
     "heading": "Let's",
     "accent": "talk.",
     "lead": "A project, a position, a question?",
