@@ -23,8 +23,8 @@ const localePath = useLocalePath();
           </p>
           <img
             :src="avatar"
-            width="587"
-            height="587"
+            width="496"
+            height="496"
             :alt="$t('home.avatarAlt')"
             class="w-[clamp(9rem,25vw,15.5rem)] rounded-card bg-accent"
           />
