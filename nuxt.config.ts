@@ -25,6 +25,14 @@ export default defineNuxtConfig({
 
   app: {
     head: {
+      // Carried over from the v1 index.html: keeps the Search Console property verified
+      // through the cutover. Public by design; it only proves ownership of the domain.
+      meta: [
+        {
+          name: "google-site-verification",
+          content: "-Rs8hqzpRJxNA_VD6KyuqP0r2OQVl-iKVLsphofO1Rs",
+        },
+      ],
       link: [
         // Generated from the brand mark. v1 declared `href="\orange_flower.webp"` — a
         // backslash, and typed as image/svg+xml for a webp — so the icon never loaded.
