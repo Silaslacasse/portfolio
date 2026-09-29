@@ -156,6 +156,9 @@ export default defineNuxtConfig({
    */
   ogImage: { enabled: false },
 
+  // Project pages are dynamic routes, invisible to the sitemap's page scan.
+  sitemap: { sources: ["/api/__sitemap__/projects"] },
+
   /**
    * Off during builds. It only inspects prerendered output, so every link to an SSR/swr
    * route (/projets, /en, /en/projects) is reported as a 404 it cannot resolve — nine
