@@ -7,12 +7,11 @@ const route = useRoute();
 
 // Anchors are prefixed with the localized home path so they work from any page.
 const home = computed(() => localePath("index"));
-const links = computed(() => [
-  { label: t("nav.about"), to: `${home.value}#about` },
-  { label: t("nav.skills"), to: `${home.value}#skills` },
-  { label: t("nav.projects"), to: `${home.value}#projects` },
-  { label: t("nav.personal"), to: `${home.value}#personal` },
-]);
+// Page order (pages/index.vue).
+const SECTIONS = ["about", "skills", "personal", "projects"] as const;
+const links = computed(() =>
+  SECTIONS.map((id) => ({ id, label: t(`nav.${id}`), to: `${home.value}#${id}` }))
+);
 const contact = computed(() => `${home.value}#contact`);
 
 const open = ref(false);
@@ -42,6 +41,35 @@ onMounted(() => {
   window.addEventListener("scroll", onScroll, { passive: true });
 });
 onBeforeUnmount(() => window.removeEventListener("scroll", onScroll));
+
+// The link of the section crossing the middle of the viewport is marked current. An
+// IntersectionObserver on a thin band, no scroll handler; re-armed after every page
+// render, since only the home has these sections.
+const current = ref("");
+let observer: IntersectionObserver | undefined;
+const observeSections = () => {
+  observer?.disconnect();
+  current.value = "";
+  observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) current.value = entry.target.id;
+        else if (current.value === entry.target.id) current.value = "";
+      }
+    },
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+  for (const id of SECTIONS) {
+    const section = document.getElementById(id);
+    if (section) observer.observe(section);
+  }
+};
+onMounted(observeSections);
+const stopObserving = useNuxtApp().hook("page:finish", observeSections);
+onBeforeUnmount(() => {
+  stopObserving();
+  observer?.disconnect();
+});
 </script>
 
 <template>
@@ -62,7 +90,9 @@ onBeforeUnmount(() => window.removeEventListener("scroll", onScroll));
             v-for="link in links"
             :key="link.to"
             :to="link.to"
-            class="text-small text-muted transition-colors hover:text-white"
+            :aria-current="current === link.id ? 'location' : undefined"
+            class="text-small transition-colors hover:text-white"
+            :class="current === link.id ? 'text-white' : 'text-muted'"
           >
             {{ link.label }}
           </NuxtLink>
@@ -115,7 +145,9 @@ onBeforeUnmount(() => window.removeEventListener("scroll", onScroll));
             v-for="link in links"
             :key="link.to"
             :to="link.to"
-            class="border-b border-white/10 py-4 text-subtitle text-white"
+            :aria-current="current === link.id ? 'location' : undefined"
+            class="border-b border-white/10 py-4 text-subtitle"
+            :class="current === link.id ? 'text-accent' : 'text-white'"
           >
             {{ link.label }}
           </NuxtLink>
