@@ -21,7 +21,7 @@ const update = async (message: AdminMessage, body: { read?: boolean; archived?: 
 };
 
 const remove = async (message: AdminMessage) => {
-  if (!confirm(`Supprimer le message de ${message.firstName} ${message.name} ? Définitif.`)) return;
+  if (!confirm(`Supprimer le message de ${fullName(message)} ? Définitif.`)) return;
   await $fetch(`/api/admin/messages/${message._id}`, { method: "DELETE" });
   await refresh();
 };
@@ -34,7 +34,11 @@ const STATUS: Record<DeliveryStatus, { label: string; tone: string }> = {
   failed: { label: "Échec de l'email — jamais reçu", tone: "font-semibold text-accent" },
 };
 
-const isHttpUrl = (value: string) => /^https?:\/\//i.test(value);
+// Messages received before 2026-09 have a separate first name; newer ones only `name`.
+const fullName = (message: AdminMessage) =>
+  [message.firstName, message.name].filter(Boolean).join(" ");
+
+const isHttpUrl = (value?: string) => !!value && /^https?:\/\//i.test(value);
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleString("fr-FR", { dateStyle: "medium", timeStyle: "short" });
@@ -73,7 +77,7 @@ const formatDate = (iso: string) =>
       <li v-for="m in shown" :key="m._id" class="rounded-card bg-surface p-6">
         <div class="flex flex-wrap items-baseline justify-between gap-2">
           <p :class="m.readAt ? '' : 'font-semibold'">
-            {{ m.firstName }} {{ m.name }}
+            {{ fullName(m) }}
             <span class="text-muted"> · {{ m.society }}</span>
           </p>
           <time :datetime="m.createdAt" class="text-sm text-muted">{{

@@ -13,11 +13,13 @@ import mongoose, { type InferSchemaType, type Model } from "mongoose";
 const messageSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
-    firstName: { type: String, required: true, trim: true },
     society: { type: String, required: true, trim: true },
     email: { type: String, required: true, trim: true, lowercase: true },
-    linkedIn: { type: String, trim: true, default: "" },
     mobile: { type: String, trim: true, default: "" },
+    // Kept for messages received before the 2026-09 form merged the name fields and
+    // dropped LinkedIn; new documents never set them.
+    firstName: { type: String, trim: true, default: "" },
+    linkedIn: { type: String, trim: true, default: "" },
     message: { type: String, required: true, trim: true },
 
     ipAddress: { type: String, required: true },

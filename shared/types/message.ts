@@ -4,11 +4,12 @@ export type DeliveryStatus = "pending" | "sent" | "failed" | "skipped";
 export interface AdminMessage {
   _id: string;
   name: string;
-  firstName: string;
   society: string;
   email: string;
-  linkedIn: string;
   mobile: string;
+  /** Only on messages received before the 2026-09 form; the fields no longer exist. */
+  firstName?: string;
+  linkedIn?: string;
   message: string;
   deliveryStatus: DeliveryStatus;
   deliveryError: string | null;

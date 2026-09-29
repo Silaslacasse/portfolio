@@ -6,20 +6,11 @@ import { fieldErrors } from "#shared/utils/validation";
 const MAX_BODY_BYTES = 32 * 1024;
 
 const buildEmailBody = (input: ContactMessageInput) => {
-  const linkedInUrl = safeHttpUrl(input.linkedIn);
-
   const rows: Array<[string, string]> = [
     ["Nom", escapeHtml(input.name)],
-    ["Prénom", escapeHtml(input.firstName)],
     ["Société", escapeHtml(input.society)],
     ["Email", `<a href="mailto:${escapeHtml(input.email)}">${escapeHtml(input.email)}</a>`],
     ["Téléphone", escapeHtml(input.mobile) || "—"],
-    [
-      "LinkedIn",
-      linkedInUrl
-        ? `<a href="${escapeHtml(linkedInUrl)}">${escapeHtml(linkedInUrl)}</a>`
-        : escapeHtml(input.linkedIn) || "—",
-    ],
   ];
 
   const html = `
@@ -44,11 +35,9 @@ const buildEmailBody = (input: ContactMessageInput) => {
     "Nouveau message depuis le portfolio",
     "",
     `Nom       : ${input.name}`,
-    `Prénom    : ${input.firstName}`,
     `Société   : ${input.society}`,
     `Email     : ${input.email}`,
     `Téléphone : ${input.mobile || "—"}`,
-    `LinkedIn  : ${input.linkedIn || "—"}`,
     "",
     "Message:",
     input.message,
@@ -65,7 +54,7 @@ const buildEmailBody = (input: ContactMessageInput) => {
  */
 const deliver = async (messageId: unknown, input: ContactMessageInput): Promise<void> => {
   const { html, text } = buildEmailBody(input);
-  const subject = sanitizeHeader(`Portfolio — ${input.firstName} ${input.name} (${input.society})`);
+  const subject = sanitizeHeader(`Portfolio — ${input.name} (${input.society})`);
 
   try {
     const result = await sendEmail({ subject, html, text, replyTo: input.email });
@@ -92,9 +81,9 @@ const deliver = async (messageId: unknown, input: ContactMessageInput): Promise<
   }
 
   await notifyWebhook(
-    `📬 Nouveau message portfolio — ${sanitizeHeader(
-      `${input.firstName} ${input.name}`
-    )} (${sanitizeHeader(input.society)}) · ${sanitizeHeader(input.email)}`
+    `📬 Nouveau message portfolio — ${sanitizeHeader(input.name)} (${sanitizeHeader(
+      input.society
+    )}) · ${sanitizeHeader(input.email)}`
   );
 };
 

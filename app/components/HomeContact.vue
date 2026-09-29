@@ -7,20 +7,18 @@ const { t } = useI18n();
 
 const form = reactive<ContactMessageInput>({
   name: "",
-  firstName: "",
   society: "",
   email: "",
-  linkedIn: "",
   mobile: "",
   message: "",
 });
 
+// One name field (the redesign merged first and last name) and no LinkedIn field: the
+// LinkedIn button next to "send" is the link to *my* profile, not a field.
 const fields = [
-  { key: "name", autocomplete: "family-name", required: true },
-  { key: "firstName", autocomplete: "given-name", required: true },
+  { key: "name", autocomplete: "name", required: true },
   { key: "society", autocomplete: "organization", required: true },
   { key: "email", autocomplete: "email", required: true, type: "email" },
-  { key: "linkedIn", autocomplete: "url", required: false, type: "url" },
   { key: "mobile", autocomplete: "tel", required: false, type: "tel" },
 ] as const;
 
@@ -68,77 +66,108 @@ const submit = async () => {
   }
 };
 
-const input =
-  "mt-2 w-full rounded-field bg-white px-5 py-2.5 text-ink aria-invalid:outline aria-invalid:outline-2 aria-invalid:outline-accent";
+const label = "text-xs tracking-[0.1em] text-muted uppercase";
+const input = "field aria-invalid:border-accent";
 </script>
 
 <template>
   <section id="contact" class="container-content scroll-mt-28 py-10 lg:py-20">
-    <h2 class="text-center font-body text-title font-normal">{{ $t("contact.title") }}</h2>
+    <AppSectionTitle
+      v-reveal
+      :eyebrow="$t('contact.eyebrow')"
+      :title="$t('contact.heading')"
+      :accent="$t('contact.accent')"
+    />
 
-    <div class="mx-auto mt-10 max-w-3xl rounded-card bg-surface p-6 sm:p-10">
-      <p v-if="sent" class="py-10 text-center text-subtitle" role="status">
-        {{ $t("contact.success") }}
-      </p>
-
-      <form v-else class="grid gap-6 sm:grid-cols-2" novalidate @submit.prevent="submit">
-        <div v-for="field in fields" :key="field.key">
-          <label :for="`contact-${field.key}`" class="text-small">
-            {{ $t(`contact.${field.key}`) }}
-            <span v-if="field.required" class="text-accent" :title="$t('contact.required')">*</span>
-          </label>
-          <input
-            :id="`contact-${field.key}`"
-            v-model="form[field.key]"
-            :type="'type' in field ? field.type : 'text'"
-            :name="field.key"
-            :autocomplete="field.autocomplete"
-            :required="field.required"
-            :aria-invalid="errors[field.key] ? true : undefined"
-            :aria-describedby="errors[field.key] ? `contact-${field.key}-error` : undefined"
-            :class="input"
-          />
-          <p
-            v-if="errors[field.key]"
-            :id="`contact-${field.key}-error`"
-            class="mt-1 text-small text-accent"
-          >
-            {{ errors[field.key] }}
+    <div
+      class="mt-10 grid items-start gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-16"
+    >
+      <!-- Gradient frame like the skills panel; dark fields like the rest of the site. -->
+      <div v-reveal class="rounded-panel bg-brand-gradient p-1">
+        <div class="rounded-[calc(var(--radius-panel)-4px)] bg-surface p-6 sm:p-10">
+          <p v-if="sent" class="py-10 text-center text-subtitle" role="status">
+            {{ $t("contact.success") }}
           </p>
-        </div>
 
-        <div class="sm:col-span-2">
-          <label for="contact-message" class="text-small">
-            {{ $t("contact.message") }}
-            <span class="text-accent" :title="$t('contact.required')">*</span>
-          </label>
-          <textarea
-            id="contact-message"
-            v-model="form.message"
-            name="message"
-            rows="4"
-            required
-            :aria-invalid="errors.message ? true : undefined"
-            :aria-describedby="errors.message ? 'contact-message-error' : undefined"
-            :class="input"
-          />
-          <p v-if="errors.message" id="contact-message-error" class="mt-1 text-small text-accent">
-            {{ errors.message }}
-          </p>
-        </div>
+          <form v-else class="grid gap-6 sm:grid-cols-2" novalidate @submit.prevent="submit">
+            <div v-for="field in fields" :key="field.key">
+              <label :for="`contact-${field.key}`" :class="label">
+                {{ $t(`contact.${field.key}`) }}
+                <span v-if="field.required" class="text-accent" :title="$t('contact.required')">
+                  *
+                </span>
+              </label>
+              <input
+                :id="`contact-${field.key}`"
+                v-model="form[field.key]"
+                :type="'type' in field ? field.type : 'text'"
+                :name="field.key"
+                :autocomplete="field.autocomplete"
+                :required="field.required"
+                :placeholder="$t(`contact.placeholders.${field.key}`)"
+                :aria-invalid="errors[field.key] ? true : undefined"
+                :aria-describedby="errors[field.key] ? `contact-${field.key}-error` : undefined"
+                :class="input"
+              />
+              <p
+                v-if="errors[field.key]"
+                :id="`contact-${field.key}-error`"
+                class="mt-1 text-small text-accent"
+              >
+                {{ errors[field.key] }}
+              </p>
+            </div>
 
-        <p v-if="error" class="text-accent sm:col-span-2" role="alert">{{ error }}</p>
+            <div class="sm:col-span-2">
+              <label for="contact-message" :class="label">
+                {{ $t("contact.message") }}
+                <span class="text-accent" :title="$t('contact.required')">*</span>
+              </label>
+              <textarea
+                id="contact-message"
+                v-model="form.message"
+                name="message"
+                rows="5"
+                required
+                :placeholder="$t('contact.placeholders.message')"
+                :aria-invalid="errors.message ? true : undefined"
+                :aria-describedby="errors.message ? 'contact-message-error' : undefined"
+                :class="input"
+                class="resize-none"
+              />
+              <p
+                v-if="errors.message"
+                id="contact-message-error"
+                class="mt-1 text-small text-accent"
+              >
+                {{ errors.message }}
+              </p>
+            </div>
 
-        <div class="flex flex-wrap items-center justify-end gap-4 sm:col-span-2">
-          <AppButton variant="outline" :href="LINKEDIN_URL">
-            {{ $t("nav.linkedin") }}
-            <img :src="linkedinIcon" width="18" height="18" alt="" />
-          </AppButton>
-          <AppButton type="submit" size="lg" :disabled="pending">
-            {{ pending ? $t("contact.sending") : $t("contact.submit") }}
-          </AppButton>
+            <p v-if="error" class="text-accent sm:col-span-2" role="alert">{{ error }}</p>
+
+            <div class="flex flex-wrap items-center justify-between gap-4 sm:col-span-2">
+              <p class="text-small text-muted">
+                <span class="text-accent">*</span> {{ $t("contact.requiredFields") }}
+              </p>
+              <div class="flex flex-wrap items-center gap-3">
+                <AppButton variant="outline" :href="LINKEDIN_URL">
+                  {{ $t("nav.linkedin") }}
+                  <img :src="linkedinIcon" width="18" height="18" alt="" />
+                </AppButton>
+                <AppButton type="submit" size="lg" :disabled="pending">
+                  {{ pending ? $t("contact.sending") : $t("contact.submit") }} →
+                </AppButton>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
+
+      <div v-reveal class="flex flex-col gap-4 lg:pt-2">
+        <p class="text-title">{{ $t("contact.lead") }}</p>
+        <p class="text-muted">{{ $t("contact.text") }}</p>
+      </div>
     </div>
   </section>
 </template>

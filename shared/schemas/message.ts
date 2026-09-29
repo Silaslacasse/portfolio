@@ -12,8 +12,8 @@ import { z } from "zod";
 const required = (message: string) => z.string({ error: message }).trim().min(1, message);
 
 export const contactMessageSchema = z.object({
-  name: required("Le nom est requis").max(100, "Le nom est trop long"),
-  firstName: required("Le prénom est requis").max(100, "Le prénom est trop long"),
+  /** Full name, one field: the form merged first and last name in the 2026-09 redesign. */
+  name: required("Le nom est requis").max(140, "Le nom est trop long"),
   society: required("La société est requise").max(200, "Le nom de société est trop long"),
 
   // Normalise before validating: `z.email()` does not trim, and pasted or
@@ -23,7 +23,6 @@ export const contactMessageSchema = z.object({
     .transform((value) => value.trim().toLowerCase())
     .pipe(z.email("Adresse email invalide").max(254, "L'email est trop long")),
 
-  linkedIn: z.string().trim().max(300, "Le lien LinkedIn est trop long").optional().default(""),
   mobile: z.string().trim().max(30, "Le numéro est trop long").optional().default(""),
   message: required("Le message est requis").max(
     5000,
@@ -34,11 +33,7 @@ export const contactMessageSchema = z.object({
 export type ContactMessageInput = z.infer<typeof contactMessageSchema>;
 
 /** Discriminator every error response carries, so the form can branch on the cause. */
-export type ContactErrorType =
-  | "validation"
-  | "rateLimit"
-  | "payloadTooLarge"
-  | "serverError";
+export type ContactErrorType = "validation" | "rateLimit" | "payloadTooLarge" | "serverError";
 
 export interface ContactErrorResponse {
   type: ContactErrorType;
