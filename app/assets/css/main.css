@@ -223,3 +223,59 @@
     }
   }
 }
+
+/**
+ * The home's stacked project cards (HomeProjects): every card is sticky, `top` growing by
+ * index so each one peeks out under the next, and later cards paint over earlier ones.
+ *
+ * --pin is the line the stack sticks to: under the header, or, on a desktop tall enough to
+ * hold both, under the section title, which then stays pinned above the cards. --card-h
+ * keeps a desktop card inside the viewport below that line, but never shorter than its
+ * text needs (26rem holds a two-line title); the image fills the height.
+ */
+@layer components {
+  .project-stack {
+    --pin: 7rem;
+    --card-h: clamp(26rem, calc(100svh - var(--pin) - 5rem), 36rem);
+  }
+
+  @media (min-width: 64rem) and (min-height: 50rem) {
+    .project-stack {
+      /* Title top (7rem) + two lines of --text-section at 0.92 leading + a 2rem gap. */
+      --pin: calc(9rem + var(--text-section) * 1.84);
+    }
+
+    .project-stack__title {
+      position: sticky;
+      top: 7rem;
+    }
+  }
+
+  /* A card recedes, shrinking from its top edge and darkening, while the next one slides
+     over it; a shadow per card piled up into dark bands instead. Driven by the list's own
+     scroll progress measured from the pin line: card i of n recedes over the i-th n-th of
+     it. Browsers without scroll-driven animations get the plain stack. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .project-stack ol {
+        view-timeline: --project-stack block;
+        view-timeline-inset: var(--pin) 0px;
+      }
+
+      .project-stack li:not(:last-child) > article {
+        transform-origin: 50% 0;
+        animation: project-recede linear both;
+        animation-timeline: --project-stack;
+        animation-range: exit-crossing calc(var(--i) / var(--n) * 100%) exit-crossing
+          calc((var(--i) + 1) / var(--n) * 100%);
+      }
+    }
+  }
+}
+
+@keyframes project-recede {
+  to {
+    scale: 0.92;
+    filter: brightness(0.45);
+  }
+}

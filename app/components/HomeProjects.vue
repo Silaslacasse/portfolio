@@ -19,62 +19,68 @@ const number = (index: number) => String(index + 1).padStart(2, "0");
   <section
     v-if="projects.length"
     id="projects"
-    class="container-content scroll-mt-28 py-10 lg:py-20"
+    class="project-stack container-content scroll-mt-28 py-10 lg:py-20"
   >
-    <AppSectionTitle
-      v-reveal
-      :title="$t('home.projects.title')"
-      :accent="$t('home.projects.accent')"
-    />
-
     <!--
-      Stacked cards, in CSS only: every card is sticky under the header, with `top` growing
-      by index so each one peeks out under the next. Later siblings paint over earlier ones,
-      which is the whole trick. No scroll listener, and the reduced-motion setting has
-      nothing to freeze.
+      Stacked cards, in CSS only (see .project-stack in main.css): the title pins above the
+      stack on tall desktops, each card sticks at --pin plus a step per index, and a card
+      recedes as the next one covers it. No scroll listener. The wrapper ends the title's
+      pinned range with the stack, which then slides over it on the way out.
     -->
-    <ol class="mt-12 grid gap-8">
-      <li
-        v-for="(project, index) in projects"
-        :key="project._id"
-        class="sticky"
-        :style="{ top: `calc(6rem + ${index} * 1.5rem)` }"
-      >
-        <article
-          class="grid overflow-hidden rounded-panel shadow-[0_-20px_60px_rgba(0,0,0,0.45)] lg:min-h-[27rem] lg:grid-cols-[minmax(0,1fr)_460px]"
-          :class="index % 2 ? 'bg-surface-raised' : 'bg-surface'"
+    <div>
+      <div class="project-stack__title">
+        <AppSectionTitle
+          v-reveal
+          :title="$t('home.projects.title')"
+          :accent="$t('home.projects.accent')"
+        />
+      </div>
+
+      <ol class="mt-8 grid gap-8" :style="{ '--n': projects.length }">
+        <li
+          v-for="(project, index) in projects"
+          :key="project._id"
+          class="sticky"
+          :style="{ top: `calc(var(--pin) + ${index} * 1.5rem)`, '--i': index }"
         >
-          <div class="aspect-[16/10] lg:aspect-auto">
-            <ProjectCover
-              :src="project.coverImage"
-              :alt="$t('projects.coverAlt', { title: project.title })"
-              :seed="project.slug"
-              sizes="100vw lg:900px"
-            />
-          </div>
-          <div class="flex flex-col justify-between gap-8 p-6 sm:p-10">
-            <span class="font-display text-display text-white/20" aria-hidden="true">
-              {{ number(index) }}
-            </span>
-            <div class="flex flex-col gap-4">
-              <h3 class="font-display text-title font-bold text-white">{{ project.title }}</h3>
-              <p class="text-muted">{{ project.summary }}</p>
-              <ul v-if="project.technologies.length" class="flex flex-wrap gap-2">
-                <li v-for="tech in project.technologies.slice(0, 3)" :key="tech">
-                  <AppTag>{{ tech }}</AppTag>
-                </li>
-              </ul>
-              <NuxtLink
-                :to="localePath({ name: 'projects-slug', params: { slug: project.slug } })"
-                class="w-fit text-accent hover:underline"
-              >
-                {{ $t("home.projects.view") }} →
-              </NuxtLink>
+          <article
+            class="grid overflow-hidden rounded-panel lg:h-(--card-h) lg:grid-cols-[minmax(0,1fr)_460px] lg:grid-rows-1"
+            :class="index % 2 ? 'bg-surface-raised' : 'bg-surface'"
+          >
+            <div class="aspect-[16/10] lg:aspect-auto lg:h-full">
+              <ProjectCover
+                :src="project.coverImage"
+                :alt="$t('projects.coverAlt', { title: project.title })"
+                :seed="project.slug"
+                sizes="100vw lg:66vw"
+              />
             </div>
-          </div>
-        </article>
-      </li>
-    </ol>
+            <div class="flex flex-col justify-between gap-8 p-6 sm:p-8">
+              <span class="font-display text-display leading-none text-white/20" aria-hidden="true">
+                {{ number(index) }}
+              </span>
+              <div class="flex flex-col gap-4">
+                <h3 class="font-display text-title leading-tight font-bold text-white">
+                  {{ project.title }}
+                </h3>
+                <p class="text-muted">{{ project.summary }}</p>
+                <ul v-if="project.technologies.length" class="flex flex-wrap gap-2">
+                  <li v-for="tech in project.technologies.slice(0, 3)" :key="tech">
+                    <AppTag>{{ tech }}</AppTag>
+                  </li>
+                </ul>
+                <NuxtLink
+                  :to="localePath({ name: 'projects-slug', params: { slug: project.slug } })"
+                  class="w-fit text-accent hover:underline"
+                >
+                  {{ $t("home.projects.view") }} →
+                </NuxtLink>
+              </div>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </div>
 
     <div class="mt-10 flex justify-end">
       <AppButton :to="localePath('projects')" variant="outline">
