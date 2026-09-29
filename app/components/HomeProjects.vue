@@ -56,7 +56,7 @@ const number = (index: number) => String(index + 1).padStart(2, "0");
               />
             </div>
             <div class="flex flex-col justify-between gap-8 p-6 sm:p-8">
-              <span class="font-display text-display leading-none text-white/20" aria-hidden="true">
+              <span class="font-display text-display leading-none text-white/40" aria-hidden="true">
                 {{ number(index) }}
               </span>
               <div class="flex flex-col gap-4">
@@ -71,7 +71,7 @@ const number = (index: number) => String(index + 1).padStart(2, "0");
                 </ul>
                 <NuxtLink
                   :to="localePath({ name: 'projects-slug', params: { slug: project.slug } })"
-                  class="w-fit text-accent hover:underline"
+                  class="w-fit text-white underline decoration-accent decoration-2 underline-offset-4 transition-colors hover:text-accent"
                 >
                   {{ $t("home.projects.view") }} →
                 </NuxtLink>
