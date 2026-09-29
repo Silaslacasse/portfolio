@@ -173,9 +173,27 @@ export default defineNuxtConfig({
   fonts: {
     // Downloads, subsets, self-hosts and applies font-display automatically.
     // This is what replaces the 1 MB of hand-committed .ttf files (71% of the old build).
+    // Latin, upright only: latin covers French and English (é, ç, œ, €, ’), and the site uses
+    // no italics, which @nuxt/fonts otherwise downloads too. Plus Jakarta Sans is a variable
+    // font, one file for every weight, so preloading it costs a single request: without it
+    // the hero title (the LCP) waited for the CSS before its font even started, about 1 s
+    // on a slow phone.
     families: [
-      { name: "Poppins", provider: "google", weights: [300, 400, 600, 700] },
-      { name: "Plus Jakarta Sans", provider: "google", weights: [400, 700, 800] },
+      {
+        name: "Poppins",
+        provider: "google",
+        weights: [300, 400, 600, 700],
+        styles: ["normal"],
+        subsets: ["latin"],
+      },
+      {
+        name: "Plus Jakarta Sans",
+        provider: "google",
+        weights: [400, 700, 800],
+        styles: ["normal"],
+        subsets: ["latin"],
+        preload: true,
+      },
     ],
   },
 
