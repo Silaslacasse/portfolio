@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "../zod";
 
 /**
  * Shared between the admin form and the API route, so the two cannot drift.

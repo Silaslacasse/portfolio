@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "../zod";
 
 /**
  * The contact form's wire contract, shared by the form component and the API route.
