@@ -15,8 +15,7 @@ export interface SendEmailOptions {
 }
 
 export type SendEmailResult =
-  | { status: "sent"; id: string | null }
-  | { status: "skipped"; reason: string };
+  { status: "sent"; id: string | null } | { status: "skipped"; reason: string };
 
 /**
  * Sends through Resend's HTTPS API rather than SMTP, because most VPS hosts block or

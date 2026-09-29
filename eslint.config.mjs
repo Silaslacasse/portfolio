@@ -1,5 +1,5 @@
 // @ts-check
-import withNuxt from "./node_modules/.cache/nuxt/.nuxt/eslint.config.mjs";
+import withNuxt from "./.nuxt/eslint.config.mjs";
 import prettier from "eslint-config-prettier";
 
 export default withNuxt(
