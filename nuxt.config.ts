@@ -167,6 +167,17 @@ export default defineNuxtConfig({
   // Project pages are dynamic routes, invisible to the sitemap's page scan.
   sitemap: { sources: ["/api/__sitemap__/projects"] },
 
+  // The site is about a person: the JSON-LD graph names them as its identity, which is
+  // what search engines use for a knowledge panel. Project pages add a CreativeWork.
+  schemaOrg: {
+    identity: {
+      type: "Person",
+      name: "Jocelyn Duperret",
+      description: "Développeur full-stack",
+      sameAs: ["https://www.linkedin.com/in/jocelyn-duperret/"],
+    },
+  },
+
   /**
    * Off during builds. It only inspects prerendered output, so every link to an SSR/swr
    * route (/projets, /en, /en/projects) is reported as a 404 it cannot resolve — nine

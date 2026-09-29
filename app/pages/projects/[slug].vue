@@ -35,6 +35,20 @@ useSeoMeta({
   ogImageAlt: () => project.value?.title,
 });
 
+// JSON-LD: the project as a CreativeWork by the site's Person identity (nuxt.config).
+useSchemaOrg([
+  {
+    "@type": "CreativeWork",
+    name: project.value.title,
+    description: project.value.summary,
+    image: project.value.coverImage ? cover.value : undefined,
+    dateCreated: project.value.year ? String(project.value.year) : undefined,
+    keywords: project.value.technologies.join(", ") || undefined,
+    // Absolute, like the identity node's own @id; a bare "#identity" is not resolved.
+    author: { "@id": withSiteUrl("/#identity").value },
+  },
+]);
+
 const meta = computed(
   () =>
     [
