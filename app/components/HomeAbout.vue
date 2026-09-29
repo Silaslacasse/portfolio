@@ -11,7 +11,7 @@ const localePath = useLocalePath();
     The section title moved out of the card in the redesign; the 2×2 tile grid under it is
     unchanged. One grid, one fluid gutter; the two tiles are the links they always looked like.
   -->
-  <section class="container-content py-10 lg:py-20">
+  <section id="about" class="container-content scroll-mt-28 py-10 lg:py-20">
     <AppSectionTitle v-reveal :title="$t('home.about.title')" :accent="$t('home.about.accent')" />
 
     <div v-reveal class="mt-10 grid gap-6 lg:grid-cols-2 lg:grid-rows-2">

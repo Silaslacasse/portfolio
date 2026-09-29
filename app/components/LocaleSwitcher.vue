@@ -8,7 +8,7 @@ const switchLocalePath = useSwitchLocalePath();
     Renders real anchors to the equivalent localized URL rather than toggling state,
     so each language is independently linkable and crawlable.
   -->
-  <nav class="flex items-center gap-1 text-small" :aria-label="$t('nav.home')">
+  <nav class="flex items-center gap-1 text-small" :aria-label="$t('nav.language')">
     <NuxtLink
       v-for="item in locales"
       :key="item.code"

@@ -23,14 +23,16 @@
   },
   "nav": {
     "home": "Accueil",
-    "trust": "Ils m’ont fait confiance",
-    "skills": "Mes compétences",
-    "projects": "Mes projets",
+    "about": "À propos",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "personal": "À côté du code",
     "contact": "On discute ?",
     "linkedin": "Linkedin",
     "skipToContent": "Aller au contenu principal",
     "main": "Navigation principale",
-    "menu": "Menu"
+    "menu": "Menu",
+    "language": "Langue"
   },
   "home": {
     "aboutGreeting": "Hey, moi c’est Jocelyn ✌️",

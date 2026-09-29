@@ -23,14 +23,16 @@
   },
   "nav": {
     "home": "Home",
-    "trust": "They trusted me",
+    "about": "About",
     "skills": "Skills",
     "projects": "Projects",
+    "personal": "Beyond the code",
     "contact": "Let's talk",
     "linkedin": "Linkedin",
     "skipToContent": "Skip to main content",
     "main": "Main navigation",
-    "menu": "Menu"
+    "menu": "Menu",
+    "language": "Language"
   },
   "home": {
     "aboutGreeting": "Hey, I'm Jocelyn ✌️",

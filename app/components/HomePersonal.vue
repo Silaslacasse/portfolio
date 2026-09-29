@@ -22,7 +22,7 @@ const items = computed(() =>
 </script>
 
 <template>
-  <section v-reveal class="container-content py-10 lg:py-20">
+  <section id="personal" v-reveal class="container-content scroll-mt-28 py-10 lg:py-20">
     <AppSectionTitle :title="$t('home.personal.title')" :accent="$t('home.personal.accent')" />
 
     <ul class="mt-10 grid gap-6 sm:grid-cols-3">

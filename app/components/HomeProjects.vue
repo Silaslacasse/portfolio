@@ -16,7 +16,11 @@ const number = (index: number) => String(index + 1).padStart(2, "0");
 </script>
 
 <template>
-  <section v-if="projects.length" id="projects" class="container-content py-10 lg:py-20">
+  <section
+    v-if="projects.length"
+    id="projects"
+    class="container-content scroll-mt-28 py-10 lg:py-20"
+  >
     <div class="flex flex-wrap items-end justify-between gap-6">
       <AppSectionTitle
         v-reveal
