@@ -1,4 +1,3 @@
-import { defineSitemapEventHandler } from "#imports";
 import Project from "../../models/project.model";
 
 /**
