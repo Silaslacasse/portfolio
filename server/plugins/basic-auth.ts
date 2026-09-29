@@ -34,6 +34,14 @@ export default defineNitroPlugin((nitroApp) => {
   const { basicAuthUser, basicAuthPassword } = useRuntimeConfig();
   if (!basicAuthUser || !basicAuthPassword) return;
 
+  // Preproduction must never be indexed, even if the password leaks or auth is lifted for
+  // a demo. The site config drives robots.txt, the robots meta tag and the X-Robots-Tag
+  // header together (a header set here would be overwritten by nuxt-robots); priority 1
+  // outranks the runtime entry (0).
+  nitroApp.hooks.hook("site-config:init", ({ siteConfig }) => {
+    siteConfig.push({ _context: "preproduction", _priority: 1, indexable: false });
+  });
+
   nitroApp.hooks.hook("request", (event) => {
     if (PUBLIC_PATHS.has(getRequestURL(event).pathname)) return;
 
