@@ -45,3 +45,12 @@ export interface ResolvedProject extends Omit<Project, "title" | "summary" | "de
 
 /** The list endpoint's item: everything a card needs, without the long description. */
 export type ProjectCard = Omit<ResolvedProject, "description">;
+
+/** The detail endpoint: the project plus where it sits in the published list. */
+export interface ProjectDetail extends ResolvedProject {
+  /** 1-based, in display order — the "01 / 06" counter. */
+  position: number;
+  total: number;
+  /** The following project, wrapping around; null when it is the only one. */
+  next: Pick<ResolvedProject, "slug" | "title"> | null;
+}
