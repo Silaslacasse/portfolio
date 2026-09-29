@@ -8,6 +8,44 @@ import tailwindcss from "@tailwindcss/vite";
  */
 const swr = process.env.NODE_ENV === "production" ? { swr: 3600 } : {};
 
+/**
+ * Security headers on every response, production only: the dev server needs inline
+ * scripts, eval and a websocket for HMR.
+ *
+ * ponytail: script-src allows 'unsafe-inline' because Nuxt injects an inline config script
+ * (and AppIntro has one); per-request nonces (nuxt-security) are the upgrade if the site
+ * ever renders third-party or user-supplied HTML. Everything else is locked to the origin,
+ * plus Cloudflare Turnstile. No includeSubDomains on HSTS: other services on the domain
+ * may still be plain HTTP.
+ */
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com",
+  "style-src 'self' 'unsafe-inline'",
+  // https: because a project cover or gallery image may be an external URL.
+  "img-src 'self' data: blob: https:",
+  "font-src 'self' data:",
+  "connect-src 'self'",
+  "frame-src https://challenges.cloudflare.com",
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join("; ");
+
+const securityHeaders =
+  process.env.NODE_ENV === "production"
+    ? {
+        "Content-Security-Policy": CSP,
+        "Strict-Transport-Security": "max-age=15552000",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+        "Cross-Origin-Opener-Policy": "same-origin",
+      }
+    : {};
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
@@ -143,6 +181,7 @@ export default defineNuxtConfig({
    * during prerender keeps `nuxt build` from exiting (see server/plugins/database.ts).
    */
   routeRules: {
+    "/**": { headers: securityHeaders },
     "/": swr,
     "/en": swr,
     "/projets/**": swr,
