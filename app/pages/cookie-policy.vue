@@ -31,6 +31,10 @@ const localePath = useLocalePath();
           l’éditeur du site. Durée : 7 jours.
         </li>
         <li>
+          <code>intro</code> (stockage de session, pas un cookie) — évite de rejouer l’animation
+          d’ouverture pendant la visite. Effacé à la fermeture de l’onglet.
+        </li>
+        <li>
           Cloudflare, qui protège le site, peut déposer des cookies techniques de sécurité (par
           exemple <code>__cf_bm</code>, 30 minutes) pour distinguer les visiteurs des robots.
         </li>
@@ -69,6 +73,10 @@ const localePath = useLocalePath();
         <li>
           <code>admin_session</code> — session for the administration area, only ever set for the
           site’s publisher. Lifetime: 7 days.
+        </li>
+        <li>
+          <code>intro</code> (session storage, not a cookie) — keeps the opening animation from
+          replaying during your visit. Cleared when the tab closes.
         </li>
         <li>
           Cloudflare, which protects the site, may set technical security cookies (for instance

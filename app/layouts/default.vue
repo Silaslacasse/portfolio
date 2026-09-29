@@ -9,6 +9,7 @@
       {{ $t("nav.skipToContent") }}
     </a>
 
+    <AppIntro />
     <AppHeader />
 
     <main id="main" class="flex-1">
