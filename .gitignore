@@ -25,3 +25,7 @@ logs
 
 # Admin image uploads — a persistent volume on Coolify, local files here.
 public/uploads/
+
+# Local scratch: design references and browser-test screenshots
+tmp/
+.playwright-mcp/
