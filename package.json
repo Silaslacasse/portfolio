@@ -13,7 +13,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "nuxt typecheck",
-    "hash-password": "node scripts/hash-password.ts"
+    "hash-password": "node scripts/hash-password.ts",
+    "seed:demo": "node --env-file=.env scripts/seed-demo.ts"
   },
   "dependencies": {
     "@nuxt/fonts": "^0.14.0",

@@ -18,6 +18,11 @@ Admin credentials come from `.env` (`NUXT_ADMIN_EMAIL`, `NUXT_ADMIN_PASSWORD_HAS
 printf '%s' 'your password' | npm run hash-password
 ```
 
+Sample content: `npm run seed:demo` writes six lorem projects with generated cover and
+gallery images into `public/uploads/demo/`, so the project pages can be looked at before real
+content exists. It refuses a database that already has projects; `-- --force` replaces the demo
+ones (their slugs start with `demo-`).
+
 `.env` is ignored by git. The mailer is left unset locally, so contact-form submissions
 are stored with `deliveryStatus: "skipped"` instead of sending email. Images uploaded from
 the admin land in `public/uploads/` (ignored by git; a persistent volume on Coolify).
