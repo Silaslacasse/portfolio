@@ -13,7 +13,9 @@ import Project from "../server/models/project.model.ts";
  *   npm run seed:demo             # refuses a database that already holds projects
  *   npm run seed:demo -- --force  # replaces the demo projects (slugs starting with demo-)
  */
-const UPLOADS_DIR = resolve("public/uploads/demo");
+// From the script's own location, so it lands in public/uploads (the served, mounted
+// directory) whatever the working directory.
+const UPLOADS_DIR = resolve(import.meta.dirname, "../public/uploads/demo");
 const force = process.argv.includes("--force");
 
 const LOREM_FR = [
@@ -146,7 +148,7 @@ const writeImage = async (
 
 const uri = process.env.NUXT_MONGO_URI;
 if (!uri) {
-  console.error("NUXT_MONGO_URI is not set — run through `npm run seed:demo`, which loads .env");
+  console.error("NUXT_MONGO_URI is not set (in .env locally, in the environment on a server)");
   process.exit(1);
 }
 

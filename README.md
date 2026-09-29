@@ -21,7 +21,9 @@ printf '%s' 'your password' | npm run hash-password
 Sample content: `npm run seed:demo` writes six lorem projects with generated cover and
 gallery images into `public/uploads/demo/`, so the project pages can be looked at before real
 content exists. It refuses a database that already has projects; `-- --force` replaces the demo
-ones (their slugs start with `demo-`).
+ones (their slugs start with `demo-`). On preproduction, run it from the Coolify terminal
+of the app container: `cd /app && npm run seed:demo` (the environment already holds
+`NUXT_MONGO_URI`), then restart the app so the cached pages pick the projects up.
 
 `.env` is ignored by git. The mailer is left unset locally, so contact-form submissions
 are stored with `deliveryStatus: "skipped"` instead of sending email. Images uploaded from

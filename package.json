@@ -15,7 +15,7 @@
     "typecheck": "nuxt typecheck",
     "test": "vitest run test",
     "hash-password": "node scripts/hash-password.ts",
-    "seed:demo": "node --env-file=.env scripts/seed-demo.ts"
+    "seed:demo": "node --env-file-if-exists=.env scripts/seed-demo.ts"
   },
   "dependencies": {
     "@nuxt/fonts": "^0.14.0",
