@@ -14,7 +14,9 @@ const required = (message: string) => z.string({ error: message }).trim().min(1,
 export const contactMessageSchema = z.object({
   /** Full name, one field: the form merged first and last name in the 2026-09 redesign. */
   name: required("Le nom est requis").max(140, "Le nom est trop long"),
-  society: required("La société est requise").max(200, "Le nom de société est trop long"),
+  // Optional, like the phone: a private person or a recruiter may have no company to
+  // give, and GDPR minimisation says not to demand it.
+  society: z.string().trim().max(200, "Le nom de société est trop long").optional().default(""),
 
   // Normalise before validating: `z.email()` does not trim, and pasted or
   // mobile-keyboard input routinely carries surrounding whitespace.

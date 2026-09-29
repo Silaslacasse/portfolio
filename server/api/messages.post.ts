@@ -8,7 +8,7 @@ const MAX_BODY_BYTES = 32 * 1024;
 const buildEmailBody = (input: ContactMessageInput) => {
   const rows: Array<[string, string]> = [
     ["Nom", escapeHtml(input.name)],
-    ["Société", escapeHtml(input.society)],
+    ["Société", escapeHtml(input.society) || "—"],
     ["Email", `<a href="mailto:${escapeHtml(input.email)}">${escapeHtml(input.email)}</a>`],
     ["Téléphone", escapeHtml(input.mobile) || "—"],
   ];
@@ -35,7 +35,7 @@ const buildEmailBody = (input: ContactMessageInput) => {
     "Nouveau message depuis le portfolio",
     "",
     `Nom       : ${input.name}`,
-    `Société   : ${input.society}`,
+    `Société   : ${input.society || "—"}`,
     `Email     : ${input.email}`,
     `Téléphone : ${input.mobile || "—"}`,
     "",
@@ -54,7 +54,8 @@ const buildEmailBody = (input: ContactMessageInput) => {
  */
 const deliver = async (messageId: unknown, input: ContactMessageInput): Promise<void> => {
   const { html, text } = buildEmailBody(input);
-  const subject = sanitizeHeader(`Portfolio — ${input.name} (${input.society})`);
+  const who = input.society ? `${input.name} (${input.society})` : input.name;
+  const subject = sanitizeHeader(`Portfolio — ${who}`);
 
   try {
     const result = await sendEmail({ subject, html, text, replyTo: input.email });
@@ -81,9 +82,7 @@ const deliver = async (messageId: unknown, input: ContactMessageInput): Promise<
   }
 
   await notifyWebhook(
-    `📬 Nouveau message portfolio — ${sanitizeHeader(input.name)} (${sanitizeHeader(
-      input.society
-    )}) · ${sanitizeHeader(input.email)}`
+    `📬 Nouveau message portfolio — ${sanitizeHeader(who)} · ${sanitizeHeader(input.email)}`
   );
 };
 

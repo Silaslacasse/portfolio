@@ -13,7 +13,7 @@ import mongoose, { type InferSchemaType, type Model } from "mongoose";
 const messageSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
-    society: { type: String, required: true, trim: true },
+    society: { type: String, default: "", trim: true },
     email: { type: String, required: true, trim: true, lowercase: true },
     mobile: { type: String, trim: true, default: "" },
     // Kept for messages received before the 2026-09 form merged the name fields and

@@ -18,7 +18,7 @@ const form = reactive<ContactMessageInput>({
 // LinkedIn button next to "send" is the link to *my* profile, not a field.
 const fields = [
   { key: "name", autocomplete: "name", required: true },
-  { key: "society", autocomplete: "organization", required: true },
+  { key: "society", autocomplete: "organization", required: false },
   { key: "email", autocomplete: "email", required: true, type: "email" },
   { key: "mobile", autocomplete: "tel", required: false, type: "tel" },
 ] as const;

@@ -78,7 +78,7 @@ const formatDate = (iso: string) =>
         <div class="flex flex-wrap items-baseline justify-between gap-2">
           <p :class="m.readAt ? '' : 'font-semibold'">
             {{ fullName(m) }}
-            <span class="text-muted"> · {{ m.society }}</span>
+            <span v-if="m.society" class="text-muted"> · {{ m.society }}</span>
           </p>
           <time :datetime="m.createdAt" class="text-sm text-muted">{{
             formatDate(m.createdAt)

@@ -19,8 +19,8 @@ const contact = computed(() => `${localePath("index")}#contact`);
       <h2>Données collectées</h2>
       <p>Le site ne collecte des données personnelles que lorsque vous envoyez un message :</p>
       <ul>
-        <li>votre nom, votre société, votre adresse email et votre message (obligatoires) ;</li>
-        <li>votre numéro de téléphone (facultatif) ;</li>
+        <li>votre nom, votre adresse email et votre message (obligatoires) ;</li>
+        <li>votre société et votre numéro de téléphone (facultatifs) ;</li>
         <li>votre adresse IP et votre navigateur (user agent), enregistrés avec le message.</li>
       </ul>
       <p>
@@ -104,8 +104,8 @@ const contact = computed(() => `${localePath("index")}#contact`);
       <h2>Data collected</h2>
       <p>The site only collects personal data when you send a message:</p>
       <ul>
-        <li>your name, company, email address and message (required);</li>
-        <li>your phone number (optional);</li>
+        <li>your name, email address and message (required);</li>
+        <li>your company and phone number (optional);</li>
         <li>your IP address and browser (user agent), stored with the message.</li>
       </ul>
       <p>
