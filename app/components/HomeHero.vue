@@ -34,10 +34,10 @@ const { t } = useI18n();
       <AppSectionTitle
         tag="h1"
         size="giant"
-        :eyebrow="t('home.heroEyebrow')"
         :title="t('home.heroFirstName')"
         :accent="t('home.heroLastName')"
       />
+      <p class="mt-6 text-title text-muted">{{ t("home.heroRole") }}</p>
     </div>
 
     <a

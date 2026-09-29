@@ -36,7 +36,7 @@
     "aboutGreeting": "Hey, I'm Jocelyn ✌️",
     "aboutText": "Passionate about IT, I am a full-stack developer with solid expertise in PHP and JavaScript, and a command of frameworks such as Symfony, Vue.js, React and Express.",
     "avatarAlt": "Jocelyn’s avatar",
-    "heroEyebrow": "Full-stack developer",
+    "heroRole": "Full-stack developer",
     "heroFirstName": "Jocelyn",
     "heroLastName": "Duperret.",
     "scroll": "Scroll",
@@ -44,12 +44,10 @@
       "title": "They trusted me"
     },
     "about": {
-      "eyebrow": "About",
       "title": "About",
       "accent": "me."
     },
     "personal": {
-      "eyebrow": "Off duty",
       "title": "Beyond",
       "accent": "the code.",
       "items": [
@@ -68,7 +66,6 @@
       ]
     },
     "projects": {
-      "eyebrow": "Projects",
       "title": "My",
       "accent": "projects.",
       "lead": "Three recent projects. The full selection is on the projects page.",
@@ -92,7 +89,6 @@
     "client": "Client",
     "technologies": "Technologies",
     "backToList": "Back to projects",
-    "eyebrow": "Portfolio · {count} project | Portfolio · {count} projects",
     "heading": "My",
     "accent": "projects.",
     "lead": "A selection of full-stack web projects: context, role, technologies and outcomes.",
@@ -121,7 +117,6 @@
     "errorServer": "We're having technical issues. Please try again later.",
     "required": "required",
     "errorRateLimit": "You already sent a message today. Please try again tomorrow.",
-    "eyebrow": "Contact",
     "heading": "Let's",
     "accent": "talk.",
     "lead": "A project, a position, a question?",

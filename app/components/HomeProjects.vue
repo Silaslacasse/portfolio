@@ -20,7 +20,6 @@ const number = (index: number) => String(index + 1).padStart(2, "0");
     <div class="flex flex-wrap items-end justify-between gap-6">
       <AppSectionTitle
         v-reveal
-        :eyebrow="$t('home.projects.eyebrow')"
         :title="$t('home.projects.title')"
         :accent="$t('home.projects.accent')"
       />

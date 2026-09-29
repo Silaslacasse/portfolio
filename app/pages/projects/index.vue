@@ -53,12 +53,7 @@ const tileClass = (index: number) =>
   <section class="container-content py-12 lg:py-20">
     <div class="flex flex-wrap items-end justify-between gap-8">
       <div class="flex max-w-3xl flex-col gap-6">
-        <AppSectionTitle
-          tag="h1"
-          :eyebrow="$t('projects.eyebrow', { count: projects.length }, projects.length)"
-          :title="$t('projects.heading')"
-          :accent="$t('projects.accent')"
-        />
+        <AppSectionTitle tag="h1" :title="$t('projects.heading')" :accent="$t('projects.accent')" />
         <p class="text-lead text-muted">{{ $t("projects.lead") }}</p>
       </div>
       <img

@@ -12,12 +12,7 @@ const localePath = useLocalePath();
     unchanged. One grid, one fluid gutter; the two tiles are the links they always looked like.
   -->
   <section class="container-content py-10 lg:py-20">
-    <AppSectionTitle
-      v-reveal
-      :eyebrow="$t('home.about.eyebrow')"
-      :title="$t('home.about.title')"
-      :accent="$t('home.about.accent')"
-    />
+    <AppSectionTitle v-reveal :title="$t('home.about.title')" :accent="$t('home.about.accent')" />
 
     <div v-reveal class="mt-10 grid gap-6 lg:grid-cols-2 lg:grid-rows-2">
       <div class="rounded-panel bg-surface p-6 sm:p-8 lg:row-span-2">

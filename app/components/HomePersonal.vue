@@ -23,11 +23,7 @@ const items = computed(() =>
 
 <template>
   <section v-reveal class="container-content py-10 lg:py-20">
-    <AppSectionTitle
-      :eyebrow="$t('home.personal.eyebrow')"
-      :title="$t('home.personal.title')"
-      :accent="$t('home.personal.accent')"
-    />
+    <AppSectionTitle :title="$t('home.personal.title')" :accent="$t('home.personal.accent')" />
 
     <ul class="mt-10 grid gap-6 sm:grid-cols-3">
       <li

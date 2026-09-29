@@ -36,7 +36,7 @@
     "aboutGreeting": "Hey, moi c’est Jocelyn ✌️",
     "aboutText": "Passionné par l’informatique, je suis développeur full stack avec une expertise solide en PHP, JavaScript, et une maîtrise des frameworks comme Symfony, Vue.js, React, et Express.",
     "avatarAlt": "Avatar de Jocelyn",
-    "heroEyebrow": "Développeur full-stack",
+    "heroRole": "Développeur full-stack",
     "heroFirstName": "Jocelyn",
     "heroLastName": "Duperret.",
     "scroll": "Scroll",
@@ -44,12 +44,10 @@
       "title": "Ils m’ont fait confiance"
     },
     "about": {
-      "eyebrow": "À propos",
       "title": "À propos",
       "accent": "de moi."
     },
     "personal": {
-      "eyebrow": "Perso",
       "title": "À côté",
       "accent": "du code.",
       "items": [
@@ -68,7 +66,6 @@
       ]
     },
     "projects": {
-      "eyebrow": "Projets",
       "title": "Mes",
       "accent": "projets.",
       "lead": "Trois projets récents. La sélection complète est sur la page projets.",
@@ -92,7 +89,6 @@
     "client": "Client",
     "technologies": "Technologies",
     "backToList": "Retour aux projets",
-    "eyebrow": "Portfolio · {count} projet | Portfolio · {count} projets",
     "heading": "Mes",
     "accent": "projets.",
     "lead": "Une sélection de projets web full-stack : contexte, rôle, technologies et résultats.",
@@ -121,7 +117,6 @@
     "errorServer": "Nous rencontrons un problème technique. Merci de réessayer plus tard.",
     "required": "obligatoire",
     "errorRateLimit": "Vous avez déjà envoyé un message aujourd’hui. Merci de réessayer demain.",
-    "eyebrow": "Contact",
     "heading": "On",
     "accent": "discute ?",
     "lead": "Un projet, un poste, une question ?",

@@ -72,12 +72,7 @@ const input = "field aria-invalid:border-accent";
 
 <template>
   <section id="contact" class="container-content scroll-mt-28 py-10 lg:py-20">
-    <AppSectionTitle
-      v-reveal
-      :eyebrow="$t('contact.eyebrow')"
-      :title="$t('contact.heading')"
-      :accent="$t('contact.accent')"
-    />
+    <AppSectionTitle v-reveal :title="$t('contact.heading')" :accent="$t('contact.accent')" />
 
     <div
       class="mt-10 grid items-start gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-16"
