@@ -23,6 +23,7 @@
   },
   "nav": {
     "home": "Home",
+    "trust": "They trusted me",
     "skills": "Skills",
     "projects": "Projects",
     "contact": "Let's talk",
@@ -32,15 +33,48 @@
     "menu": "Menu"
   },
   "home": {
-    "heroName": "Jocelyn Duperret,",
-    "heroRole": "full-stack developer",
-    "aboutTitle": "About me",
     "aboutGreeting": "Hey, I'm Jocelyn ✌️",
-    "comingSoon": "Coming soon…",
-    "heroRoleStart": "full-stack",
-    "heroRoleEnd": "developer",
     "aboutText": "Passionate about IT, I am a full-stack developer with solid expertise in PHP and JavaScript, and a command of frameworks such as Symfony, Vue.js, React and Express.",
-    "avatarAlt": "Jocelyn’s avatar"
+    "avatarAlt": "Jocelyn’s avatar",
+    "heroEyebrow": "Full-stack developer",
+    "heroFirstName": "Jocelyn",
+    "heroLastName": "Duperret.",
+    "scroll": "Scroll",
+    "trust": {
+      "title": "They trusted me"
+    },
+    "about": {
+      "eyebrow": "About",
+      "title": "About",
+      "accent": "me."
+    },
+    "personal": {
+      "eyebrow": "Off duty",
+      "title": "Beyond",
+      "accent": "the code.",
+      "items": [
+        {
+          "title": "Music",
+          "text": "Lorem ipsum dolor sit amet, the playlist that runs while I code, from lo-fi to rock."
+        },
+        {
+          "title": "Sport",
+          "text": "Consectetur adipiscing elit: climbing on weekends and cycling to work."
+        },
+        {
+          "title": "Reading",
+          "text": "Sed do eiusmod tempor, from tech watch to science-fiction novels."
+        }
+      ]
+    },
+    "projects": {
+      "eyebrow": "Projects",
+      "title": "My",
+      "accent": "projects.",
+      "lead": "Three recent projects. The full selection is on the projects page.",
+      "all": "All projects",
+      "view": "View project"
+    }
   },
   "curriculum": {
     "skills": "Skills",
@@ -57,15 +91,27 @@
     "year": "Year",
     "client": "Client",
     "technologies": "Technologies",
-    "backToList": "Back to projects"
+    "backToList": "Back to projects",
+    "eyebrow": "Portfolio · {count} project | Portfolio · {count} projects",
+    "heading": "My",
+    "accent": "projects.",
+    "lead": "A selection of full-stack web projects: context, role, technologies and outcomes.",
+    "filterAll": "All",
+    "filterLabel": "Filter by technology",
+    "cta": "Got a project in mind?",
+    "counter": "{position} / {total}",
+    "links": "Links",
+    "toc": "Contents",
+    "about": "The project",
+    "gallery": "Gallery",
+    "next": "Next project",
+    "coverAlt": "Visual of the {title} project"
   },
   "contact": {
     "title": "Let's talk",
-    "name": "Last name",
-    "firstName": "First name",
+    "name": "Full name",
     "society": "Company",
     "email": "Email",
-    "linkedIn": "Linkedin",
     "mobile": "Phone",
     "message": "Message",
     "submit": "Send",
@@ -74,7 +120,20 @@
     "errorGeneric": "Sending failed. Please try again.",
     "errorServer": "We're having technical issues. Please try again later.",
     "required": "required",
-    "errorRateLimit": "You already sent a message today. Please try again tomorrow."
+    "errorRateLimit": "You already sent a message today. Please try again tomorrow.",
+    "eyebrow": "Contact",
+    "heading": "Let's",
+    "accent": "talk.",
+    "lead": "A project, a position, a question?",
+    "text": "I read every message and usually answer within 48 hours.",
+    "requiredFields": "Required fields",
+    "placeholders": {
+      "name": "e.g. Jane Smith",
+      "society": "e.g. ACME",
+      "email": "name{'@'}company.com",
+      "mobile": "+33 6 00 00 00 00",
+      "message": "A few words about the project…"
+    }
   },
   "footer": {
     "legalNotice": "Legal notice",

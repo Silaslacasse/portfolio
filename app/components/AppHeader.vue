@@ -10,6 +10,7 @@ const route = useRoute();
 const home = computed(() => localePath("index"));
 const links = computed(() => [
   { label: t("nav.home"), to: home.value },
+  { label: t("nav.trust"), to: `${home.value}#trust` },
   { label: t("nav.skills"), to: `${home.value}#skills` },
   { label: t("nav.projects"), to: localePath("projects") },
   { label: t("nav.contact"), to: `${home.value}#contact` },

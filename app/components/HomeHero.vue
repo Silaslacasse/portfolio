@@ -1,92 +1,53 @@
 <script setup lang="ts">
-import star from "~/assets/images/star.webp";
-import abstract from "~/assets/images/abstract.webp";
-import deco1 from "~/assets/images/deco1.webp";
-import deco2 from "~/assets/images/deco2.webp";
-import twick from "~/assets/icons/orange_deco.webp";
-import frame from "~/assets/icons/frame.webp";
-import mailIcon from "~/assets/icons/mail_send.webp";
+import shape from "~/assets/images/pink_pasta.webp";
 
-const localePath = useLocalePath();
+const { t } = useI18n();
 </script>
 
 <template>
   <!--
-    v1 pinned the two floating shapes with `right: 667px` → 450 → 350 → 250 → 150 across
-    seven breakpoints and hid the desktop title under 850px for a second, hand-sized copy.
-    Here everything derives from two things: the section's own box (shapes are placed in
-    percentages of it) and the fluid hero type (the inline pills and their twicks are sized
-    in `em`, so they shrink with the words they sit between).
+    Direction A hero: eyebrow, the name as a giant two-line title, a glow and one floating
+    3D shape in the top-right corner. The glow and the shape are sized in vw and placed in
+    percentages of the section, so no breakpoint re-pins them. No scroll reveal here: the
+    hero is the LCP and must be in the first paint.
   -->
   <section
-    class="container-content relative flex min-h-[calc(100svh-6rem)] flex-col items-center justify-center py-16"
+    class="container-content relative flex min-h-[calc(100svh-6rem)] flex-col justify-center overflow-hidden py-16"
   >
-    <img
-      :src="star"
-      width="245"
-      height="256"
-      alt=""
+    <div
       aria-hidden="true"
-      class="pointer-events-none absolute top-[4%] right-[8%] w-[clamp(6.5rem,15vw,15rem)] lg:right-[16%]"
+      class="pointer-events-none absolute -top-[15%] -right-[10%] size-[clamp(20rem,50vw,45rem)] rounded-full bg-hero-glow"
     />
     <img
-      :src="abstract"
-      width="273"
-      height="269"
+      :src="shape"
+      width="194"
+      height="193"
       alt=""
       aria-hidden="true"
-      class="pointer-events-none absolute bottom-[8%] left-[6%] w-[clamp(6.5rem,17vw,17rem)] lg:left-[14%]"
+      class="pointer-events-none absolute top-[10%] right-[12%] w-[clamp(6rem,14vw,12.5rem)] animate-float"
     />
 
-    <h1
-      class="relative z-10 flex flex-col items-center gap-y-2 text-center font-display text-hero leading-[1.1] font-bold text-white uppercase"
-    >
-      <span class="flex flex-wrap items-center justify-center gap-x-[0.25em] gap-y-2">
-        <span>{{ $t("home.heroName") }}</span>
-        <span
-          class="relative inline-block h-[0.85em] w-[2.05em] -rotate-6 rounded-pill bg-cover bg-center"
-          :style="{ backgroundImage: `url(${deco1})` }"
-        >
-          <img
-            :src="twick"
-            width="44"
-            height="45"
-            alt=""
-            class="absolute -top-[0.2em] -left-[0.1em] w-[0.45em]"
-          />
-        </span>
-      </span>
-      <span class="flex flex-wrap items-center justify-center gap-x-[0.25em] gap-y-2">
-        <span>{{ $t("home.heroRoleStart") }}</span>
-        <span
-          class="relative inline-block h-[0.85em] w-[2.05em] rotate-6 rounded-pill bg-cover bg-center"
-          :style="{ backgroundImage: `url(${deco2})` }"
-        >
-          <img
-            :src="frame"
-            width="162"
-            height="162"
-            alt=""
-            class="absolute -bottom-[0.15em] -left-[0.15em] w-[0.8em] -rotate-12"
-          />
-        </span>
-        <span>{{ $t("home.heroRoleEnd") }}</span>
-      </span>
-    </h1>
-
-    <!-- In flow below the title; pinned bottom-right only where there is room for it. -->
-    <div class="relative z-10 mt-12 lg:absolute lg:right-gutter lg:bottom-10 lg:mt-0">
-      <img
-        :src="twick"
-        width="44"
-        height="45"
-        alt=""
-        class="pointer-events-none absolute -top-3 -left-3 w-8"
+    <div class="relative animate-rise">
+      <AppSectionTitle
+        tag="h1"
+        size="giant"
+        :eyebrow="t('home.heroEyebrow')"
+        :title="t('home.heroFirstName')"
+        :accent="t('home.heroLastName')"
       />
-      <AppButton :to="`${localePath('index')}#contact`" size="lg">
-        {{ $t("nav.contact") }}
-        <img :src="mailIcon" width="22" height="22" alt="" />
-      </AppButton>
     </div>
+
+    <a
+      href="#trust"
+      class="group relative mt-12 flex w-fit items-center gap-3 text-small tracking-[0.12em] text-muted uppercase transition-colors hover:text-white"
+    >
+      <span
+        aria-hidden="true"
+        class="flex h-11 w-7 justify-center rounded-pill border-2 border-current pt-2"
+      >
+        <span class="h-2 w-1 rounded-full bg-accent group-hover:animate-bounce" />
+      </span>
+      {{ t("home.scroll") }}
+    </a>
   </section>
 </template>

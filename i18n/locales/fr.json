@@ -23,6 +23,7 @@
   },
   "nav": {
     "home": "Accueil",
+    "trust": "Ils m’ont fait confiance",
     "skills": "Mes compétences",
     "projects": "Mes projets",
     "contact": "On discute ?",
@@ -32,15 +33,48 @@
     "menu": "Menu"
   },
   "home": {
-    "heroName": "Jocelyn Duperret,",
-    "heroRole": "développeur full-stack",
-    "aboutTitle": "À propos de moi",
     "aboutGreeting": "Hey, moi c’est Jocelyn ✌️",
-    "comingSoon": "Bientôt disponible…",
-    "heroRoleStart": "développeur",
-    "heroRoleEnd": "full-stack",
     "aboutText": "Passionné par l’informatique, je suis développeur full stack avec une expertise solide en PHP, JavaScript, et une maîtrise des frameworks comme Symfony, Vue.js, React, et Express.",
-    "avatarAlt": "Avatar de Jocelyn"
+    "avatarAlt": "Avatar de Jocelyn",
+    "heroEyebrow": "Développeur full-stack",
+    "heroFirstName": "Jocelyn",
+    "heroLastName": "Duperret.",
+    "scroll": "Scroll",
+    "trust": {
+      "title": "Ils m’ont fait confiance"
+    },
+    "about": {
+      "eyebrow": "À propos",
+      "title": "À propos",
+      "accent": "de moi."
+    },
+    "personal": {
+      "eyebrow": "Perso",
+      "title": "À côté",
+      "accent": "du code.",
+      "items": [
+        {
+          "title": "Musique",
+          "text": "Lorem ipsum dolor sit amet, la playlist qui tourne quand je code, du lo-fi au rock."
+        },
+        {
+          "title": "Sport",
+          "text": "Consectetur adipiscing elit : escalade le week-end et vélo pour aller travailler."
+        },
+        {
+          "title": "Lectures",
+          "text": "Sed do eiusmod tempor, de la veille technique aux romans de science-fiction."
+        }
+      ]
+    },
+    "projects": {
+      "eyebrow": "Projets",
+      "title": "Mes",
+      "accent": "projets.",
+      "lead": "Trois projets récents. La sélection complète est sur la page projets.",
+      "all": "Tous les projets",
+      "view": "Voir le projet"
+    }
   },
   "curriculum": {
     "skills": "Compétences",
@@ -57,15 +91,27 @@
     "year": "Année",
     "client": "Client",
     "technologies": "Technologies",
-    "backToList": "Retour aux projets"
+    "backToList": "Retour aux projets",
+    "eyebrow": "Portfolio · {count} projet | Portfolio · {count} projets",
+    "heading": "Mes",
+    "accent": "projets.",
+    "lead": "Une sélection de projets web full-stack : contexte, rôle, technologies et résultats.",
+    "filterAll": "Tous",
+    "filterLabel": "Filtrer par technologie",
+    "cta": "Un projet en tête ?",
+    "counter": "{position} / {total}",
+    "links": "Liens",
+    "toc": "Sommaire",
+    "about": "Le projet",
+    "gallery": "Galerie",
+    "next": "Projet suivant",
+    "coverAlt": "Visuel du projet {title}"
   },
   "contact": {
     "title": "On discute ?",
-    "name": "Nom",
-    "firstName": "Prénom",
+    "name": "Nom et prénom",
     "society": "Société",
     "email": "Email",
-    "linkedIn": "Linkedin",
     "mobile": "Téléphone",
     "message": "Message",
     "submit": "Envoyer",
@@ -74,7 +120,20 @@
     "errorGeneric": "L’envoi a échoué. Merci de réessayer.",
     "errorServer": "Nous rencontrons un problème technique. Merci de réessayer plus tard.",
     "required": "obligatoire",
-    "errorRateLimit": "Vous avez déjà envoyé un message aujourd’hui. Merci de réessayer demain."
+    "errorRateLimit": "Vous avez déjà envoyé un message aujourd’hui. Merci de réessayer demain.",
+    "eyebrow": "Contact",
+    "heading": "On",
+    "accent": "discute ?",
+    "lead": "Un projet, un poste, une question ?",
+    "text": "Je lis chaque message et je réponds en général sous 48 heures.",
+    "requiredFields": "Champs obligatoires",
+    "placeholders": {
+      "name": "ex. Marie Dupont",
+      "society": "ex. ACME",
+      "email": "nom{'@'}entreprise.fr",
+      "mobile": "06 00 00 00 00",
+      "message": "Quelques mots sur le projet…"
+    }
   },
   "footer": {
     "legalNotice": "Mentions légales",
