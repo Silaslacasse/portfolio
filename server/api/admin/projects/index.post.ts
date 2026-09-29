@@ -19,6 +19,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     const created = await Project.create(parsed.data);
+    await purgePageCache();
     setResponseStatus(event, 201);
     return created.toObject();
   } catch (error) {

@@ -8,5 +8,6 @@ export default defineEventHandler(async (event) => {
 
   const deleted = await Project.findByIdAndDelete(id).lean();
   if (!deleted) throw createError({ statusCode: 404, statusMessage: "Project not found" });
+  await purgePageCache();
   return sendNoContent(event);
 });

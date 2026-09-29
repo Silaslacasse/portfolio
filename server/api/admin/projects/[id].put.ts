@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
       runValidators: true,
     }).lean();
     if (!updated) throw createError({ statusCode: 404, statusMessage: "Project not found" });
+    await purgePageCache();
     return updated;
   } catch (error) {
     if (!isDuplicateKey(error)) throw error;
