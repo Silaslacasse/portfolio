@@ -1,13 +1,25 @@
+let warnedHalfConfigured = false;
+
 /**
- * Cloudflare Turnstile check for the contact form. Returns true when Turnstile is not
- * configured (no secret), so the form keeps working until the keys are added.
+ * Cloudflare Turnstile check for the contact form. Enforced only when both keys are set:
+ * with the secret alone the page renders no widget, so every message would be refused (it
+ * happened on preproduction), and losing leads is worse than losing the spam filter. A
+ * half-configured pair is logged once instead.
  *
- * Fails closed on a network error: a message is only accepted with a verified token once
- * the secret exists, otherwise an attacker would only need Cloudflare to be slow.
+ * Fails closed on a network error: once configured, a message is only accepted with a
+ * verified token, otherwise an attacker would only need Cloudflare to be slow.
  */
 export const verifyTurnstile = async (token: unknown, ip: string): Promise<boolean> => {
-  const { turnstileSecretKey } = useRuntimeConfig();
-  if (!turnstileSecretKey) return true;
+  const { turnstileSecretKey, public: publicConfig } = useRuntimeConfig();
+  if (!turnstileSecretKey || !publicConfig.turnstileSiteKey) {
+    if ((turnstileSecretKey || publicConfig.turnstileSiteKey) && !warnedHalfConfigured) {
+      warnedHalfConfigured = true;
+      console.warn(
+        "Turnstile is half-configured and therefore off: set both NUXT_PUBLIC_TURNSTILE_SITE_KEY and NUXT_TURNSTILE_SECRET_KEY."
+      );
+    }
+    return true;
+  }
   if (typeof token !== "string" || !token) return false;
 
   try {
