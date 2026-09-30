@@ -34,10 +34,10 @@ const contact = computed(() => `${localePath("index")}#contact`);
 
       <h2>Propriété intellectuelle</h2>
       <p>
-        Les textes du site et le logo JOSS appartiennent à l’éditeur. Toute reproduction ou
-        réutilisation sans autorisation préalable est interdite. Les projets présentés restent la
-        propriété de leurs clients ou commanditaires respectifs et sont montrés à titre de
-        références ; les noms et logos d’entreprises cités appartiennent à leurs titulaires.
+        Les textes du site, le logo JOSS et les projets présentés, réalisés par l’éditeur à titre
+        personnel, lui appartiennent. Toute reproduction ou réutilisation sans autorisation
+        préalable est interdite. Les noms et logos des entreprises citées appartiennent à leurs
+        titulaires respectifs.
       </p>
 
       <h2>Données personnelles et cookies</h2>
@@ -73,10 +73,9 @@ const contact = computed(() => `${localePath("index")}#contact`);
 
       <h2>Intellectual property</h2>
       <p>
-        The site’s texts and the JOSS logo belong to the publisher. Any reproduction or reuse
-        without prior permission is prohibited. The projects shown remain the property of their
-        respective clients and are presented as references; company names and logos belong to their
-        owners.
+        The site’s texts, the JOSS logo and the projects shown, personal work by the publisher,
+        belong to the publisher. Any reproduction or reuse without prior permission is prohibited.
+        The names and logos of the companies mentioned belong to their respective owners.
       </p>
 
       <h2>Personal data and cookies</h2>

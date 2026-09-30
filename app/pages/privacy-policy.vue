@@ -69,10 +69,8 @@ const contact = computed(() => `${localePath("index")}#contact`);
         </li>
       </ul>
       <p>
-        Une notification réduite (nom, société et adresse email, sans le message) peut aussi être
-        transmise à l’éditeur par messagerie instantanée. Les transferts vers les États-Unis sont
-        encadrés par les garanties prévues par le RGPD (EU-US Data Privacy Framework ou clauses
-        contractuelles types de la Commission européenne).
+        Les transferts vers les États-Unis sont encadrés par les garanties prévues par le RGPD
+        (EU-US Data Privacy Framework ou clauses contractuelles types de la Commission européenne).
       </p>
 
       <h2>Vos droits</h2>
@@ -155,10 +153,8 @@ const contact = computed(() => `${localePath("index")}#contact`);
         </li>
       </ul>
       <p>
-        A shorter notification (name, company and email address, without the message) may also reach
-        the publisher through an instant messaging service. Transfers to the United States rely on
-        the safeguards provided by the GDPR (EU-US Data Privacy Framework or the European
-        Commission’s standard contractual clauses).
+        Transfers to the United States rely on the safeguards provided by the GDPR (EU-US Data
+        Privacy Framework or the European Commission’s standard contractual clauses).
       </p>
 
       <h2>Your rights</h2>
