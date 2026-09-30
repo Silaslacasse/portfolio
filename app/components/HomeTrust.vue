@@ -4,7 +4,7 @@
  * the files land; the tile sizing already fits a 96px-tall logo. The grid fills its row
  * whatever the number of names.
  */
-const partners = ["DataSOlution", "JetPulp", "SiteW", "Arclim"];
+const partners = ["DataSolution", "JetPulp", "SiteW", "Arclim"];
 </script>
 
 <template>
