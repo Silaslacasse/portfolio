@@ -5,7 +5,8 @@
  * inline script runs before the first paint and marks a return visit, so a reload or a
  * second page in the same session never flashes the curtain.
  *
- * ponytail: inline script; the Phase 5 CSP will need its hash (or drop the once-per-session rule).
+ * ponytail: inline script, allowed by the CSP's 'unsafe-inline'; it needs a nonce if the CSP
+ * ever moves to nonces (or drop the once-per-session rule).
  */
 useHead({
   script: [
