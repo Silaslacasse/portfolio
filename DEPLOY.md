@@ -81,6 +81,11 @@ command is `node .output/server/index.mjs`.
 
 - [ ] Deploy `web/` alongside the existing app on a temporary domain and verify.
 - [ ] Confirm `robots.txt` and `sitemap_index.xml` show the production domain.
-- [ ] Carry over the Google Search Console verification tag from the v1 `index.html`.
+- [x] Carry over the Google Search Console verification tag from the v1 `index.html` (in
+      `nuxt.config.ts` since 2026-09-29).
+- [ ] Set the Turnstile keys (`NUXT_PUBLIC_TURNSTILE_SITE_KEY`, `NUXT_TURNSTILE_SECRET_KEY`)
+      and send one real message through the form.
+- [ ] Check the security headers on the production domain (`curl -sI`), and that
+      `robots.txt` allows indexing (preproduction disallows it whenever basic auth is on).
 - [ ] Switch the domain, keep the old container running for a week.
 - [ ] Submit the new sitemap in Search Console.
