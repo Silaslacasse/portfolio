@@ -1,10 +1,10 @@
 <script setup lang="ts">
 /**
- * Wordmarks stand in for logos until the SVG files exist (see the canvas note): the three
- * real employers first, then placeholder names. Swap each string for an <img> when the
- * files land; the tile sizing already fits a 96px-tall logo.
+ * Wordmarks stand in for logos until the SVG files exist. Swap each string for an <img> when
+ * the files land; the tile sizing already fits a 96px-tall logo. The grid fills its row
+ * whatever the number of names.
  */
-const partners = ["JetPulp", "SiteW", "Arclim", "Lumen", "Novatek", "Orbis"];
+const partners = ["DataSOlution", "JetPulp", "SiteW", "Arclim"];
 </script>
 
 <template>
@@ -12,7 +12,7 @@ const partners = ["JetPulp", "SiteW", "Arclim", "Lumen", "Novatek", "Orbis"];
     <h2 class="text-center text-small tracking-[0.14em] text-muted uppercase">
       {{ $t("home.trust.title") }}
     </h2>
-    <ul class="mt-7 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 lg:gap-6">
+    <ul class="mt-7 grid grid-cols-[repeat(auto-fit,minmax(9rem,1fr))] gap-4 lg:gap-6">
       <li
         v-for="name in partners"
         :key="name"
