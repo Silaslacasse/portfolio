@@ -61,14 +61,39 @@
           "text": "Lorem ipsum dolor sit amet, la playlist qui tourne quand je code, du lo-fi au rock."
         },
         {
-          "title": "Sport",
-          "text": "Consectetur adipiscing elit : escalade le week-end et vélo pour aller travailler."
-        },
-        {
           "title": "Lectures",
           "text": "Sed do eiusmod tempor, de la veille technique aux romans de science-fiction."
         }
-      ]
+      ],
+      "sport": {
+        "label": "Animation : un personnage enchaîne kung-fu, natation et course, puis part à vélo.",
+        "chapters": [
+          {
+            "tag": "Kung-fu",
+            "title": "Sur le tapis,",
+            "accent": "8 ans.",
+            "text": "Wushu et jiu-jitsu. La patience et la répétition, je les ai apprises là avant de les appliquer au code."
+          },
+          {
+            "tag": "Natation",
+            "title": "Des",
+            "accent": "longueurs.",
+            "text": "Depuis toujours, pour remettre les idées à plat."
+          },
+          {
+            "tag": "Course à pied",
+            "title": "Un peu,",
+            "accent": "souvent.",
+            "text": "Depuis toujours, juste assez pour aimer ça."
+          },
+          {
+            "tag": "Vélo",
+            "title": "Sérieusement depuis",
+            "accent": "un an.",
+            "text": "Des sorties sur route de plus en plus longues."
+          }
+        ]
+      }
     },
     "projects": {
       "title": "Mes",

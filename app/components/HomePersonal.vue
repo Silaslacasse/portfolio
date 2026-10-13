@@ -6,9 +6,9 @@ import deco from "~/assets/images/deco2.webp";
 const { tm, rt } = useI18n();
 
 /**
- * "À côté du code": three personal notes. Copy lives in the locale files; the visuals are
- * the brand's own 3D shapes until real photos are chosen (they are placeholders, not the
- * final content — see the canvas note).
+ * "À côté du code", being reworked block by block. Sport is final (PersonalSport); music and
+ * culture are still the placeholder cards above it, with the brand's 3D shapes as visuals,
+ * until their blocks are designed (see the canvas note).
  */
 const visuals = [star, abstract, deco];
 
@@ -25,7 +25,7 @@ const items = computed(() =>
   <section id="personal" v-reveal class="container-content scroll-mt-28 py-10 lg:py-20">
     <AppSectionTitle :title="$t('home.personal.title')" :accent="$t('home.personal.accent')" />
 
-    <ul class="mt-10 grid gap-6 sm:grid-cols-3">
+    <ul class="mt-10 grid gap-6 sm:grid-cols-2">
       <li
         v-for="(item, index) in items"
         :key="item.title"
@@ -41,5 +41,7 @@ const items = computed(() =>
         </div>
       </li>
     </ul>
+
+    <PersonalSport class="mt-16 lg:mt-24" />
   </section>
 </template>

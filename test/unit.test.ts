@@ -4,6 +4,7 @@ import { projectSchema } from "../shared/schemas/project";
 import { localized } from "../shared/utils/localized";
 import { fieldErrors } from "../shared/utils/validation";
 import { escapeHtml, sanitizeHeader } from "../server/utils/html";
+import { SPORT_CHAPTERS, sportState } from "../app/utils/sport-scene";
 
 /**
  * The pure logic the site leans on: translation fallback, the email injection defenses and
@@ -101,5 +102,32 @@ describe("projectSchema", () => {
 
   it("requires the French title", () => {
     expect(projectSchema.safeParse({ ...base, title: { en: "Title" } }).success).toBe(false);
+  });
+});
+
+describe("sport scene", () => {
+  const frames = Array.from({ length: 600 }, (_, i) => (i / 599) * SPORT_CHAPTERS);
+
+  it("weighs the chapters to one at every frame", () => {
+    for (const u of frames) {
+      const { w } = sportState(u);
+      expect(w.reduce((a, b) => a + b, 0)).toBeCloseTo(1);
+    }
+  });
+
+  it("never jumps between neighbouring frames, transitions included", () => {
+    for (let i = 1; i < frames.length; i++) {
+      const a = sportState(frames[i - 1]!);
+      const b = sportState(frames[i]!);
+      // The ride-off moves x on purpose; the pose itself must stay continuous.
+      expect(Math.abs(b.pose.x - b.bx - (a.pose.x - a.bx))).toBeLessThan(0.1);
+      expect(Math.abs(b.pose.y - a.pose.y)).toBeLessThan(0.1);
+      expect(Math.abs(b.pose.a - a.pose.a)).toBeLessThan(0.1);
+    }
+  });
+
+  it("ends with the cyclist off screen", () => {
+    expect(sportState(SPORT_CHAPTERS).bx).toBeGreaterThan(8);
+    expect(sportState(SPORT_CHAPTERS - 0.5).bx).toBe(0);
   });
 });

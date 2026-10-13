@@ -61,14 +61,39 @@
           "text": "Lorem ipsum dolor sit amet, the playlist that runs while I code, from lo-fi to rock."
         },
         {
-          "title": "Sport",
-          "text": "Consectetur adipiscing elit: climbing on weekends and cycling to work."
-        },
-        {
           "title": "Reading",
           "text": "Sed do eiusmod tempor, from tech watch to science-fiction novels."
         }
-      ]
+      ],
+      "sport": {
+        "label": "Animation: a figure moves through kung fu, swimming and running, then rides off on a bike.",
+        "chapters": [
+          {
+            "tag": "Kung fu",
+            "title": "On the mat,",
+            "accent": "8 years.",
+            "text": "Wushu and jiu-jitsu. Patience and repetition: I learned them there before bringing them to code."
+          },
+          {
+            "tag": "Swimming",
+            "title": "Lap after",
+            "accent": "lap.",
+            "text": "For as long as I can remember, to clear my head."
+          },
+          {
+            "tag": "Running",
+            "title": "A little,",
+            "accent": "often.",
+            "text": "For as long as I can remember, just enough to love it."
+          },
+          {
+            "tag": "Cycling",
+            "title": "Seriously for",
+            "accent": "a year.",
+            "text": "Road rides that keep getting longer."
+          }
+        ]
+      }
     },
     "projects": {
       "title": "My",
